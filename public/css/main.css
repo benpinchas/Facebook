@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+
+.dev {
+    background-color: rgba(65, 65, 65, 0.198);
+}
+
+button, input {
+    outline: none;
+}
+button {
+    cursor: pointer;
+}
