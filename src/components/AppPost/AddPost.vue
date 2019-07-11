@@ -9,12 +9,23 @@
         />
       </div>
 
-      <div class="input-container">
-        <textarea name id cols="30" rows="10"></textarea>
-      </div>
+      <!-- <div class="input-container"> -->
+      <!-- <textarea name id cols="30" rows="10"></textarea> -->
+      <div
+        contenteditable
+        class="input-container"
+        placeholder="What's on your mind, Puki Ben David?"
+      ></div>
+      <!-- </div> -->
     </main>
 
-    <footer></footer>
+    <footer>
+      <div>
+        <button>
+          <i class="fas fa-globe-americas"></i> Publish
+        </button>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -57,16 +68,48 @@ main {
 }
 .input-container {
   flex-grow: 1;
+  padding: 10px 5px;
 }
 
-textarea {
+[contenteditable="true"] {
+  outline: none;
+  word-break: break-all;
+}
+
+[contenteditable="true"]:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  color: gray;
+}
+
+footer {
+  padding: 0px 15px;
+}
+
+footer div {
+  border-top: 1px solid lightgray;
+  padding: 12px 0;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  background-color: #4267b2;
+  border-color: #29487d;
+  color: white;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+/* textarea {
      width: 96%;
     height: 87px;
     /* min-height: 80px; */
-    /* border: 1px solid black; */
-    resize: none;
+/* border: 1px solid black; */
+/* resize: none;
     border: none;
-}
+}  */
 </style>
 
 
