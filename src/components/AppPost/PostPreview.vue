@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped>    
 .post-preview {
     background-color: white;
     margin-bottom: 5px;
