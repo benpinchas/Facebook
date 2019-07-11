@@ -1,5 +1,5 @@
 <template>
-    <section class="app-post dev">
+    <section class="app-post">
         <add-post></add-post>
         <post-list></post-list>
     </section>

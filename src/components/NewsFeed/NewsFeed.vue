@@ -1,6 +1,15 @@
 <template>
     <section class="news-feed">
-        <app-post></app-post>
+        <aside>
+            aside
+        </aside>
+        <main>
+            <app-post></app-post>
+        </main>
+
+        <aside>
+            
+        </aside>
     </section>
 </template>
 
@@ -18,5 +27,15 @@ export default {
 
 
 <style scoped>
-
+.news-feed {
+    display: flex;
+}
+main {
+    flex-grow: 4;
+    max-width: 550px;
+}
+aside {
+    flex-grow: 1;
+    /* background-color: lightgray; */
+}
 </style>

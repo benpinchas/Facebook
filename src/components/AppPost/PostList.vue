@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 .post-list{ 
-
+    
 }
 </style>
 

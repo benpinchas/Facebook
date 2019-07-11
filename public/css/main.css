@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: lightgrey;
 }
 
 
@@ -13,3 +14,28 @@ button, input {
 button {
     cursor: pointer;
 }
+
+/* UTIL */
+.floating-box {
+    background-color: white;
+    border-radius: 2px;
+}
+
+
+
+.profile-image-container-thumb{
+    margin-right: 13px; 
+}
+
+.profile-image-container-thumb img {
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+textarea {
+    outline: none;
+}
+
+
