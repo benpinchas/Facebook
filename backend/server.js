@@ -10,6 +10,12 @@ const session = require('express-session')
 const app = express()
 const http = require('http').createServer(app);
 
+const logger = require('./services/logger.service')
+
+
+const authRoutes = require('./api/auth/auth.routes')
+
+
 
 app.use(cookieParser())
 app.use(bodyParser.json());
