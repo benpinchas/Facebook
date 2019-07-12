@@ -21,6 +21,12 @@ app.use(session({
 }))
 
 
+
+app.get('/', (req, res) => {
+    res.send('Good to you!')
+})
+
+
 if (process.env.NODE_ENV !== 'production') {
     const corsOptions = {
         origin: 'http://127.0.0.1:8080',
