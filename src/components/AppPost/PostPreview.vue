@@ -9,7 +9,7 @@
           />
         </div>
 
-        <div class="info-container">
+        <div class="info-container" style="padding-top: 5px;">
             <div style="margin-bottom: 3px;">
                 <a href>Puki Ben David</a>
             </div>
@@ -20,7 +20,7 @@
         </div>
        
       </header>
-      <span v-html="post.txt"></span>
+      <span v-html="post.txt" style="font-size:15px;"></span>
     </main>
     
     <!-- media-conatiner -->
@@ -35,12 +35,14 @@
         </div>
         <interactions-btns></interactions-btns>
     </footer>
+    <post-comments></post-comments>
   </div>
 </template>
 
 
 <script>
 import InteractionsBtns from "./InteractionsButtons.vue";
+import PostComments from './PostComment/PostComment.vue'
 
 let post = {
   txt: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s`,
@@ -57,7 +59,8 @@ export default {
     };
   },
   components: {
-    InteractionsBtns
+    InteractionsBtns,
+    PostComments
   }
 };
 </script>

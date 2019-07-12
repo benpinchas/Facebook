@@ -80,6 +80,7 @@ main {
   content: attr(placeholder);
   display: block; /* For Firefox */
   color: gray;
+  font-size: 14px;
 }
 
 footer {

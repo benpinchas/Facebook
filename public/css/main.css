@@ -1,6 +1,7 @@
 body {
     margin: 0;
     background-color: lightgrey;
+     color: #272727;
 }
 
 
@@ -37,6 +38,12 @@ button {
 textarea {
     outline: none;
 }
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
 
 
 

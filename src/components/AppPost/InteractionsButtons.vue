@@ -1,8 +1,14 @@
 <template>
   <div class="interactions-btns">
-    <button><i class="far fa-thumbs-up"></i> Like</button>
-    <button> <i class="far fa-comment"></i> Comment</button>
-    <button><i class="fas fa-share"></i> Share</button>
+    <button>
+      <i class="far fa-thumbs-up"></i> Like
+    </button>
+    <button>
+      <i class="far fa-comment"></i> Comment
+    </button>
+    <button>
+      <i class="fas fa-share"></i> Share
+    </button>
   </div>
 </template>
 
@@ -23,8 +29,8 @@ button {
   color: #606770;
   display: flex;
   flex: 1 0;
-  font-weight: 600;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 14px;
   height: 32px;
   justify-content: center;
   line-height: 14px;
@@ -41,8 +47,8 @@ button:hover {
 }
 
 i {
-    font-size: 16px;
-    margin-right: 5px;
+  font-size: 16px;
+  margin-right: 5px;
 }
 </style>
 
