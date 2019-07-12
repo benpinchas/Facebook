@@ -38,4 +38,10 @@ aside {
     flex-grow: 1;
     /* background-color: lightgray; */
 }
+
+@media (max-width: 670px) {
+    aside {
+        display: none;
+    }
+}
 </style>

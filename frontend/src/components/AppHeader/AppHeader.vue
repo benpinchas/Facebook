@@ -39,6 +39,7 @@ main {
   max-width: 95%;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .literal-logo {
@@ -51,6 +52,13 @@ main {
 
 .logo {
   font-size: 30px;
+}
+
+
+@media (max-width: 670px) {
+  header {
+    min-height: 90px;
+  }
 }
 </style>
 

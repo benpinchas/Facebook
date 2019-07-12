@@ -103,14 +103,13 @@ button {
   font-size: 15px;
 }
 
-/* textarea {
-     width: 96%;
-    height: 87px;
-    /* min-height: 80px; */
-/* border: 1px solid black; */
-/* resize: none;
-    border: none;
-}  */
+@media (max-width: 670px) {
+  .add-post {
+    max-width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 </style>
 
 
