@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('bcryptjs')
 const userService = require('../user/user.service')
 const logger = require('../../services/logger.service')
 
@@ -19,10 +19,10 @@ async function login(email, password) {
 async function signup(email, password, username) {
     logger.debug(`auth.service - signup with email: ${email}, username: ${username}`)
     if (!email || !password || !username) return Promise.reject('email, username and password are required!')
-
     const hash = await bcrypt.hash(password, saltRounds)
     const user = await userService.add({email, password: hash, username})
     delete user.password;
+
     return user;
 }
 

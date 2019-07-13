@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const config  =  require('../config')
 
 // Database Name
-const dbName = 'tester_db';
+const dbName = 'facebook_db';
 
 var dbConn = null;
 

@@ -1,0 +1,89 @@
+
+Sat, 13 Jul 2019 11:41:17 GMT - Debug - beqw, qwe
+Sat, 13 Jul 2019 11:41:17 GMT - Debug - auth.service - signup with email: beqw, username: qwe
+Sat, 13 Jul 2019 11:41:17 GMT - Error - [SIGNUP] No callback function was given.
+Sat, 13 Jul 2019 11:42:58 GMT - Debug - beqw, bbb
+Sat, 13 Jul 2019 11:42:58 GMT - Debug - auth.service - signup with email: beqw, username: bbb
+Sat, 13 Jul 2019 11:42:58 GMT - Error - [SIGNUP] No callback function was given.
+Sat, 13 Jul 2019 11:43:22 GMT - Debug - beqw, mmm
+Sat, 13 Jul 2019 11:43:22 GMT - Debug - auth.service - signup with email: beqw, username: mmm
+Sat, 13 Jul 2019 11:43:22 GMT - Error - [SIGNUP] No callback function was given.
+Sat, 13 Jul 2019 11:45:02 GMT - Debug - d, qwd
+Sat, 13 Jul 2019 11:45:02 GMT - Debug - auth.service - signup with email: d, username: qwd
+Sat, 13 Jul 2019 11:45:02 GMT - Error - [SIGNUP] No callback function was given.
+Sat, 13 Jul 2019 11:45:55 GMT - Debug - ben, BEN
+Sat, 13 Jul 2019 11:45:55 GMT - Debug - auth.service - signup with email: ben, username: BEN
+Sat, 13 Jul 2019 11:45:55 GMT - Error - [SIGNUP] No callback function was given.
+Sat, 13 Jul 2019 11:46:39 GMT - Debug - ben, BEN
+Sat, 13 Jul 2019 11:47:05 GMT - Debug - qw, wqe
+Sat, 13 Jul 2019 11:48:27 GMT - Debug - ff, null
+Sat, 13 Jul 2019 11:48:27 GMT - Debug - auth.service - signup with email: ff, username: null
+Sat, 13 Jul 2019 11:48:27 GMT - Error - [SIGNUP] email, username and password are required!
+Sat, 13 Jul 2019 11:48:50 GMT - Debug - ff, dd
+Sat, 13 Jul 2019 11:48:50 GMT - Debug - auth.service - signup with email: ff, username: dd
+Sat, 13 Jul 2019 11:48:50 GMT - Error - [SIGNUP] No callback function was given.
+Sat, 13 Jul 2019 11:49:34 GMT - Debug - ff, qwd
+Sat, 13 Jul 2019 11:49:34 GMT - Debug - auth.service - signup with email: ff, username: qwd
+Sat, 13 Jul 2019 11:50:14 GMT - Debug - a@a, avi
+Sat, 13 Jul 2019 11:50:14 GMT - Debug - auth.service - signup with email: a@a, username: avi
+Sat, 13 Jul 2019 11:52:05 GMT - Debug - b@b, beni
+Sat, 13 Jul 2019 11:52:05 GMT - Debug - auth.service - signup with email: b@b, username: beni
+Sat, 13 Jul 2019 11:52:05 GMT - Error - [SIGNUP] No callback function was given.
+Sat, 13 Jul 2019 11:53:05 GMT - Debug - b@b, beni
+Sat, 13 Jul 2019 11:53:05 GMT - Debug - auth.service - signup with email: b@b, username: beni
+Sat, 13 Jul 2019 11:53:05 GMT - Error - [SIGNUP] No callback function was given.
+Sat, 13 Jul 2019 11:56:27 GMT - Debug - a, a
+Sat, 13 Jul 2019 11:56:27 GMT - Debug - auth.service - signup with email: a, username: a
+Sat, 13 Jul 2019 11:56:49 GMT - Debug - b, null
+Sat, 13 Jul 2019 11:56:49 GMT - Debug - auth.service - signup with email: b, username: null
+Sat, 13 Jul 2019 11:56:49 GMT - Error - [SIGNUP] email, username and password are required!
+Sat, 13 Jul 2019 11:56:58 GMT - Debug - b, b
+Sat, 13 Jul 2019 11:56:58 GMT - Debug - auth.service - signup with email: b, username: b
+Sat, 13 Jul 2019 11:57:26 GMT - Debug - aa, aa
+Sat, 13 Jul 2019 11:57:26 GMT - Debug - auth.service - signup with email: aa, username: aa
+Sat, 13 Jul 2019 11:57:45 GMT - Debug - aa, aaa
+Sat, 13 Jul 2019 11:57:45 GMT - Debug - auth.service - signup with email: aa, username: aaa
+Sat, 13 Jul 2019 11:58:01 GMT - Debug - auth.service - login with email: aa
+Sat, 13 Jul 2019 11:58:09 GMT - Debug - auth.service - login with email: aa
+Sat, 13 Jul 2019 12:04:19 GMT - Debug - ben@gmail.com, ben pinchas
+Sat, 13 Jul 2019 12:04:19 GMT - Debug - auth.service - signup with email: ben@gmail.com, username: ben pinchas
+Sat, 13 Jul 2019 12:04:46 GMT - Debug - gaya@gmail.com, gaya steinhart
+Sat, 13 Jul 2019 12:04:46 GMT - Debug - auth.service - signup with email: gaya@gmail.com, username: gaya steinhart
+Sat, 13 Jul 2019 12:05:32 GMT - Debug - bob@gnail, bob
+Sat, 13 Jul 2019 12:05:32 GMT - Debug - auth.service - signup with email: bob@gnail, username: bob
+Sat, 13 Jul 2019 12:06:23 GMT - Debug - qweq, qwe
+Sat, 13 Jul 2019 12:06:23 GMT - Debug - auth.service - signup with email: qweq, username: qwe
+Sat, 13 Jul 2019 12:06:37 GMT - Debug - dd, null
+Sat, 13 Jul 2019 12:06:37 GMT - Debug - auth.service - signup with email: dd, username: null
+Sat, 13 Jul 2019 12:06:37 GMT - Error - [SIGNUP] email, username and password are required!
+Sat, 13 Jul 2019 12:06:42 GMT - Debug - dd, dd
+Sat, 13 Jul 2019 12:06:42 GMT - Debug - auth.service - signup with email: dd, username: dd
+Sat, 13 Jul 2019 12:07:18 GMT - Debug - dd, null
+Sat, 13 Jul 2019 12:07:18 GMT - Debug - auth.service - signup with email: dd, username: null
+Sat, 13 Jul 2019 12:07:18 GMT - Error - [SIGNUP] email, username and password are required!
+Sat, 13 Jul 2019 12:07:23 GMT - Debug - dd, dd
+Sat, 13 Jul 2019 12:07:23 GMT - Debug - auth.service - signup with email: dd, username: dd
+Sat, 13 Jul 2019 12:07:46 GMT - Debug - h@h, HABIB
+Sat, 13 Jul 2019 12:07:46 GMT - Debug - auth.service - signup with email: h@h, username: HABIB
+Sat, 13 Jul 2019 12:08:14 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:08:23 GMT - Debug - ben, ben pinchas
+Sat, 13 Jul 2019 12:08:23 GMT - Debug - auth.service - signup with email: ben, username: ben pinchas
+Sat, 13 Jul 2019 12:08:27 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:09:44 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:09:54 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:10:23 GMT - Debug - gayoo, gaya bunjabi
+Sat, 13 Jul 2019 12:10:23 GMT - Debug - auth.service - signup with email: gayoo, username: gaya bunjabi
+Sat, 13 Jul 2019 12:10:23 GMT - Debug - auth.service - login with email: gayoo
+Sat, 13 Jul 2019 12:22:09 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:24:44 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:25:36 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:26:37 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:27:54 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:28:26 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:35:13 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:40:01 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:43:40 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:43:47 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:43:53 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 12:43:58 GMT - Debug - auth.service - login with email: ben
+Sat, 13 Jul 2019 14:11:28 GMT - Debug - auth.service - login with email: ben

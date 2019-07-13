@@ -1,15 +1,50 @@
 <template>
-  <div class="app-register dev">
-    <input type="text" placeholder="Email" />
-    <input type="text" placeholder="Password" />
-    <button>Log In</button>
-    <button>Sign Up</button>
+  <div class="">
+    <div v-if="!user" class="app-register">
+      <input type="text" placeholder="Email" v-model="credentials.email" />
+      <input type="text" placeholder="Password" v-model="credentials.password" />
+      <button @click="login">Log In</button>
+      <button @click="signup">Sign Up</button>
+    </div>
+    
+    <i v-else @click="logout" title="logout" class="fas fa-sign-out-alt"></i>
   </div>
 </template>
 
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      credentials: {
+        email: "",
+        password: ""
+      }
+    };
+  },
+  computed:{
+    user() {
+      return this.$store.getters.loggedInUser
+    }
+  },
+  methods: {
+    login() {
+      this.$store.dispatch({ type: "login", credentials: this.credentials });
+
+      this.credentials = {
+        email: "",
+        password: ""
+      };
+    },
+    signup() {
+      this.credentials.username = prompt("username is?");
+      this.$store.dispatch({ type: "signup", credentials: this.credentials });
+    },
+    logout() {
+      this.$store.dispatch({type: 'logout'})
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -18,6 +53,7 @@ export default {};
   height: 22px;
   width: 400px;
   justify-content: space-between;
+  align-items: center;
 }
 
 button {
@@ -28,7 +64,7 @@ button {
 }
 
 button:hover {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 input {
@@ -36,6 +72,10 @@ input {
   border-radius: 0;
   margin: 0;
   padding: 3px;
+}
+
+i {
+  cursor: pointer;
 }
 </style>
 

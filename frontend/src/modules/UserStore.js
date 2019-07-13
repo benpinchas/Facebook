@@ -1,33 +1,24 @@
-// import UserService from '../services/user.service.js';
-
+import UserService from '../services/UserService.js'
 
 export default { 
     state: {
-       user: {fullname: 'ben pinchas', }
+       loggedInUser: UserService.getLoggedInUser(),
 
     },
     getters: {
-        user(state) {
-            return state.user
+        loggedInUser(state) {
+            return state.loggedInUser
         }
     },
     mutations: {
-        login(state, {loggedInUser}) {
-            console.log(loggedInUser, 'IN MUTATIONS')
-            state.user = loggedInUser
+        setUser(state, {user}) {
+            state.loggedInUser = user
         },
-        logout(state) {
-            state.user = null
-        }
     },
     actions: {
         async login(context, {credentials}) {
-            try {
-              let loggedInUser = await UserService.login(credentials)
-              context.commit({type: 'login', loggedInUser})
-            }catch(err) {
-                console.log('ERROR: cant login')
-            }   
+           let user = await UserService.login(credentials)
+            context.commit({type: 'setUser', user})
         },
         async signup(context, {credentials}) {
             try {
@@ -38,7 +29,13 @@ export default {
             }   
         },
         async logout(context) {
-            context.commit({type: 'logout'})
+            try {
+                await UserService.logout()
+                context.commit({type: 'setUser', user:null})
+            }catch(err) {
+                console.log(err);
+            }
+
         }
     }
 }
