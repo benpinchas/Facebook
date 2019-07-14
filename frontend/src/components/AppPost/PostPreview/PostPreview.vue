@@ -4,14 +4,14 @@
       <header>
         <div class="profile-image-container-thumb">
           <img
-            src="https://scontent.fhfa1-1.fna.fbcdn.net/v/t31.0-8/463613_10151673598294797_1655224835_o.jpg?_nc_cat=1&_nc_oc=AQmcwT_rFbHZlCXbY2nTkCYsOnBNm7thnWD4p17GvzbfboWkftf_ssooLZYV3rjtgck&_nc_ht=scontent.fhfa1-1.fna&oh=8c6913ec09eb73d52c72bc3f6cf20016&oe=5DBD9C31"
+            :src="post.creator.profileImg"
             alt
           />
         </div>
 
         <div class="info-container" style="padding-top: 5px;">
           <div style="margin-bottom: 3px;">
-            <a href>Puki Ben David</a>
+            <a href>{{post.creator.username}}</a>
           </div>
 
           <div class="time-container">
@@ -20,47 +20,39 @@
           </div>
         </div>
       </header>
-      <span v-html="post.txt" style="font-size:15px;"></span>
+
+    <span v-html="post.txt" style="font-size:15px;"></span>
     </main>
-
     <!-- media-conatiner -->
-    <span class="media-container" v-html="post.video"></span>
-
+    <span class="media-container" v-html="post.linkDetails"></span>
     <footer>
       <div class="stats-container">
         <p class="like-count">
-          <span>90 Likes</span>
+          <span v-if="post.likedBy.length" >{{post.likedBy.length}} Likes</span>
         </p>
-        <p class="comment-count">
-          <span>56 Comments</span>
+        <p class="comment-count" @click="toggleComments">
+          <span v-if="post.comments.length">{{post.comments.length}} Comments</span>
         </p>
-        <p class="share-count" style="margin-left: 11px;">
-          <span>12 Shares</span>
-        </p>
+        <!-- <p class="share-count" style="margin-left: 11px;">
+          <span>98 Shares</span>
+        </p> -->
       </div>
-      <interactions-btns @toggleComments="toggleComments"></interactions-btns>
+      <interactions-btns @toggleLike="toggleLike" :likedBy="post.likedBy" @toggleComments="toggleComments"></interactions-btns>
     </footer>
-    <post-comments v-if="showComments"></post-comments>
+    <post-comments v-if="showComments" @addComment="addComment" :comments="post.comments"></post-comments>
   </div>
 </template>
 
 
 <script>
+
 import InteractionsBtns from "./InteractionsButtons.vue";
 import PostComments from "./PostComment/PostComment.vue";
 
-let post = {
-  txt: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s`,
-  media: `<img style="width:100%;" src="http://static.asiawebdirect.com/m/bangkok/portals/bangkok-com/homepage/weather/pagePropertiesImage/bangkok-weather.jpg">`,
-  video: `<iframe width="100%" height="280px" style="border:none"
-src="https://www.youtube.com/embed/tgbNymZ7vqY">
-</iframe>`
-};
-
 export default {
+  props: ['post'],
   data() {
     return {
-      post: post,
       showComments: false
     };
   },
@@ -70,11 +62,35 @@ export default {
   },
   methods: {
     toggleComments() {
-      this.showComments = !this.showComments
+      this.showComments = !this.showComments;
+    },
+    toggleLike() {
+      this.$store.dispatch({type: 'toggleLike', userId: this.$store.getters.loggedInUser._id, postId:this.post._id})
+    },
+    addComment(txt) {
+      this.$store.dispatch( {type: 'addComment', comment:{txt, at:Date.now()}, postId: this.post._id})
     }
   }
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style scoped>
 .iframe {

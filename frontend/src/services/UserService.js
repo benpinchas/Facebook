@@ -39,7 +39,7 @@ function logout() {
             sessionStorage.setItem(USER_KEY, null)
         })
 }
-function getUsers() {
-    HttpService.ajax('api/user')
-        .then(res => console.log(res))
+
+async function getUsers() {
+    return  HttpService.ajax('api/user', 'get')
 }

@@ -115,3 +115,41 @@ Sat, 13 Jul 2019 18:27:15 GMT - Debug - auth.service - login with email: ben
 Sat, 13 Jul 2019 18:28:01 GMT - Debug - auth.service - login with email: ben
 Sat, 13 Jul 2019 18:28:31 GMT - Debug - auth.service - login with email: ben
 Sat, 13 Jul 2019 20:32:25 GMT - Debug - auth.service - login with email: ben
+Sun, 14 Jul 2019 06:00:31 GMT - Debug - auth.service - login with email: ben
+Sun, 14 Jul 2019 06:13:09 GMT - Debug - tal, tal bark
+Sun, 14 Jul 2019 06:13:09 GMT - Debug - auth.service - signup with email: tal, username: tal bark
+Sun, 14 Jul 2019 06:13:09 GMT - Debug - auth.service - login with email: tal
+Sun, 14 Jul 2019 06:35:47 GMT - Debug - auth.service - login with email: moshe
+Sun, 14 Jul 2019 06:36:47 GMT - Debug - avi, avi
+Sun, 14 Jul 2019 06:36:47 GMT - Debug - auth.service - signup with email: avi, username: avi
+Sun, 14 Jul 2019 06:36:47 GMT - Debug - auth.service - login with email: avi
+Sun, 14 Jul 2019 06:43:06 GMT - Debug - mami@gmail, mami
+Sun, 14 Jul 2019 06:43:06 GMT - Error - [SIGNUP] SyntaxError: Identifier 'user' has already been declared
+Sun, 14 Jul 2019 06:43:50 GMT - Debug - lola@gmail, lola
+Sun, 14 Jul 2019 06:43:51 GMT - Debug - auth.service - login with email: lola@gmail
+Sun, 14 Jul 2019 08:30:52 GMT - Debug - ben@gmail.com, ben pinchas
+Sun, 14 Jul 2019 08:30:52 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 08:32:28 GMT - Debug - gaya@gmail.com, gaya steinhert
+Sun, 14 Jul 2019 08:32:28 GMT - Debug - auth.service - login with email: gaya@gmail.com
+Sun, 14 Jul 2019 08:59:15 GMT - Debug - auth.service - login with email: ben@gmail
+Sun, 14 Jul 2019 08:59:22 GMT - Debug - auth.service - login with email: ben
+Sun, 14 Jul 2019 08:59:46 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 09:01:59 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 09:46:35 GMT - Debug - auth.service - login with email: ben
+Sun, 14 Jul 2019 09:46:43 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 10:07:53 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 10:10:04 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 10:15:17 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 10:23:53 GMT - Debug - asaf@gmail.com, assaf
+Sun, 14 Jul 2019 10:23:54 GMT - Debug - auth.service - login with email: asaf@gmail.com
+Sun, 14 Jul 2019 10:24:43 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 10:38:31 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 11:21:56 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 11:57:50 GMT - Debug - auth.service - login with email: gaya@gmail.com
+Sun, 14 Jul 2019 12:38:50 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 12:43:09 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 13:23:21 GMT - Debug - auth.service - login with email: gaya@gmail.com
+Sun, 14 Jul 2019 14:18:18 GMT - Debug - auth.service - login with email: ben@gmail.com
+Sun, 14 Jul 2019 18:43:20 GMT - Debug - auth.service - login with email: opal@gmail.com
+Sun, 14 Jul 2019 18:43:42 GMT - Debug - opal@gmail.com, opal pinchas
+Sun, 14 Jul 2019 18:43:42 GMT - Debug - auth.service - login with email: opal@gmail.com

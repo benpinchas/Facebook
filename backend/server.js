@@ -43,6 +43,19 @@ app.use('/api/auth', authRoutes)
 const postRoutes = require('./api/post/post.routes.js')
 app.use('/api/post', postRoutes)
 
+const userRoutse = require ('./api/user/user.routes.js')
+app.use('/api/user', userRoutse)
+
+
+const friendshipRoutes = require ('./api/friendship/friendship.routes.js')
+app.use('/api/friendship', friendshipRoutes)
+
+
+
+
+
+
+
 
 app.get('/', (req, res) => {
     res.send('hello')

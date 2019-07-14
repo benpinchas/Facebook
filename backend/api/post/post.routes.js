@@ -1,11 +1,15 @@
 const express = require('express')
 const requireAuth = require('../../middlewares/requireAuth.middleware')
-const {add, query} = require('./post.controller')
+const {save, query, toggleLike, saveComment} = require('./post.controller')
 
 const router = express.Router()
 
 
 router.get('/', query)
-router.post('/', requireAuth, add)
+router.post('/', requireAuth, save)
+router.post('/like', toggleLike)
+router.post('/comment', saveComment)
+
+
 
 module.exports = router  

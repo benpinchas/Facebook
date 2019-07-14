@@ -5,18 +5,34 @@ export default {
        posts: []
     },
     getters: {
+        posts(state) {
+            return state.posts
+        }
     },
     mutations: {
+        setPosts(state, {posts}) {
+            state.posts = posts
+            console.log('state', state.posts)
+        },
+        save(state, {post}) {
+            state.posts.unshift(post)
+        }
     },
     actions: {
         async loadPosts(context, {filterBy}) {
             let posts = await PostService.query(filterBy)
-            console.log('store: posts', posts);
+            context.commit({type: 'setPosts', posts})
         },
        async addPost(context, {post}) {
-           console.log('store:', post);
-           let addedPost = await PostService.add(post)
-           console.log('addedPost store:', addedPost);
+           post = await PostService.save(post)
+           context.commit({type: 'save', post})
+       },
+       async toggleLike(context, {userId, postId}) {
+           console.log({postId, userId})
+           await PostService.toggleLike({postId, userId})
+       },
+       async addComment(context, {comment, postId}) {
+           await PostService.addComment({comment, postId})
        }
     }
 }

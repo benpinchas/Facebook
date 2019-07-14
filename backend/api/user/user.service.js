@@ -8,7 +8,17 @@ module.exports = {
     getByEmail,
     remove,
     update,
-    add
+    add,
+    makeOwner
+}
+
+function makeOwner(user) {
+    if (!user) return null
+    return {
+        username: user.username,
+        userId: user._id,
+        profileImg: user.url.profileImg
+    }
 }
 
 async function query(filterBy = {}) {

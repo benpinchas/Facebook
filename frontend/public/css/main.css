@@ -1,3 +1,31 @@
+/* GLOBAL */
+.g-user-snippet-container-small {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.g-user-snippet-container-small a {
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+.g-profile-image-container-thumb-small {
+    margin-right: 13px;
+  }
+  
+.g-profile-image-container-thumb-small img {
+    width: 41px;
+    height: 41px;
+    border-radius: 30px;
+    object-fit: cover;
+  }
+
+ 
+
+
 body {
     margin: 0;
     background-color: #e9ebee;
@@ -14,6 +42,10 @@ button, input {
 }
 button {
     cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
 }
 
 /* UTIL */
@@ -54,3 +86,19 @@ a:hover {
 .header-icon:hover {
     color: #0e182c;
 }
+
+
+.system-txt {
+    font-size: 13px;
+    color: #616770;
+}
+
+
+
+
+
+
+
+
+
+

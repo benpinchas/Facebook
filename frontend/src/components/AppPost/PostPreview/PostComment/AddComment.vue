@@ -6,8 +6,9 @@
         alt
       />
     </div>
-
+    
     <div ref="contenteditable" class="comment-container" placeholder="Write a comment..." contenteditable></div>
+    <button @click="addComment"><i class="far fa-paper-plane"></i></button>
   </div>
 </template>
 
@@ -15,6 +16,11 @@
 export default {
   mounted() {
     this.$refs.contenteditable.focus()
+  },
+  methods: {
+    addComment() {
+      this.$emit('addComment',this.$refs.contenteditable.innerText)
+    }
   }
 };
 </script>

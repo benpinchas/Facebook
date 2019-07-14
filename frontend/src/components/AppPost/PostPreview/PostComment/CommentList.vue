@@ -1,6 +1,6 @@
 <template>
     <div class="comment-list">
-        <comment-preview v-for="n in 4"></comment-preview>
+        <comment-preview v-for="comment in comments" ></comment-preview>
     </div>
 </template>
 
@@ -8,6 +8,7 @@
 <script>
 import CommentPreview from './CommentPreview.vue'
 export default {
+    props:['comments'],
     components: {
         CommentPreview,
     }

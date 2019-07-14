@@ -1,24 +1,26 @@
 <template>
-  <div class="add-post floating-box">
+  <div class="add-post floating-box" v-if="user">
     <header>Create Post</header>
     <main>
       <div class="profile-image-container-thumb">
         <img
-          src="https://scontent.fhfa1-1.fna.fbcdn.net/v/t31.0-8/463613_10151673598294797_1655224835_o.jpg?_nc_cat=1&_nc_oc=AQmcwT_rFbHZlCXbY2nTkCYsOnBNm7thnWD4p17GvzbfboWkftf_ssooLZYV3rjtgck&_nc_ht=scontent.fhfa1-1.fna&oh=8c6913ec09eb73d52c72bc3f6cf20016&oe=5DBD9C31"
+          :src="user.url.profileImg"
           alt
         />
       </div>
 
-      <!-- <div class="input-container"> -->
-      <!-- <textarea name id cols="30" rows="10"></textarea> -->
-      <div
-        contenteditable
-        class="input-container"
-        placeholder="What's on your mind, Puki Ben David?"
-        ref="contenteditable"
-        @input="onInput"
-      ></div>
-      <!-- </div> -->
+      <section style="flex-grow:1;">
+        <div
+          contenteditable
+          class="input-container"
+          :placeholder="placeholder"
+          ref="contenteditable"
+          @input="onInput"
+        ></div>
+
+        <link-preview :linkDeatails="post.linkDeatails" />
+      </section>
+
     </main>
 
     <footer>
@@ -33,34 +35,78 @@
 
 
 <script>
+import PostService from '../../../services/PostService.js'
+import linkPreview from '../LinkPreview/LinkPreview.vue'
 export default {
+  components: {
+    linkPreview,
+  },
   data() {
     return {
       post: {
-        txt: 'ddd',
-        url: '',
-        media: ''
+        txt: "",
+        linkDeatails: null,
+        creator: {
+          username: '',
+          imgSrc: '',
+          profileImg: ''
+        },
+        comments: [],
+        likedBy: [],
       }
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.getters.loggedInUser
+    },
+    placeholder() {
+      return this.$store.getters.loggedInUser? 'What\'s on your mind, ' + this.$store.getters.loggedInUser.username : 'login first'
     }
   },
   methods: {
-    onInput() {
-      this.post.txt = this.$refs.contenteditable.innerText
+     addPost() {
+      this.post.creator.userId = this.$store.getters.loggedInUser._id
+      this.post.creator.username = this.$store.getters.loggedInUser.username
+      this.post.creator.profileImg = this.$store.getters.loggedInUser.url.profileImg
+
+      this.$store.dispatch({ type: "addPost", post: this.post});
     },
-    addPost() {
-      console.log('addPost', this.post);
-      this.$store.dispatch({type: 'addPost', post: this.post})
-    }
+    async onInput() {
+      this.post.txt = this.$refs.contenteditable.innerText;
+      let linkDeatails = await PostService.getLinkDetails(this.post.txt);
+      this.post.linkDeatails = linkDeatails
+      console.log(linkDeatails);
+    },
   }
 };
 </script>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style scoped>
 .add-post {
   margin-bottom: 10px;
-  margin-top: 10px;
-
   /* height: 300px; */
 
   display: flex;
@@ -84,7 +130,7 @@ header {
 
 main {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 12px;
 }
 .input-container {

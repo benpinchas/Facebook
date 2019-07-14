@@ -38,6 +38,8 @@ export default {
     },
     signup() {
       this.credentials.username = prompt("username is?");
+      this.credentials.url = {} 
+      this.credentials.url.profileImg = 'https://i.ibb.co/xfzVHYJ/no-img.jpg'
       this.$store.dispatch({ type: "signup", credentials: this.credentials });
     },
     logout() {

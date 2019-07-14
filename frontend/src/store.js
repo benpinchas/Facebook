@@ -4,6 +4,7 @@ Vue.use(Vuex)
 
 import UserStore from './modules/UserStore.js'
 import PostStore from './modules/PostStore.js'
+import FriendshipStore from './modules/FriendshipStore.js'
 
 export default new Vuex.Store({
   state: {
@@ -17,6 +18,7 @@ export default new Vuex.Store({
   },
   modules: {
     UserStore,
-    PostStore
+    PostStore,
+    FriendshipStore
   }
 })

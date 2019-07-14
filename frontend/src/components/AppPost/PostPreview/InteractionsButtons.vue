@@ -1,6 +1,6 @@
 <template>
   <div class="interactions-btns">
-    <button>
+    <button :class="likeBtnClass" @click="toggleLike">
       <i class="far fa-thumbs-up"></i> Like
     </button>
     <button @click="toggleComments">
@@ -14,8 +14,23 @@
 
 <script>
 export default {
+  props: ["likedBy"],
+  computed: {
+    likeBtnClass() {
+      return {
+        liked: this.$store.getters.loggedInUser
+          ? this.likedBy.find(
+              by => by.userId === this.$store.getters.loggedInUser._id
+            )
+          : false
+      };
+    }
+  },
   methods: {
-    toggleComments() {      
+    toggleLike() {
+      this.$emit("toggleLike");
+    },
+    toggleComments() {
       this.$emit("toggleComments");
     }
   }
@@ -44,6 +59,14 @@ button {
   position: relative;
   text-decoration: none;
   transition: 400ms cubic-bezier(0.08, 0.52, 0.52, 1) transform;
+}
+
+.liked {
+  color: rgb(32, 120, 244);
+  font-weight: 600;
+}
+.liked i {
+  font-weight: 600;
 }
 
 button:hover {

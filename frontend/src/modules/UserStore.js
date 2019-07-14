@@ -3,12 +3,11 @@ import UserService from '../services/UserService.js'
 export default { 
     state: {
        loggedInUser: UserService.getLoggedInUser(),
-
     },
     getters: {
         loggedInUser(state) {
             return state.loggedInUser
-        }
+        },
     },
     mutations: {
         setUser(state, {user}) {

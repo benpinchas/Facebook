@@ -1,7 +1,7 @@
 <template>
     <div class="post-comment">
-        <add-comment></add-comment>
-        <comment-list></comment-list>
+        <add-comment @addComment="addComment"></add-comment>
+        <comment-list :comments="comments"></comment-list>
     </div>
 </template>
 
@@ -10,9 +10,15 @@
 import AddComment from './AddComment.vue'
 import CommentList from './CommentList.vue'
 export default {
+    props:['comments'],
     components: {
         AddComment,
         CommentList
+    },
+    methods: {
+        addComment(txt) {
+            this.$emit('addComment', txt)
+        }   
     }
 }
 </script>
