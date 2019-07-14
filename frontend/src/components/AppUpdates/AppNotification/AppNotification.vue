@@ -1,7 +1,12 @@
 <template>
-    <div>
+    <div class="" @click="toggleWindow" >
         <i class="fas fa-bell header-icon"></i>
         <updates-count/>
+         <updates-window v-if="isWindow"> 
+            <span slot="content">
+                <notification-preview v-for="n in 20"></notification-preview>
+            </span>
+         </updates-window>
     </div>
 </template>
 
@@ -9,10 +14,25 @@
 
 <script>
 import UpdatesCount from '../UpdatesCount/UpdatesCount.vue'
+import UpdatesWindow from '../../util/UpdatesWindow.vue'
+import NotificationPreview from './NotificationPreview.vue'
 export default {
     components: {
-        UpdatesCount
+        UpdatesCount,
+        UpdatesWindow,
+        NotificationPreview
+    },
+    data() {
+        return {
+            isWindow: false,
+        }
+    },
+    methods: {
+        toggleWindow() {
+            this.isWindow = !this.isWindow
+        }
     }
+
 }
 </script>
 

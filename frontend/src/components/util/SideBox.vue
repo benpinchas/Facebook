@@ -2,12 +2,12 @@
   <div class="root-el floating-box">
     <header>
       <span  class="system-txt">
-        <slot name="headline">Defaut headline</slot>
+        <slot name="headline">Default headline</slot>
       </span>
     </header>
 
     <main >
-        <slot name="main"></slot>
+        <slot name="main">Default main</slot>
     </main>
   </div>
 </template>
