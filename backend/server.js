@@ -40,6 +40,10 @@ const authRoutes = require('./api/auth/auth.routes.js')
 app.use('/api/auth', authRoutes)
 
 
+const postRoutes = require('./api/post/post.routes.js')
+app.use('/api/post', postRoutes)
+
+
 app.get('/', (req, res) => {
     res.send('hello')
 })

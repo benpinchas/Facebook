@@ -22,6 +22,7 @@ export default {
 .post-comment {
     border-top: 1px solid #d0d0d0;
     padding: 15px;
+    /* display: none; */
 }
 
 

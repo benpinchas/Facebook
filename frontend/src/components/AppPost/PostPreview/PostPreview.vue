@@ -10,39 +10,44 @@
         </div>
 
         <div class="info-container" style="padding-top: 5px;">
-            <div style="margin-bottom: 3px;">
-                <a href>Puki Ben David</a>
-            </div>
+          <div style="margin-bottom: 3px;">
+            <a href>Puki Ben David</a>
+          </div>
 
-            <div class="time-container">
-                40 min ago&nbsp;&#183;&nbsp; <i class="fas fa-globe-americas"></i>
-            </div>
+          <div class="time-container">
+            40 min ago&nbsp;&#183;&nbsp;
+            <i class="fas fa-globe-americas"></i>
+          </div>
         </div>
-       
       </header>
       <span v-html="post.txt" style="font-size:15px;"></span>
     </main>
-    
+
     <!-- media-conatiner -->
     <span class="media-container" v-html="post.video"></span>
-    
-    
+
     <footer>
-        <div class="stats-container">
-            <p class="like-count"> <span>90 Likes</span></p>
-            <p class="comment-count"><span> 56 Comments </span></p>
-            <p class="share-count" style="margin-left: 11px;"><span>12 Shares</span></p>
-        </div>
-        <interactions-btns></interactions-btns>
+      <div class="stats-container">
+        <p class="like-count">
+          <span>90 Likes</span>
+        </p>
+        <p class="comment-count">
+          <span>56 Comments</span>
+        </p>
+        <p class="share-count" style="margin-left: 11px;">
+          <span>12 Shares</span>
+        </p>
+      </div>
+      <interactions-btns @toggleComments="toggleComments"></interactions-btns>
     </footer>
-    <post-comments></post-comments>
+    <post-comments v-if="showComments"></post-comments>
   </div>
 </template>
 
 
 <script>
 import InteractionsBtns from "./InteractionsButtons.vue";
-import PostComments from './PostComment/PostComment.vue'
+import PostComments from "./PostComment/PostComment.vue";
 
 let post = {
   txt: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s`,
@@ -55,20 +60,25 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
 export default {
   data() {
     return {
-      post: post
+      post: post,
+      showComments: false
     };
   },
   components: {
     InteractionsBtns,
     PostComments
+  },
+  methods: {
+    toggleComments() {
+      this.showComments = !this.showComments
+    }
   }
 };
 </script>
 
 <style scoped>
-
 .iframe {
-    width: 100%;
+  width: 100%;
 }
 
 .post-preview {
@@ -79,13 +89,13 @@ main {
 }
 
 header {
-    display: flex;
-    padding-top: 5px;
-    margin-bottom: 10px;
+  display: flex;
+  padding-top: 5px;
+  margin-bottom: 10px;
 }
 
-.profile-image-container-thumb{
-    margin-right: 13px; 
+.profile-image-container-thumb {
+  margin-right: 13px;
 }
 
 .profile-image-container-thumb img {
@@ -96,10 +106,9 @@ header {
 }
 
 .time-container {
-    font-size: 12px;
-    color:#616770;
+  font-size: 12px;
+  color: #616770;
 }
-
 
 a {
   color: #385898;
@@ -115,30 +124,29 @@ footer {
 }
 
 .stats-container {
-    border-bottom: 1px solid lightgray;
-    color: gray;
-    font-size: 14px;
-    padding-top: 6px;
-    padding-bottom: 7px;
-    margin-bottom: 4px;
-    display: flex;
-    justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  color: gray;
+  font-size: 14px;
+  padding-top: 6px;
+  padding-bottom: 7px;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
 }
 .stats-container p {
-    margin: 0;
+  margin: 0;
 }
 
 .stats-container span {
-    cursor: pointer;
+  cursor: pointer;
 }
 .stats-container span:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .like-count {
-    flex-grow: 1;
+  flex-grow: 1;
 }
-
 </style>
 
 

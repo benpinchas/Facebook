@@ -3,7 +3,7 @@
     <button>
       <i class="far fa-thumbs-up"></i> Like
     </button>
-    <button>
+    <button @click="toggleComments">
       <i class="far fa-comment"></i> Comment
     </button>
     <button>
@@ -13,7 +13,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    toggleComments() {      
+      this.$emit("toggleComments");
+    }
+  }
+};
 </script>
 
 <style scoped>

@@ -5,10 +5,13 @@
 </template>
 
 <script>
-import PostPreview from './PostPreview.vue'
+import PostPreview from '../PostPreview/PostPreview.vue'
 export default {
     components: {
         PostPreview
+    },
+    created() {
+        this.$store.dispatch({type: 'loadPosts'})
     }
 }
 </script>

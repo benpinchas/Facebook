@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import AddPost from './AddPost.vue'
-import PostList from './PostList.vue'
+import AddPost from './AddPost/AddPost.vue'
+import PostList from './PostList/PostList.vue'
 export default {
     components: {
         AddPost,

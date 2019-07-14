@@ -7,7 +7,7 @@
       <button @click="signup">Sign Up</button>
     </div>
     
-    <i v-else @click="logout" title="logout" class="fas fa-sign-out-alt"></i>
+    <i v-else @click="logout" title="logout" class="fas fa-sign-out-alt header-icon" ></i>
   </div>
 </template>
 
@@ -76,6 +76,11 @@ input {
 
 i {
   cursor: pointer;
+  color: white;
+}
+
+i:hover { 
+  color: rgba(255, 255, 255, 0.829);
 }
 </style>
 

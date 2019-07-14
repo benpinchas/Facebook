@@ -7,12 +7,16 @@
       />
     </div>
 
-    <div class="comment-container" placeholder="Write a comment..." contenteditable></div>
+    <div ref="contenteditable" class="comment-container" placeholder="Write a comment..." contenteditable></div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.$refs.contenteditable.focus()
+  }
+};
 </script>
 
 

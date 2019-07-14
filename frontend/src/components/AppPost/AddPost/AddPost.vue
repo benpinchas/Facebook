@@ -15,13 +15,15 @@
         contenteditable
         class="input-container"
         placeholder="What's on your mind, Puki Ben David?"
+        ref="contenteditable"
+        @input="onInput"
       ></div>
       <!-- </div> -->
     </main>
 
     <footer>
       <div>
-        <button>
+        <button @click="addPost">
           <i class="fas fa-globe-americas"></i> Publish
         </button>
       </div>
@@ -31,7 +33,26 @@
 
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      post: {
+        txt: 'ddd',
+        url: '',
+        media: ''
+      }
+    }
+  },
+  methods: {
+    onInput() {
+      this.post.txt = this.$refs.contenteditable.innerText
+    },
+    addPost() {
+      console.log('addPost', this.post);
+      this.$store.dispatch({type: 'addPost', post: this.post})
+    }
+  }
+};
 </script>
 
 

@@ -45,7 +45,12 @@ a:hover {
 }
 
 
+.header-icon {
+    font-size: 19px;
+    cursor: pointer;
+    color: #1a2947;
+}
 
-
-
-
+.header-icon:hover {
+    color: #0e182c;
+}
