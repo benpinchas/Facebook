@@ -2,7 +2,7 @@
   <div class="comment-preview">
     <div class="profile-image-container-thumb">
       <img
-        src="https://scontent.fhfa1-1.fna.fbcdn.net/v/t31.0-8/463613_10151673598294797_1655224835_o.jpg?_nc_cat=1&_nc_oc=AQmcwT_rFbHZlCXbY2nTkCYsOnBNm7thnWD4p17GvzbfboWkftf_ssooLZYV3rjtgck&_nc_ht=scontent.fhfa1-1.fna&oh=8c6913ec09eb73d52c72bc3f6cf20016&oe=5DBD9C31"
+        :src="comment.owner.profileImg"
         alt
       />
     </div>
@@ -10,9 +10,9 @@
     <div>
       <div class="comment-container">
         <div class="name-container" style="margin-bottom: 3px;">
-          <a href>Puki Ben David</a>
+          <a href @click.prevent="readUser">{{comment.owner.username}}</a>
         </div>
-        <div style="padding-top: 2px;padding-bottom: 6px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+        <div style="padding-top: 2px;padding-bottom: 6px;">{{comment.txt}}</div>
 
         <like-count/>
       </div>
@@ -27,8 +27,14 @@
 <script>
 import LikeCount from './LikeCount.vue'
 export default {
+    props: ['comment'],
     components: {
         LikeCount,
+    },
+    methods: {
+      readUser() {
+        this.$router.push(`/user/${this.comment.owner.userId}`)
+      }
     }
 };
 </script>
@@ -63,12 +69,14 @@ export default {
 }
 
 .comment-container {
-    position: relative;
-  background-color: #f2f3f5;
-  padding: 7px 12px;
-  border-radius: 16px;
-  font-size: 14px;
-  padding: 10px 13px;
+     position: relative;
+    background-color: #f2f3f5;
+    padding: 7px 12px;
+    border-radius: 13px;
+    font-size: 14px;
+    padding: 8px 10px;
+    min-width: 111px;
+
 }
 
 .name-container a {

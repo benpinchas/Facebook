@@ -31,8 +31,8 @@ export default {
            console.log({postId, userId})
            await PostService.toggleLike({postId, userId})
        },
-       async addComment(context, {comment, postId}) {
-           await PostService.addComment({comment, postId})
+       async addComment(context, {txt, postId}) {
+           await PostService.addComment({txt, postId})
        }
     }
 }

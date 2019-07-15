@@ -201,3 +201,21 @@ Mon, 15 Jul 2019 13:01:09 GMT - Debug - q, Galit Pinchas
 Mon, 15 Jul 2019 13:01:09 GMT - Debug - auth.service - login with email: q
 Mon, 15 Jul 2019 13:10:12 GMT - Debug - auth.service - login with email: q
 Mon, 15 Jul 2019 13:10:24 GMT - Debug - auth.service - login with email: gaya@gmail.com
+Mon, 15 Jul 2019 13:29:29 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:02:14 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:04:01 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:15:39 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:16:35 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:17:40 GMT - Debug - auth.service - login with email: a
+Mon, 15 Jul 2019 14:18:10 GMT - Debug - auth.service - login with email: a
+Mon, 15 Jul 2019 14:19:03 GMT - Debug - auth.service - login with email: q
+Mon, 15 Jul 2019 14:22:18 GMT - Debug - auth.service - login with email: a
+Mon, 15 Jul 2019 14:23:02 GMT - Debug - ben@gmail.com, null
+Mon, 15 Jul 2019 14:23:02 GMT - Error - [SIGNUP] email, username and password are required!
+Mon, 15 Jul 2019 14:23:02 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:25:42 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:26:40 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:27:30 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 14:28:13 GMT - Debug - auth.service - login with email: ben@gmail.com
+Mon, 15 Jul 2019 15:10:57 GMT - Debug - auth.service - login with email: a
+Mon, 15 Jul 2019 15:11:22 GMT - Debug - auth.service - login with email: z

@@ -106,6 +106,12 @@ i.unSeen:hover {
 }
 
 
+.sep {
+    background-color: rgba(0, 0, 0, .2);
+    width: 1px;
+    height: 19px;
+}
+
 
 
 

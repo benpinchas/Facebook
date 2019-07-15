@@ -7,8 +7,14 @@
       </div>
 
       <div class="wrapper">
+        <div class="link-container" @click="$router.push(`/user/${loggedInUser._id}`)">
+          <img :src="loggedInUser.url.profileImg" alt />
+          {{loggedInUser.username}}
+        </div>
         <div class="sep"></div>
-        <app-updates/>
+        <span class="link-container" @click="$router.push('/')">Home</span>
+        <div class="sep"></div>
+        <app-updates />
         <div class="sep"></div>
         <app-register></app-register>
       </div>
@@ -30,7 +36,7 @@ export default {
   components: {
     AppRegister,
     AppUpdates,
-    AppSearch
+    AppSearch,
   },
   computed: {
     loggedInUser() {
@@ -74,19 +80,37 @@ main {
 }
 
 .wrapper {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .wrapper > * {
-    margin-right: 10px;
+  margin-right: 10px;
+}
+/* .profile-link-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+.link-container img {
+  width: 25px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.link-container {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
 }
 
-.sep {
-    background-color: rgba(0, 0, 0, .2);
-    width: 1px;
-    height: 19px;
+.link-container:hover {
+  background-color: rgba(0, 0, 0, .1);
+  border-radius: 2px;
 }
-
 
 @media (max-width: 670px) {
   header {

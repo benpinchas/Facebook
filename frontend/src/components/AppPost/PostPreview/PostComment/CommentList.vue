@@ -1,6 +1,6 @@
 <template>
     <div class="comment-list">
-        <comment-preview v-for="comment in comments" ></comment-preview>
+        <comment-preview v-for="comment in comments" :comment="comment"></comment-preview>
     </div>
 </template>
 

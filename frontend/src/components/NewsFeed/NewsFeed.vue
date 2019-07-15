@@ -62,6 +62,7 @@ main .app-post {
 }
 main .friend-suggest {
   flex-grow: 1;
+  width: 185px;
   /* max-width: 300px; */
 }
 

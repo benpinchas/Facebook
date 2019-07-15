@@ -35,10 +35,11 @@ async function toggleLike(req, res) {
 }
 
 async function saveComment(req, res) {
-    const {comment, postId} = req.body
-    comment.owner = userService.makeOwner(req.session.user)
+    const {txt, postId} = req.body
+    const user = req.session.user
+    // comment.owner = userService.makeOwner(req.session.user)
     try {
-       let savedComment =  await postService.saveComment(comment, postId)
+       let savedComment =  await postService.saveComment(postId, txt, user)
        res.json(savedComment)
     }catch(err) {
         console.log(err)

@@ -68,7 +68,7 @@ export default {
       this.$store.dispatch({type: 'toggleLike', userId: this.$store.getters.loggedInUser._id, postId:this.post._id})
     },
     addComment(txt) {
-      this.$store.dispatch( {type: 'addComment', comment:{txt, at:Date.now()}, postId: this.post._id})
+      this.$store.dispatch( {type: 'addComment', txt, postId: this.post._id})
     },
     toUserProfile() {
       this.$router.push(`/user/${this.post.owner.userId}`)
