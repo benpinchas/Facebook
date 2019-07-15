@@ -1,10 +1,12 @@
 <template>
-  <span>3</span>
+  <span v-if="unSeen.length">{{unSeen.length}}</span>
 </template>
 
 
 <script>
-export default {};
+export default {
+  props: ['unSeen']
+};
 </script>
 
 

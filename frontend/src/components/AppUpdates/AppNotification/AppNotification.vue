@@ -1,10 +1,11 @@
 <template>
     <div class="" @click="toggleWindow" >
-        <i class="fas fa-bell header-icon"></i>
-        <updates-count/>
+        <i class="fas fa-bell header-icon" :class="classObj"></i>
+         <updates-count :unSeen="unSeen" />
+        
          <updates-window v-if="isWindow"> 
             <span slot="content">
-                <notification-preview v-for="n in 20"></notification-preview>
+                <notification-preview v-for="notification in notifications" :notification="notification"></notification-preview>
             </span>
          </updates-window>
     </div>
@@ -27,10 +28,27 @@ export default {
             isWindow: false,
         }
     },
+    computed: {
+        notifications() {
+            return this.$store.getters.notifications
+        },
+        unSeen() {
+            return this.$store.getters.notifications.filter(notification => !notification.isSeen)
+        },
+        classObj() {
+            return {
+                unSeen: this.unSeen.length
+            }
+        }
+    },
     methods: {
         toggleWindow() {
             this.isWindow = !this.isWindow
+            this.$store.dispatch({type: 'setAllSeen'})
         }
+    },
+    created() {
+        this.$store.dispatch({type: 'loadNotifications'})
     }
 
 }
@@ -44,10 +62,10 @@ div {
     cursor: pointer;
 }
 i {
-    color: white;
+    /* color: white; */
 }
 i:hover {
-    color: white;
+    /* color: white; */
 }
 </style>
 

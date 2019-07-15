@@ -24,9 +24,10 @@ async function save(req, res) {
 }
 
 async function toggleLike(req, res) {
-    const { userId, postId } = req.body
+    const {postId} = req.body
+    const user = req.session.user
     try {
-        await postService.toggleLike({ userId, postId })
+        await postService.toggleLike(postId, user)
         res.json({})
     }catch(err) {
         console.log('ERROR: ', err)

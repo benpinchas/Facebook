@@ -94,8 +94,16 @@ a:hover {
 }
 
 
+.strong {
+    font-weight: 600;
+  }
 
-
+i.unSeen {
+    color: white;
+}
+i.unSeen:hover {
+    color: rgb(246, 246, 246);
+}
 
 
 

@@ -1,6 +1,7 @@
 const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
 
+const NotificationService = require('../notification/notification.service.js')
 
 module.exports = {
     save,
@@ -34,20 +35,30 @@ async function save(post) {
 }
 
 
-async function toggleLike({userId, postId}) {
+async function toggleLike(postId, user) {
     const collection = await dbService.getCollection('post')
     try {
         let post = await collection.findOne({_id:ObjectId(postId)})
         if (post) {
-            let idx = post.likedBy.findIndex(user => user.userId === userId)
+            let idx = post.likedBy.findIndex(like => like.userId === user._id)
             if (idx === -1) {
-                post.likedBy.push({userId})
-                //create notification
+                post.likedBy.unshift({userId: user._id, username:user.username})
+                
+                let notification = {
+                    at: Date.now(),
+                    userId: post.owner.userId,
+                    postId,
+                    type: 'post-like',
+                    isSeen: false,
+                    isRead: false,
+                    txt:  (post.likedBy.length > 1)? ` <span class="strong"> ${post.likedBy[0].username} </span> and <span class="strong"> ${post.likedBy.length-1} </span> other people Liked your post recently` : `${post.likedBy[0].username} Liked your post`,
+                    imgUrl: user.url.profileImg
+                }
+                await NotificationService.save(notification)
             } else {
                 post.likedBy.splice(idx, 1)
             }
             await collection.replaceOne({"_id":ObjectId(post._id)}, {$set : post})
-            // console.log(post)
         }
         return {};
     } catch (err) {
