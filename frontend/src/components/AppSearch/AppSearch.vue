@@ -24,7 +24,13 @@ input {
   outline: none;
   border: none;
   border-radius: 1px;
-  width: 350px;
+  width: 380px;
+}
+
+@media (max-width: 670px) {
+  input {
+    width: 300px;
+  }
 }
 </style>
 

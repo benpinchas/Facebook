@@ -12,7 +12,7 @@
         <div class="name-container" style="margin-bottom: 3px;">
           <a href @click.prevent="readUser">{{comment.owner.username}}</a>
         </div>
-        <div style="padding-top: 2px;padding-bottom: 6px;">{{comment.txt}}</div>
+        <div style="padding:2px;">{{comment.txt}}</div>
 
         <like-count/>
       </div>
@@ -84,7 +84,7 @@ export default {
   cursor: pointer;
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
 }
 </style>
 

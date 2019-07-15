@@ -59,6 +59,7 @@ main {
 main .app-post {
   flex-grow: 2;
   margin-right: 10px;
+  max-width: 592px;
 }
 main .friend-suggest {
   flex-grow: 1;
@@ -78,6 +79,9 @@ aside .friend-suggest {
 @media (max-width: 670px) {
   aside {
     display: none;
+  }
+  main .app-post {
+    margin-right: 0;
   }
 }
 </style>

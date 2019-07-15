@@ -3,41 +3,47 @@
     <main>
       <header>
         <div class="profile-image-container-thumb">
-          <img
-            :src="post.owner.profileImg"
-            alt
-          />
+          <img :src="post.owner.profileImg" alt />
         </div>
 
-        <div class="info-container" style="padding-top: 5px;">
-          <div style="margin-bottom: 3px;">
+        <div class="info-container" style="padding-top: 3px;">
+          <div style="margin-bottom: 5px;">
             <a href @click.prevent="toUserProfile">{{post.owner.username}}</a>
           </div>
 
           <div class="time-container">
-            40 min ago&nbsp;&#183;&nbsp;
+            <span
+              class="time"
+              @click="$router.push(`/post/${post._id}`)">
+                40 min ago
+              </span>
+            &#183;
             <i class="fas fa-globe-americas"></i>
           </div>
         </div>
       </header>
 
-    <span v-html="post.txt" style="font-size:15px;"></span>
+      <span v-html="post.txt" style="font-size:15px;"></span>
     </main>
     <!-- media-conatiner -->
     <span class="media-container" v-html="post.linkDetails"></span>
     <footer>
       <div class="stats-container">
         <p class="like-count">
-          <span v-if="post.likedBy.length" >{{post.likedBy.length}} Likes</span>
+          <span v-if="post.likedBy.length">{{post.likedBy.length}} Likes</span>
         </p>
         <p class="comment-count" @click="toggleComments">
           <span v-if="post.comments.length">{{post.comments.length}} Comments</span>
         </p>
         <!-- <p class="share-count" style="margin-left: 11px;">
           <span>98 Shares</span>
-        </p> -->
+        </p>-->
       </div>
-      <interactions-btns @toggleLike="toggleLike" :likedBy="post.likedBy" @toggleComments="toggleComments"></interactions-btns>
+      <interactions-btns
+        @toggleLike="toggleLike"
+        :likedBy="post.likedBy"
+        @toggleComments="toggleComments"
+      ></interactions-btns>
     </footer>
     <post-comments v-if="showComments" @addComment="addComment" :comments="post.comments"></post-comments>
   </div>
@@ -45,12 +51,11 @@
 
 
 <script>
-
 import InteractionsBtns from "./InteractionsButtons.vue";
 import PostComments from "./PostComment/PostComment.vue";
 
 export default {
-  props: ['post'],
+  props: ["post"],
   data() {
     return {
       showComments: false
@@ -65,13 +70,17 @@ export default {
       this.showComments = !this.showComments;
     },
     toggleLike() {
-      this.$store.dispatch({type: 'toggleLike', userId: this.$store.getters.loggedInUser._id, postId:this.post._id})
+      this.$store.dispatch({
+        type: "toggleLike",
+        userId: this.$store.getters.loggedInUser._id,
+        postId: this.post._id
+      });
     },
     addComment(txt) {
-      this.$store.dispatch( {type: 'addComment', txt, postId: this.post._id})
+      this.$store.dispatch({ type: "addComment", txt, postId: this.post._id });
     },
     toUserProfile() {
-      this.$router.push(`/user/${this.post.owner.userId}`)
+      this.$router.push(`/user/${this.post.owner.userId}`);
     }
   }
 };
@@ -126,8 +135,17 @@ header {
 
 .time-container {
   font-size: 12px;
-  color: #616770;
+  color: #787c81;;
+ 
 }
+
+.time { 
+ cursor: pointer;
+}
+.time:hover {
+  text-decoration: underline;
+}
+
 
 a {
   color: #385898;

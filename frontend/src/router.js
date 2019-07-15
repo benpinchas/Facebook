@@ -15,5 +15,10 @@ export default new Router({
       name: 'NewsFeed',
       component: NewsFeed
     },
+    {
+      path: '/post/:postId',
+      name: 'NewsFeed',
+      component: NewsFeed
+    },
   ]
 })
