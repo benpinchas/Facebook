@@ -11,7 +11,7 @@
 
         <div class="info-container" style="padding-top: 5px;">
           <div style="margin-bottom: 3px;">
-            <a href>{{post.creator.username}}</a>
+            <a href @click.prevent="toUserProfile">{{post.creator.username}}</a>
           </div>
 
           <div class="time-container">
@@ -69,6 +69,9 @@ export default {
     },
     addComment(txt) {
       this.$store.dispatch( {type: 'addComment', comment:{txt, at:Date.now()}, postId: this.post._id})
+    },
+    toUserProfile() {
+      this.$router.push(`/${this.post.creator.userId}`)
     }
   }
 };

@@ -44,6 +44,7 @@ async function query(filterBy = {}) {
 
 async function getById(userId) {
     const collection = await dbService.getCollection('user')
+    console.log(userId)
     try {
         const user = await collection.findOne({"_id":ObjectId(userId)})
         return user

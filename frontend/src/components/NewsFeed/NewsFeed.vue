@@ -1,5 +1,6 @@
 <template>
   <section class="news-feed">
+    <user-profile class="user-profile" />
     <aside class="left">aside</aside>
     <main>
       <app-post></app-post>
@@ -16,11 +17,14 @@
 // import UserDetails from
 import AppPost from "../AppPost/AppPost.vue";
 import FriendSuggest from "../FriendSuggest/FriendSuggest.vue";
+import UserProfile from '../UserProfile/UserProfile.vue'
+
 // import friendsList from
 export default {
   components: {
     AppPost,
-    FriendSuggest
+    FriendSuggest,
+    UserProfile
   }
 };
 </script>
@@ -30,7 +34,15 @@ export default {
 .news-feed {
   display: flex;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
+
+.user-profile {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
 main {
   flex-grow: 4;
   max-width: 550px;

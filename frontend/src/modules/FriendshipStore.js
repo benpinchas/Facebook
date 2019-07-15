@@ -19,7 +19,7 @@ export default {
     mutations: {
         setSuggests(state, {suggests}) {
             state.suggests = suggests
-            console.log(state.suggests);
+            // console.log(state.suggests);
         }
     },
     actions: {

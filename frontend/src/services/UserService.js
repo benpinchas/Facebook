@@ -5,7 +5,8 @@ export default {
     logout,
     signup,
     getLoggedInUser,
-    getUsers
+    getUsers,
+    getById
 }
 
 const USER_KEY = 'loggedInUser10'
@@ -40,6 +41,17 @@ function logout() {
         })
 }
 
+
+
+
 async function getUsers() {
     return  HttpService.ajax('api/user', 'get')
 }
+
+async function getById(userId) {
+    return HttpService.ajax(`api/user/${userId}`, 'get')
+}
+
+
+
+

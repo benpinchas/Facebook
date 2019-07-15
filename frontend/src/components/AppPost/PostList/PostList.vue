@@ -12,7 +12,6 @@ export default {
     },
     computed: {
         posts() {
-            console.log(this.$store.getters.posts)
             return this.$store.getters.posts
         }
     },

@@ -76,7 +76,7 @@ export default {
       this.post.txt = this.$refs.contenteditable.innerText;
       let linkDeatails = await PostService.getLinkDetails(this.post.txt);
       this.post.linkDeatails = linkDeatails
-      console.log(linkDeatails);
+      // console.log(linkDeatails);
     },
   }
 };
