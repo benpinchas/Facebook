@@ -1,0 +1,104 @@
+/* GLOBAL */
+.g-user-snippet-container-small {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.g-user-snippet-container-small a {
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+.g-profile-image-container-thumb-small {
+    margin-right: 13px;
+  }
+  
+.g-profile-image-container-thumb-small img {
+    width: 41px;
+    height: 41px;
+    border-radius: 30px;
+    object-fit: cover;
+  }
+
+ 
+
+
+body {
+    margin: 0;
+    background-color: #e9ebee;
+     color: #272727;
+}
+
+
+.dev {
+    background-color: rgba(65, 65, 65, 0.198);
+}
+
+button, input {
+    outline: none;
+}
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* UTIL */
+.floating-box {
+    background-color: white;
+    border-radius: 2px;
+}
+
+
+
+.profile-image-container-thumb{
+    margin-right: 13px; 
+}
+
+.profile-image-container-thumb img {
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+textarea {
+    outline: none;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+
+.header-icon {
+    font-size: 19px;
+    cursor: pointer;
+    color: #1a2947;
+}
+
+.header-icon:hover {
+    color: #0e182c;
+}
+
+
+.system-txt {
+    font-size: 13px;
+    color: #616770;
+}
+
+
+
+
+
+
+
+
+
+
