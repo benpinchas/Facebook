@@ -71,7 +71,7 @@ export default {
       this.$store.dispatch( {type: 'addComment', comment:{txt, at:Date.now()}, postId: this.post._id})
     },
     toUserProfile() {
-      this.$router.push(`/${this.post.creator.userId}`)
+      this.$router.push(`/user/${this.post.creator.userId}`)
     }
   }
 };
