@@ -62,7 +62,7 @@ export default {
 }
 
 .main {
-  width: 960px;
+  width: 950px;
   max-width: 100%;
   margin: 0 auto;
   position: relative;
