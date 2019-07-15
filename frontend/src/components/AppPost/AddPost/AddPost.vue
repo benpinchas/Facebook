@@ -46,7 +46,7 @@ export default {
       post: {
         txt: "",
         linkDeatails: null,
-        creator: {
+        owner: {
           username: '',
           imgSrc: '',
           profileImg: ''
@@ -61,14 +61,14 @@ export default {
       return this.$store.getters.loggedInUser
     },
     placeholder() {
-      return this.$store.getters.loggedInUser? 'What\'s on your mind, ' + this.$store.getters.loggedInUser.username : 'login first'
+      return this.$store.getters.loggedInUser? 'What\'s on your mind, ' + this.$store.getters.loggedInUser.username : null
     }
   },
   methods: {
      addPost() {
-      this.post.creator.userId = this.$store.getters.loggedInUser._id
-      this.post.creator.username = this.$store.getters.loggedInUser.username
-      this.post.creator.profileImg = this.$store.getters.loggedInUser.url.profileImg
+      this.post.owner.userId = this.$store.getters.loggedInUser._id
+      this.post.owner.username = this.$store.getters.loggedInUser.username
+      this.post.owner.profileImg = this.$store.getters.loggedInUser.url.profileImg
 
       this.$store.dispatch({ type: "addPost", post: this.post});
     },

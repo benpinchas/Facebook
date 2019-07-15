@@ -33,12 +33,20 @@ export default {
       return this.$route.params.userId;
     }
   },
+  methods: {
+    async loadUser() {
+      let user = await UserService.getById(this.$route.params.userId);
+      console.log(user);
+      this.user = user;
+      window.scrollTo(0, 0);
+    }
+  },
+  created() {
+    this.loadUser();
+  },
   watch: {
-    "$route.params.userId":async function() {
-        let user = await UserService.getById(this.$route.params.userId);
-        console.log(user);
-        this.user = user;
-        window.scrollTo(0, 0);
+    "$route.params.userId": async function() {
+      this.loadUser();
     }
   }
 };

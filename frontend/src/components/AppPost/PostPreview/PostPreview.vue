@@ -4,14 +4,14 @@
       <header>
         <div class="profile-image-container-thumb">
           <img
-            :src="post.creator.profileImg"
+            :src="post.owner.profileImg"
             alt
           />
         </div>
 
         <div class="info-container" style="padding-top: 5px;">
           <div style="margin-bottom: 3px;">
-            <a href @click.prevent="toUserProfile">{{post.creator.username}}</a>
+            <a href @click.prevent="toUserProfile">{{post.owner.username}}</a>
           </div>
 
           <div class="time-container">
@@ -71,7 +71,7 @@ export default {
       this.$store.dispatch( {type: 'addComment', comment:{txt, at:Date.now()}, postId: this.post._id})
     },
     toUserProfile() {
-      this.$router.push(`/user/${this.post.creator.userId}`)
+      this.$router.push(`/user/${this.post.owner.userId}`)
     }
   }
 };

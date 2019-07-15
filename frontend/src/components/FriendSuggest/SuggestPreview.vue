@@ -2,18 +2,18 @@
   <div>
     <header class="g-user-snippet-container-small">
       <div class="g-profile-image-container-thumb-small">
-        <img
-          :src="suggest.url.profileImg"
-        />
+        <img :src="suggest.url.profileImg" />
       </div>
 
       <div class="info-container">
-        <div style="margin-bottom: 3px;">
+        <div style="margin-bottom: 3px;" @click.prevent="toUserProfile">
           <a href>{{suggest.username}}</a>
         </div>
 
         <div class="buttons-container">
-          <button @click="addFriendship"  ><i class="fas fa-user-plus"></i> Add</button>
+          <button @click="addFriendship">
+            <i class="fas fa-user-plus"></i> Add
+          </button>
         </div>
       </div>
     </header>
@@ -26,8 +26,7 @@
 export default {
   props: ["suggest"],
   data() {
-    return {
-    }
+    return {};
   },
   methods: {
     addFriendship() {
@@ -36,9 +35,12 @@ export default {
         user2: this.suggest._id,
         at: Date.now(),
         approvedAt: null,
-        masg: [{txt:'hello'}, {txt:'shalom'}]
-      }
-      this.$store.dispatch({type: 'addFriendship', friendship})
+        masg: [{ txt: "hello" }, { txt: "shalom" }]
+      };
+      this.$store.dispatch({ type: "addFriendship", friendship });
+    },
+    toUserProfile() {
+      this.$router.push(`/user/${this.suggest._id}`);
     }
   }
 };
@@ -58,7 +60,7 @@ button {
 }
 
 button i {
-    font-size: 11px;
+  font-size: 11px;
 }
 </style>
 

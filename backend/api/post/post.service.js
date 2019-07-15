@@ -42,6 +42,7 @@ async function toggleLike({userId, postId}) {
             let idx = post.likedBy.findIndex(user => user.userId === userId)
             if (idx === -1) {
                 post.likedBy.push({userId})
+                //create notification
             } else {
                 post.likedBy.splice(idx, 1)
             }

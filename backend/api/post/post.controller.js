@@ -17,7 +17,6 @@ async function save(req, res) {
     const post = req.body
     try {
         const savedPost = await postService.save(post)
-        console.log('controller:', savedPost);
         res.json(savedPost)
     } catch (err) {
         res.status(401).send({ error: err })
