@@ -12,7 +12,7 @@ export default {
 }
 
 const USER_KEY = 'loggedInUser11'
-var loggedInUser = JSON.parse(sessionStorage.getItem(USER_KEY))
+var loggedInUser = (sessionStorage.getItem(USER_KEY) === 'undefined')? null : JSON.parse(sessionStorage.getItem(USER_KEY))
 
 function getLoggedInUser() {
     return loggedInUser
