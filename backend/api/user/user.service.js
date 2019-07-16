@@ -78,10 +78,11 @@ async function remove(userId) {
 
 async function update(user) {
     const collection = await dbService.getCollection('user')
-    let criteria = {"_id":ObjectId(user._id)}
+    let userId = user._id
     delete user._id
     try {
-        await collection.replaceOne(criteria, {$set : user})
+        await collection.replaceOne({"_id":ObjectId(userId)}, {$set : user})
+        user._id = userId
         return user
     } catch (err) {
         console.log(`ERROR: cannot update user ${user._id}`)

@@ -40,6 +40,7 @@ export default {
   },
   computed: {
     loggedInUser() {
+      console.log(this.$store.getters.loggedInUser)
       return this.$store.getters.loggedInUser;
     }
   }
