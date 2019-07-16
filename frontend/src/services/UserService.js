@@ -46,7 +46,7 @@ function logout() {
 
 
 async function getUsers() {
-    return  HttpService.get('api/user')
+    return HttpService.get('api/user')
 }
 
 async function getById(userId) {
@@ -54,7 +54,10 @@ async function getById(userId) {
 }
 
 async function update(user) {
-return HttpService.put(`api/user/`, user)
+    let updatedUser = await HttpService.put(`api/user/`, user)
+    loggedInUser = updatedUser
+    sessionStorage.setItem(USER_KEY, JSON.stringify(loggedInUser))
+    return loggedInUser
 }
 
 
