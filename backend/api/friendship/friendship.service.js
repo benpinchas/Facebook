@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
     query,
-    add,
+    save,
 }
 
 
@@ -29,7 +29,7 @@ async function query(userId) {
 }
 
 
-async function add(friendship) {
+async function save(friendship) {
     delete friendship._id
     let criteria = {
         $or: [

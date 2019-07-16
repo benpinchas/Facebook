@@ -1,8 +1,8 @@
 import UserService from '../services/UserService.js'
 
-export default { 
+export default {
     state: {
-       loggedInUser: UserService.getLoggedInUser(),
+        loggedInUser: UserService.getLoggedInUser(),
     },
     getters: {
         loggedInUser(state) {
@@ -10,31 +10,40 @@ export default {
         },
     },
     mutations: {
-        setUser(state, {user}) {
+        setUser(state, { user }) {
             state.loggedInUser = user
         },
     },
     actions: {
-        async login(context, {credentials}) {
-           let user = await UserService.login(credentials)
-            context.commit({type: 'setUser', user})
+        async login(context, { credentials }) {
+            let user = await UserService.login(credentials)
+            context.commit({ type: 'setUser', user })
         },
-        async signup(context, {credentials}) {
+        async signup(context, { credentials }) {
             try {
-              await UserService.signup(credentials)
-              context.dispatch({type: 'login', credentials})
-            }catch(err) {
+                await UserService.signup(credentials)
+                context.dispatch({ type: 'login', credentials })
+            } catch (err) {
                 console.log('ERROR: cant login')
-            }   
+            }
         },
         async logout(context) {
             try {
                 await UserService.logout()
-                context.commit({type: 'setUser', user:null})
-            }catch(err) {
+                context.commit({ type: 'setUser', user: null })
+            } catch (err) {
                 console.log(err);
             }
 
+        },
+        async saveUser(context, { user }) {
+            console.log(user, "UESER")
+            try {
+                let updatedUser = await UserService.update(user)
+                context.commit({ type: 'setUser', user: updatedUser })
+            } catch (err) {
+                throw err  
+            }
         }
     }
 }

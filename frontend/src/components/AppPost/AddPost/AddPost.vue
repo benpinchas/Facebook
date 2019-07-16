@@ -77,7 +77,8 @@ export default {
     },
     async onInput() {
       this.post.txt = this.$refs.contenteditable.innerText;
-      let linkDeatails = await PostService.getLinkDetails(this.post.txt);
+    
+      let linkDeatails = await PostService.getLinkDetails(this.$refs.contenteditable.innerText);
       this.post.linkDeatails = linkDeatails;
       // console.log(linkDeatails);
     }

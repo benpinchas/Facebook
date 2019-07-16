@@ -33,8 +33,8 @@ async function toggleLike({ userId, postId }) {
 }
 
 
-async function addComment({txt, postId}) {
-    await HttpService.post('api/post/comment', {txt, postId})
+async function addComment({ txt, postId }) {
+    await HttpService.post('api/post/comment', { txt, postId })
     console.log('comment added')
 }
 

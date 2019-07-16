@@ -1,4 +1,5 @@
 import HttpService from './HttpService.js'
+import { async } from 'q';
 
 export default {
     login,
@@ -6,7 +7,8 @@ export default {
     signup,
     getLoggedInUser,
     getUsers,
-    getById
+    getById,
+    update
 }
 
 const USER_KEY = 'loggedInUser11'
@@ -43,7 +45,6 @@ function logout() {
 
 
 
-
 async function getUsers() {
     return  HttpService.get('api/user')
 }
@@ -52,6 +53,8 @@ async function getById(userId) {
     return HttpService.get(`api/user/${userId}`)
 }
 
-
+async function update(user) {
+return HttpService.put(`api/user/`, user)
+}
 
 

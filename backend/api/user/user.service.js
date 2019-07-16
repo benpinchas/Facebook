@@ -9,7 +9,7 @@ module.exports = {
     remove,
     update,
     add,
-    makeOwner
+    makeOwner,
 }
 
 function makeOwner(user) {
@@ -74,10 +74,14 @@ async function remove(userId) {
     }
 }
 
+
+
 async function update(user) {
     const collection = await dbService.getCollection('user')
+    let criteria = {"_id":ObjectId(user._id)}
+    delete user._id
     try {
-        await collection.replaceOne({"_id":ObjectId(user._id)}, {$set : user})
+        await collection.replaceOne(criteria, {$set : user})
         return user
     } catch (err) {
         console.log(`ERROR: cannot update user ${user._id}`)

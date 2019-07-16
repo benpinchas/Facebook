@@ -2,7 +2,8 @@ let UserService = require('./user.service.js')
 
 module.exports = {
     query,
-    getById
+    getById,
+    update
 }
 
 async function query(req, res) {
@@ -28,3 +29,15 @@ async function getById(req, res) {
     }
 }
 
+async function update(req, res) {
+    let user = req.body
+    if (user._id !== req.session.user._id) res.status(401)
+    try {
+        let savedUser = await UserService.update(user)
+        delete savedUser.password
+        res.json(savedUser)
+    }catch(err) {
+        console.log('ERROR: ', err)
+        res.status(500)
+    }
+}

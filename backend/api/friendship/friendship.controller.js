@@ -1,7 +1,7 @@
 const FriendshipService = require('./friendship.service.js')
 
 module.exports = {
-    add,
+    save,
     query
 }
 
@@ -15,11 +15,11 @@ async function query(req, res) {
     }
 }
 
-async function add(req, res) {
+async function save(req, res) {
     const friendship =  req.body
     try {
-        let addedFriendship = await FriendshipService.add(friendship)
-        res.json(addedFriendship)
+        let savedFriendship = await FriendshipService.save(friendship)
+        res.json(savedFriendship)
     }catch(err) {
         console.log('ERROR: ', err)
     }

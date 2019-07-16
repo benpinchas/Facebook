@@ -29,6 +29,7 @@ export default {};
   height: 550px;
   z-index: 10;
   box-shadow: 0 0 3px #bfbfbf;
+   user-select: none;
 }
 
 .top {

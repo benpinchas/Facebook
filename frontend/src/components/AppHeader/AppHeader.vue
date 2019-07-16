@@ -8,7 +8,7 @@
 
       <div class="wrapper">
         <div class="link-container" @click="$router.push(`/user/${loggedInUser._id}`)">
-          <img :src="loggedInUser.url.profileImg" alt />
+          <img :src="loggedInUser.url.profileImg" />
           {{loggedInUser.username}}
         </div>
         <div class="sep"></div>
@@ -93,9 +93,11 @@ main {
 } */
 
 .link-container img {
-  width: 25px;
-  border-radius: 50%;
-  margin-right: 6px;
+     width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 6px;
+    box-shadow: 0 0 1px #a5a5a5;
 }
 .link-container {
   cursor: pointer;
