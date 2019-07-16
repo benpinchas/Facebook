@@ -6,7 +6,7 @@ export default {
 
 
 async function query() {
-    return HttpService.ajax('api/notification', 'get')
+    return HttpService.get('api/notification')
 }
 
 

@@ -6,7 +6,9 @@
         alt
       />
     </div>
-    
+    <div class="realtive">
+
+    </div>
     <div ref="contenteditable" class="comment-container" placeholder="Write a comment..." contenteditable></div>
     <button @click="addComment"><i class="far fa-paper-plane"></i></button>
   </div>
@@ -64,6 +66,28 @@ export default {
   display: block; /* For Firefox */
   color: gray;
 }
+
+
+
+/* BTN */
+/*
+    position: absolute;
+    left: 672px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    font-size: 11px;
+    padding: 7px;
+    border-left: 1px solid #d9d9d9;
+
+*/
+
+
+
+
+
+
+
 </style>
 
 

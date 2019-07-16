@@ -1,12 +1,11 @@
 <template>
-  <div class="add-post floating-box" v-if="user">
+  <div>
+    <!-- <div class="overlay"></div> -->
+    <div class="add-post floating-box" v-if="user">
     <header>Create Post</header>
     <main>
       <div class="profile-image-container-thumb">
-        <img
-          :src="user.url.profileImg"
-          alt
-        />
+        <img :src="user.url.profileImg" alt />
       </div>
 
       <section style="flex-grow:1;">
@@ -20,7 +19,6 @@
 
         <link-preview :linkDeatails="post.linkDeatails" />
       </section>
-
     </main>
 
     <footer>
@@ -31,15 +29,18 @@
       </div>
     </footer>
   </div>
+
+  </div>
+ 
 </template>
 
 
 <script>
-import PostService from '../../../services/PostService.js'
-import linkPreview from '../LinkPreview/LinkPreview.vue'
+import PostService from "../../../services/PostService.js";
+import linkPreview from "../LinkPreview/LinkPreview.vue";
 export default {
   components: {
-    linkPreview,
+    linkPreview
   },
   data() {
     return {
@@ -47,37 +48,39 @@ export default {
         txt: "",
         linkDeatails: null,
         owner: {
-          username: '',
-          imgSrc: '',
-          profileImg: ''
+          username: "",
+          imgSrc: "",
+          profileImg: ""
         },
         comments: [],
-        likedBy: [],
+        likedBy: []
       }
     };
   },
   computed: {
     user() {
-      return this.$store.getters.loggedInUser
+      return this.$store.getters.loggedInUser;
     },
     placeholder() {
-      return this.$store.getters.loggedInUser? 'What\'s on your mind, ' + this.$store.getters.loggedInUser.username : null
+      return this.$store.getters.loggedInUser
+        ? "What's on your mind, " + this.$store.getters.loggedInUser.username
+        : null;
     }
   },
   methods: {
-     addPost() {
-      this.post.owner.userId = this.$store.getters.loggedInUser._id
-      this.post.owner.username = this.$store.getters.loggedInUser.username
-      this.post.owner.profileImg = this.$store.getters.loggedInUser.url.profileImg
+    addPost() {
+      this.post.owner.userId = this.$store.getters.loggedInUser._id;
+      this.post.owner.username = this.$store.getters.loggedInUser.username;
+      this.post.owner.profileImg = this.$store.getters.loggedInUser.url.profileImg;
 
-      this.$store.dispatch({ type: "addPost", post: this.post});
+      this.$store.dispatch({ type: "addPost", post: this.post });
     },
     async onInput() {
       this.post.txt = this.$refs.contenteditable.innerText;
       let linkDeatails = await PostService.getLinkDetails(this.post.txt);
-      this.post.linkDeatails = linkDeatails
+      this.post.linkDeatails = linkDeatails;
       // console.log(linkDeatails);
-    },
+    }
   }
 };
 </script>
@@ -105,10 +108,20 @@ export default {
 
 
 <style scoped>
+.overlay {
+  position: fixed;
+  background-color: black;
+  opacity: 0.6;
+  z-index: 30;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
 .add-post {
   margin-bottom: 10px;
   /* height: 300px; */
-
+  z-index: 220;
   display: flex;
   flex-direction: column;
 }

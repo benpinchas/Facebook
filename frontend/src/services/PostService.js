@@ -21,20 +21,20 @@ async function getLinkDetails(txt) {
 
 
 async function save(post) {
-    let savedPost = await HttpService.ajax('api/post', 'post', post)
+    let savedPost = await HttpService.post('api/post', post)
     console.log('service:', savedPost);
 
     return savedPost
 }
 
 async function toggleLike({ userId, postId }) {
-    await HttpService.ajax('api/post/like', 'post', { userId, postId })
+    await HttpService.post('api/post/like', { userId, postId })
     console.log('like toggled')
 }
 
 
 async function addComment({txt, postId}) {
-    await HttpService.ajax('api/post/comment', 'post', {txt, postId})
+    await HttpService.post('api/post/comment', {txt, postId})
     console.log('comment added')
 }
 
@@ -42,7 +42,7 @@ async function addComment({txt, postId}) {
 
 
 async function query(filterBy) {
-    let posts = await HttpService.ajax('api/post', 'get')
+    let posts = await HttpService.get('api/post')
     return posts
 }
 

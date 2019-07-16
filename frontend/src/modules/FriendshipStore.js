@@ -6,6 +6,7 @@ import FriendshipService from '../services/FriendshipService.js'
 export default { 
     state: {
        friendships: [],
+       friendshipRequests: [],
        suggests: []
     },
     getters: {
@@ -32,6 +33,15 @@ export default {
             let suggests = await UserService.getUsers()
             // console.log('suggests', suggests)
             context.commit({type: 'setSuggests', suggests})
+        },
+        async loadFriendshipRequests(context) {
+            let filterBy = {
+                user2Id: context.getters.loggedInUser._id,
+                aprroved: false
+            }
+            console.log(filterBy)
+            let friendshipRequests = FriendshipService.query(filterBy)
+            console.log('friendshipRequests store action:', friendshipRequests)
         }
         // async loadFriendships(context ,{fiterBy}) {
         //     let suggests = await UserService.getUsers()

@@ -2,15 +2,17 @@ import HttpService from './HttpService.js'
 import { async } from 'q';
 
 export default {
-    getSuggests,
+    query,
     add
 }
 
 async function add(friendship) {
-    return HttpService.ajax('api/friendship', 'post', friendship)
+    return HttpService.post('api/friendship', friendship)
 }
 
 
-async function getSuggests(userId) {
-    // return  HttpService.ajax('api/frienship', 'get', {userId, isFriends: false})
+async function query(filterBy) {
+    return HttpService.get(`api/friendship/`,  filterBy)
 }
+
+

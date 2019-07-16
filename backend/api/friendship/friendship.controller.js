@@ -2,7 +2,12 @@ const FriendshipService = require('./friendship.service.js')
 
 module.exports = {
     add,
-    getRequests
+    query
+}
+
+async function query(req, res) {
+    let filterBy = req.query 
+    console.log(filterBy,  'controller')
 }
 
 async function add(req, res) {
@@ -15,11 +20,7 @@ async function add(req, res) {
     }
 }
 
-async function getRequests(req, res) {
-    const {userId} = req.params
-    console.log(userId)
-    res.json({})
-}
+
 
 
 

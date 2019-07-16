@@ -26,6 +26,9 @@ export default {
     toggleWindow() {
       this.isWindow = !this.isWindow;
     }
+  },
+  created() {
+    this.$store.dispatch({type: 'loadFriendshipRequests'})
   }
 };
 </script>

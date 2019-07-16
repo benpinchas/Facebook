@@ -9,7 +9,7 @@ export default {
     getById
 }
 
-const USER_KEY = 'loggedInUser10'
+const USER_KEY = 'loggedInUser11'
 var loggedInUser = JSON.parse(sessionStorage.getItem(USER_KEY))
 
 function getLoggedInUser() {
@@ -18,7 +18,7 @@ function getLoggedInUser() {
 
 async function login(userCred) {
     try {
-        let user = await HttpService.ajax('api/auth/login', 'post', userCred)
+        let user = await HttpService.post('api/auth/login', userCred)
         loggedInUser = user
         sessionStorage.setItem(USER_KEY, JSON.stringify(loggedInUser))
         return loggedInUser
@@ -29,11 +29,11 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-    return HttpService.ajax('api/auth/signup', 'post', userCred)
+    return HttpService.post('api/auth/signup', userCred)
 }
 
 function logout() {
-    HttpService.ajax('api/auth/logout', 'post')
+    HttpService.post('api/auth/logout')
         .then(res => {
             console.log(res)
             loggedInUser = null
@@ -45,11 +45,11 @@ function logout() {
 
 
 async function getUsers() {
-    return  HttpService.ajax('api/user', 'get')
+    return  HttpService.get('api/user')
 }
 
 async function getById(userId) {
-    return HttpService.ajax(`api/user/${userId}`, 'get')
+    return HttpService.get(`api/user/${userId}`)
 }
 
 

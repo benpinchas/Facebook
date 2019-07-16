@@ -42,11 +42,11 @@ export default {
     }
   },
   created() {
-    this.loadUser();
+    // this.loadUser();
   },
   watch: {
     "$route.params.userId": async function() {
-      this.loadUser();
+      if (this.$route.params.userId) this.loadUser();
     }
   }
 };
