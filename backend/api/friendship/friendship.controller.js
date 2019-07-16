@@ -6,8 +6,13 @@ module.exports = {
 }
 
 async function query(req, res) {
-    let filterBy = req.query 
-    console.log(filterBy,  'controller')
+    const userId = req.session.user._id
+    try {
+        let friendships = await FriendshipService.query(userId)
+        res.json(friendships)
+    }catch(err) {
+        console.log('ERROR in friendship controller query', err)
+    }
 }
 
 async function add(req, res) {

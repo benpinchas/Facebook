@@ -6,47 +6,64 @@ import FriendshipService from '../services/FriendshipService.js'
 export default { 
     state: {
        friendships: [],
-       friendshipRequests: [],
+    //    friendshipRequests: [],
        suggests: []
     },
     getters: {
         friendships(state) {
             return state.friendships
         },
+        friendshipRequests(state, getters, rootState, rootGetters) {
+            return state.friendships.filter(friendship => {
+                return friendship.user2.userId === rootGetters.loggedInUser._id && !friendship.isApproved
+            })
+        },
+        friendshipsSents(state, getters, rootState, rootGetters) {
+            return state.friendships.filter(friendship => {
+                return friendship.user1.userId === rootGetters.loggedInUser._id && !friendship.isApproved
+            })
+        },
+        unseenFriendshipRequests(state, getters) {
+            return getters.friendshipRequests.filter(friendship => !friendship.isSeen)
+        },
         suggests(state) {
             return state.suggests
         }
     },
     mutations: {
+        setFriendships(state, {friendships}) {
+            state.friendships = friendships
+            console.log(state.friendships);
+        },
         setSuggests(state, {suggests}) {
             state.suggests = suggests
-            // console.log(state.suggests);
         }
     },
     actions: {
         async addFriendship(context, {friendship}) {
-            console.log('store friendship', friendship);
             let addedFriendship = await FriendshipService.add(friendship)
             console.log(addedFriendship)
         },
-        async loadSuggests(context ,{fiterBy}) {
+        async loadFriendships(context) {
+            let friendships = await FriendshipService.query()
+            // console.log('friendships store action:', friendships)
+            context.commit({type: 'setFriendships', friendships})
+        },
+
+        async saveFriendship(context, {friendship}) {
+            let savedFriendship = await FriendshipService.save(friendship)
+        },
+
+
+
+
+
+
+         async loadSuggests(context ,{fiterBy}) {
             let suggests = await UserService.getUsers()
             // console.log('suggests', suggests)
             context.commit({type: 'setSuggests', suggests})
         },
-        async loadFriendshipRequests(context) {
-            let filterBy = {
-                user2Id: context.getters.loggedInUser._id,
-                aprroved: false
-            }
-            console.log(filterBy)
-            let friendshipRequests = FriendshipService.query(filterBy)
-            console.log('friendshipRequests store action:', friendshipRequests)
-        }
-        // async loadFriendships(context ,{fiterBy}) {
-        //     let suggests = await UserService.getUsers()
-        //     console.log('suggests', suggests)
-        //     context.commit()
-        // }
+
     }
 }

@@ -1,9 +1,10 @@
 <template>
     <div class="" @click="toggleWindow" >
         <i class="fas fa-bell header-icon" :class="classObj"></i>
-         <updates-count :unSeen="unSeen" />
+         <unseen-count :unseen="unseen" />
         
          <updates-window v-if="isWindow"> 
+            <span slot="top">Notificatios</span>
             <span slot="content">
                 <notification-preview v-for="notification in notifications" :notification="notification"></notification-preview>
             </span>
@@ -14,12 +15,12 @@
 
 
 <script>
-import UpdatesCount from '../UpdatesCount/UpdatesCount.vue'
+import UnseenCount from '../UnseenCount/UnseenCount.vue'
 import UpdatesWindow from '../../util/UpdatesWindow.vue'
 import NotificationPreview from './NotificationPreview.vue'
 export default {
     components: {
-        UpdatesCount,
+        UnseenCount,
         UpdatesWindow,
         NotificationPreview
     },
@@ -32,12 +33,12 @@ export default {
         notifications() {
             return this.$store.getters.notifications
         },
-        unSeen() {
-            return this.$store.getters.notifications.filter(notification => !notification.isSeen)
+        unseen() {
+            return this.$store.getters.unSeenNotifications
         },
         classObj() {
             return {
-                unSeen: this.unSeen.length
+                unseen: this.unseen.length  //global class
             }
         }
     },

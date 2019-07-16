@@ -1,6 +1,8 @@
 <template>
   <div class="updates-window floating-box">
-    <div class="top">Notification</div>
+    <div class="top">
+      <slot name="top"> </slot>
+    </div>
     <div class="content-container">
       <slot
         name="content"

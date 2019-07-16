@@ -11,6 +11,7 @@
 
 
 <script>
+//TODO change cmp name to FriendshipSuggest
 //cmpc
 import SideBox from "../util/SideBox.vue";
 import SuggestPreview from "./SuggestPreview.vue";

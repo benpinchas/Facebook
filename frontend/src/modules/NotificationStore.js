@@ -2,11 +2,14 @@ import NotificationService from '../services/NotificationService.js'
 
 export default { 
     state: {
-       notifications: []
+       notifications: [],
     },
     getters: {
         notifications(state) {
             return state.notifications
+        },
+        unSeenNotifications(state) {
+            return state.notifications.filter(notification => !notification.isSeen)
         }
     },
     mutations: {

@@ -2,6 +2,7 @@
   <section class="user-profile" v-if="isShow">
     <div class="main" v-if="user">
       <div class="cover-img-container">
+        {{friendshipStatus}}
         <!-- <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/3Wf1AkaVBVk.gif" alt /> -->
         <img
           class="cover-img"
@@ -31,22 +32,36 @@ export default {
   computed: {
     isShow() {
       return this.$route.params.userId;
+    },
+    friendshipStatus() {
+      let friendship = this.$store.getters.friendships.find(friendship => {
+        return (
+          friendship.user1.userId === this.user._id ||
+          friendship.user2.userId === this.user._id
+        );
+      });
+      if (!friendship) return "not friends";
+      else if (friendship.isApproved) return "approved";
+      else if (friendship.user2.userId === this.user._id) return "Sent";
+      else return "You need to confirm";
     }
   },
   methods: {
     async loadUser() {
-      let user = await UserService.getById(this.$route.params.userId);
-      console.log(user);
-      this.user = user;
-      window.scrollTo(0, 0);
+      if (this.$route.params.userId) {
+        let user = await UserService.getById(this.$route.params.userId);
+        console.log(user);
+        this.user = user;
+        window.scrollTo(0, 0);
+      }
     }
   },
   created() {
-    // this.loadUser();
+    this.loadUser();
   },
   watch: {
     "$route.params.userId": async function() {
-      if (this.$route.params.userId) this.loadUser();
+      this.loadUser();
     }
   }
 };

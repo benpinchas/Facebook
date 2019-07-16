@@ -1,9 +1,11 @@
 <template>
-  <div @click="toggleWindow" class="friend-request">
-    <i class="fas fa-user-friends header-icon"></i>
+  <div @click="toggleWindow" class="friendship-request">
+    <i class="fas fa-user-friends header-icon" :class="classObj"></i>
+    <unseen-count :unseen="unseen" />
     <updates-window v-if="isWindow">
+      <span slot="top">Friend Requests</span>
       <span slot="content">
-        efwefwefew
+       <request-preview v-for="friendship in friendshipRequests" :friendship="friendship">ll</request-preview>
       </span>
     </updates-window>
   </div>
@@ -12,15 +14,33 @@
 
 
 <script>
+import unseenCount from "../UnseenCount/UnseenCount.vue";
 import UpdatesWindow from "../../util/UpdatesWindow.vue";
+import RequestPreview from '../../Friendship/RequestPreview.vue'
 export default {
   components: {
-    UpdatesWindow
+    UpdatesWindow,
+    unseenCount,
+    RequestPreview
   },
   data() {
     return {
       isWindow: false
     };
+  },
+  computed: {
+    unseen() {
+      return this.$store.getters.unseenFriendshipRequests
+    },
+    friendshipRequests() {
+      console.log(this.$store.getters.friendshipRequests)
+      return  this.$store.getters.friendshipRequests
+    },
+    classObj() {
+      return {
+        unseen: this.unseen.length //global class
+      };
+    }
   },
   methods: {
     toggleWindow() {
@@ -28,7 +48,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({type: 'loadFriendshipRequests'})
+    this.$store.dispatch({ type: "loadFriendships" });
   }
 };
 </script>
@@ -36,8 +56,8 @@ export default {
 
 
 <style scoped>
-.friend-request {
-    position: relative;
+.friendship-request {
+  position: relative;
 }
 </style>
 

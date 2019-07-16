@@ -2,7 +2,7 @@
   <div>
     <header class="g-user-snippet-container-small">
       <div class="g-profile-image-container-thumb-small">
-        <img :src="suggest.url.profileImg" />
+        <img :src="(suggest.url)? suggest.url.profileImg : null" />
       </div>
 
       <div class="info-container">
@@ -31,12 +31,22 @@ export default {
   methods: {
     addFriendship() {
       let friendship = {
-        user1: this.$store.getters.loggedInUser._id,
-        user2: this.suggest._id,
+        user1: {
+          userId: this.$store.getters.loggedInUser._id,
+          username: this.$store.getters.loggedInUser.username,
+          profileImg: this.$store.getters.loggedInUser.url.profileImg
+        },
+        user2 : { 
+          userId:  this.suggest._id,
+          username: this.suggest.username,
+          profileImg: this.suggest.url.profileImg
+        },
         at: Date.now(),
-        approvedAt: null,
+        isApproved: false,
+        isSeen: false,
         masg: [{ txt: "hello" }, { txt: "shalom" }]
       };
+      console.log(friendship)
       this.$store.dispatch({ type: "addFriendship", friendship });
     },
     toUserProfile() {

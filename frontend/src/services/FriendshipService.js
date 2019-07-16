@@ -3,10 +3,15 @@ import { async } from 'q';
 
 export default {
     query,
-    add
+    add,
+    save,
 }
 
 async function add(friendship) {
+    return HttpService.post('api/friendship', friendship)
+}
+
+async function save(friendship) {
     return HttpService.post('api/friendship', friendship)
 }
 

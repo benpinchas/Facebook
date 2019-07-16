@@ -98,10 +98,10 @@ a:hover {
     font-weight: 600;
   }
 
-i.unSeen {
+i.unseen {
     color: white;
 }
-i.unSeen:hover {
+i.unseen:hover {
     color: rgb(246, 246, 246);
 }
 
@@ -112,7 +112,24 @@ i.unSeen:hover {
     height: 19px;
 }
 
+a.username {
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+}
 
 
+button.confirm {
+    background-color: #4267b2;
+    border-color: #4267b2;
+    color: white;
+}
 
+button.delete {
+    background-color: #f5f6f7;
+    border-color: #ccd0d5;
+    color: #4b4f56;
+}
 
