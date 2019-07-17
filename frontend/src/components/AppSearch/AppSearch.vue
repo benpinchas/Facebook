@@ -1,12 +1,41 @@
 <template>
   <div class="search-container">
-    <input type="text" placeholder="Search" />
+    <input @input="onInput" type="text" placeholder="Search" v-model="filterBy.txt" />
+    <div class="result-list" @click="clearInput">
+      <user-preview v-for="user in users" :user="user" v-if="filterBy.txt" />
+    </div>
   </div>
 </template>
 
 
 <script>
-export default {};
+import UserService from "../../services/UserService.js";
+import UserPreview from "./UserPreview";
+export default {
+  components: {
+    UserPreview
+  },
+  data() {
+    return {
+      filterBy: {
+        txt: "",
+        limit: 5
+      },
+      users: []
+    };
+  },
+  methods: {
+    async onInput() {
+      console.log(this.filterBy.txt);
+      let users = await UserService.query(this.filterBy);
+      console.log("users:", users);
+      this.users = users;
+    },
+    clearInput() {
+      this.filterBy.txt = ""
+    }
+  }
+};
 </script>
 
 
@@ -14,6 +43,7 @@ export default {};
 
 <style scoped>
 .search-container {
+  position: relative;
 }
 
 input {
@@ -25,6 +55,14 @@ input {
   border: none;
   border-radius: 1px;
   width: 380px;
+}
+
+.result-list {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  top: 110%;
+  z-index: 10;
 }
 
 @media (max-width: 670px) {

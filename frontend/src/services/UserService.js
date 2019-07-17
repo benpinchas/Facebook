@@ -8,7 +8,8 @@ export default {
     getLoggedInUser,
     getUsers,
     getById,
-    update
+    update,
+    query
 }
 
 const USER_KEY = 'loggedInUser11'
@@ -44,6 +45,10 @@ function logout() {
 }
 
 
+
+async function query(filterBy) {
+    return HttpService.get('api/user', filterBy)
+}
 
 async function getUsers() {
     return HttpService.get('api/user')

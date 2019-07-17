@@ -25,16 +25,16 @@ async function query(filterBy = {}) {
 
     const criteria = {};
     if (filterBy.txt) {
-        criteria.name = filterBy.txt
-    }
-    if (filterBy.minBalance) {
-        criteria.balance = {$gte : filterBy.minBalance}
+        criteria.username =  {$regex : `${filterBy.txt}`,  $options: 'i'}
+        
     }
 
+    let limit = (filterBy.limit)? parseInt(filterBy.limit) : 10
 
     const collection = await dbService.getCollection('user')
+    collection.createIndex( { username: "text" } )
     try {
-        const users = await collection.find(criteria).toArray();
+        const users = await collection.find( criteria).limit(limit).toArray();
         return users
     } catch (err) {
         console.log('ERROR: cannot find users')
