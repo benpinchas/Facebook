@@ -1,6 +1,9 @@
 <template>
   <div class="search-container">
-    <input @input="onInput" type="text" placeholder="Search" v-model="filterBy.txt" />
+    <div style="position:relative">
+      <input @input="onInput" type="text" placeholder="Search" v-model="filterBy.txt" />
+      <my-loader class="loader" v-if="isLoading" />
+    </div>
     <div class="result-list" @click="clearInput">
       <user-preview v-for="user in users" :user="user" v-if="filterBy.txt" />
     </div>
@@ -11,9 +14,12 @@
 <script>
 import UserService from "../../services/UserService.js";
 import UserPreview from "./UserPreview";
+import MyLoader from "../util/MyLoader.vue";
+import { setTimeout } from 'timers';
 export default {
   components: {
-    UserPreview
+    UserPreview,
+    MyLoader
   },
   data() {
     return {
@@ -21,18 +27,21 @@ export default {
         txt: "",
         limit: 5
       },
-      users: []
+      users: [],
+      isLoading: false,
     };
   },
   methods: {
     async onInput() {
-      console.log(this.filterBy.txt);
+      this.isLoading = true
       let users = await UserService.query(this.filterBy);
-      console.log("users:", users);
       this.users = users;
+      setTimeout(() => {
+        this.isLoading = false
+      }, 700)  
     },
     clearInput() {
-      this.filterBy.txt = ""
+      this.filterBy.txt = "";
     }
   }
 };
@@ -63,6 +72,13 @@ input {
   width: 100%;
   top: 110%;
   z-index: 10;
+}
+
+.loader {
+  top: calc(50% - 18px / 2);
+  left: 91%;
+  width: 18px;
+  height: 18px;
 }
 
 @media (max-width: 670px) {
