@@ -46,7 +46,6 @@ export default {
         toggleWindow() {
             this.isWindow = !this.isWindow
             this.$store.dispatch({type: 'setAllSeen'})
-            console.log('GOO')
         }
     },
     created() {

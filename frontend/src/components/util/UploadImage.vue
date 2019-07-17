@@ -7,10 +7,10 @@
 import CloudinaryService from '../../services/CloudinaryService.js'
 export default {
   methods: {
-    async imageChanged(ev) {
-        let imageUrl = await CloudinaryService.uploadImage(ev)
-        console.log('image uploaded: ', imageUrl)
-        this.$emit('setImageUrl', imageUrl)
+     imageChanged(ev) {
+       console.log(ev)
+        let prmImageUrl = CloudinaryService.uploadImage(ev)
+        this.$emit('setImageUrl', prmImageUrl)
     }
   }
 };

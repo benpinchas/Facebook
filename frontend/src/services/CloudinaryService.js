@@ -18,5 +18,8 @@ function uploadImage(ev) {
         .then(res => {
             return res.secure_url
         })
-        .catch(err => console.error(error))
+        .catch(err =>  {
+            console.error(err) 
+            throw err
+        })
 }

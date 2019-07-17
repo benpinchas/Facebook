@@ -5,16 +5,24 @@
         class="cover-img-container"
         v-bind:style="{ 'background-image': 'url('+user.url.coverImg+')' }"
       >
+        <my-loader v-if="isLoadCoverImg" />
         <!-- {{friendshipStatus}} -->
         <!-- {{user}} -->
-        <upload-image v-if="canEdit" @setImageUrl="setCoverImage" class="custom-file-input cover-img-input" />
-
-        <!-- <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/3Wf1AkaVBVk.gif" alt /> -->
+        <upload-image
+          v-if="canEdit"
+          @setImageUrl="setCoverImage"
+          class="custom-file-input cover-img-input"
+        />
       </div>
       <div class="profile-img-container">
         <div style="position:relative;">
           <img class="profile-img" :src="user.url.profileImg" alt />
-          <upload-image v-if="canEdit" @setImageUrl="setProfileImage" class="custom-file-input profile-img-input" />
+          <upload-image
+            v-if="canEdit"
+            @setImageUrl="setProfileImage"
+            class="custom-file-input profile-img-input"
+          />
+          <my-loader v-if="isLoadProfileImg" />
         </div>
 
         <h1 class="username">{{user.username}}</h1>
@@ -36,13 +44,17 @@
 <script>
 import UserService from "../../services/UserService.js";
 import UploadImage from "../util/UploadImage.vue";
+import MyLoader from "../util/MyLoader.vue";
 export default {
   components: {
-    UploadImage
+    UploadImage,
+    MyLoader
   },
   data() {
     return {
-      user: null
+      user: null,
+      isLoadProfileImg: false,
+      isLoadCoverImg: false
     };
   },
   computed: {
@@ -62,7 +74,9 @@ export default {
       else return "You need to confirm";
     },
     canEdit() {
-      return (this.$store.getters.loggedInUser)? this.user._id === this.$store.getters.loggedInUser._id : false
+      return this.$store.getters.loggedInUser
+        ? this.user._id === this.$store.getters.loggedInUser._id
+        : false;
     }
   },
   methods: {
@@ -70,20 +84,37 @@ export default {
       if (this.$route.params.userId) {
         let user = await UserService.getById(this.$route.params.userId);
         console.log(user);
-        user.url.coverImg = "";
         this.user = user;
         window.scrollTo(0, 0);
       }
     },
-    setProfileImage(imageUrl) {
-      this.user.url.profileImg = imageUrl;
-      this.$store.dispatch({type: 'saveUser', user:this.user})
-      //save user
-    },
-    setCoverImage(imageUrl) {
-      this.user.url.coverImg = imageUrl;
 
-      //save user
+    async setProfileImage(prmImageUrl) {
+      this.isLoadProfileImg = true;
+      let prevImageUrl = this.user.url.profileImg;
+      try {
+        let imageUrl = await prmImageUrl;
+        this.user.url.profileImg = imageUrl;
+        await this.$store.dispatch({ type: "saveUser", user: this.user });
+      } catch (err) {
+        this.user.url.profileImg = prevImageUrl;
+      } finally {
+        this.isLoadProfileImg = false;
+      }
+    },
+    async setCoverImage(prmImageUrl) {
+      this.isLoadCoverImg = true;
+      let prevImageUrl = this.user.url.coverImg;
+      try {
+        let imageUrl = await prmImageUrl;
+        this.user.url.coverImg = imageUrl;
+        await this.$store.dispatch({ type: "saveUser", user: this.user });
+        console.log('user saved')
+      } catch (err) {
+        this.user.url.coverImg = prevImageUrl;
+      } finally {
+        this.isLoadCoverImg = false;
+      }
     }
   },
   created() {
@@ -92,11 +123,10 @@ export default {
   watch: {
     "$route.params.userId": async function() {
       this.loadUser();
-    },
+    }
     // "$store.getters.loggedInUser": function() {
     //   this.user = null
     // },
-    
   }
 };
 </script>
@@ -112,7 +142,7 @@ export default {
 
 .cover-img-container {
   min-height: 314px;
-
+  position: relative;
   /* background-color: #1c1e20; */
   background-size: cover;
   background-position-y: center;
