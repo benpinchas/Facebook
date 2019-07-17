@@ -13,14 +13,29 @@ module.exports = {
 
 async function query() {
     const collection = await dbService.getCollection('post')
-    try {
-        let posts = await collection.find({}).toArray()
-        return posts;
-    } catch (err) {
-        console.log(`ERROR: cannot insert post`)
-        throw err;
-    }
+        // let criteria = {}
+        // criteria.userId = new ObjectId('5d2ae89cccd9bb8b258c7a99')
+        let posts = await collection.aggregate([
+            {
+                $match: {}
+            },
+            {
+                $lookup:
+                {
+                    from: 'user',
+                    localField: 'userId',
+                    foreignField: '_id',
+                    as: 'user'
+                }
+            },
+            {
+                $unwind: '$user'
+            }
+        ]).toArray()
+        console.log("POSTS", posts)
+        return posts
 }
+
 
 
 async function save(post) {
@@ -99,7 +114,7 @@ async function saveComment(postId, txt, user) {
                 type: 'post-comment',
                 isSeen: false,
                 isRead: false,
-                txt: (userCount > 1) ? ` <span class="strong"> ${post.comments[0].owner.username} </span> and <span class="strong"> ${userCount-1} </span> others commeneted on your post` : `<span class="strong"> ${post.comments[0].owner.username} </span> commented on your post`,
+                txt: (userCount > 1) ? ` <span class="strong"> ${post.comments[0].owner.username} </span> and <span class="strong"> ${userCount - 1} </span> others commeneted on your post` : `<span class="strong"> ${post.comments[0].owner.username} </span> commented on your post`,
                 imgUrl: user.url.profileImg
             }
             await NotificationService.save(notification)

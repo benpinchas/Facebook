@@ -1,5 +1,6 @@
 const postService = require('./post.service')
 const userService = require('../user/user.service.js')
+const ObjectId = require('mongodb').ObjectId
 
 
 async function query(req, res) {
@@ -15,6 +16,7 @@ async function query(req, res) {
 
 async function save(req, res) {
     const post = req.body
+    post.userId = ObjectId(req.session.user._id)
     try {
         const savedPost = await postService.save(post)
         res.json(savedPost)

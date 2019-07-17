@@ -1,14 +1,14 @@
 <template>
-  <div class="post-preview floating-box">
+  <div class="post-preview floating-box" v-if="user">
     <main>
       <header>
         <div class="profile-image-container-thumb">
-          <img :src="post.owner.profileImg" alt />
+          <img :src="user.url.profileImg" alt />
         </div>
 
         <div class="info-container" style="padding-top: 3px;">
           <div style="margin-bottom: 5px;">
-            <a href @click.prevent="toUserProfile">{{post.owner.username}}</a>
+            <a href @click.prevent="toUserProfile">{{user.username}}</a>
           </div>
 
           <div class="time-container">
@@ -23,10 +23,13 @@
         </div>
       </header>
 
-      <span v-html="post.txt" style="font-size:15px;"></span>
+    <span v-html="post.txt" style="font-size:15px;" v-if="post.type !== 'gradient'"></span>
     </main>
     <!-- media-conatiner -->
-    <span class="media-container" v-html="post.linkDetails"></span>
+ 
+    <content-preview :type="post.type" :content="post.content" :post="post" />
+
+
     <footer>
       <div class="stats-container">
         <p class="like-count">
@@ -53,17 +56,23 @@
 <script>
 import InteractionsBtns from "./InteractionsButtons.vue";
 import PostComments from "./PostComment/PostComment.vue";
-
+import ContentPreview from '../ContentPreview/ContentPreview.vue'
 export default {
   props: ["post"],
+  components: {
+    InteractionsBtns,
+    PostComments,
+    ContentPreview
+  },
   data() {
     return {
       showComments: false
     };
   },
-  components: {
-    InteractionsBtns,
-    PostComments
+  computed: {
+    user() {
+      return this.post.user
+    }
   },
   methods: {
     toggleComments() {

@@ -28,6 +28,9 @@ export default {
         },
         suggests(state) {
             return state.suggests
+        },
+        approvedFriendships(state) {
+            return state.friendships.filter(friendship => friendship.isApproved)
         }
     },
     mutations: {

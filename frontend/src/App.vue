@@ -2,15 +2,17 @@
   <div id="app">
     <app-header></app-header>
     <router-view class="router" />
+    <app-chat/>
   </div>
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader/AppHeader.vue";
-
+import AppChat from './components/AppChat/AppChat.vue'
 export default {
   components: {
-    AppHeader
+    AppHeader,
+    AppChat
   }
 };
 </script>
