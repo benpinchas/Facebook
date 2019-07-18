@@ -29,6 +29,7 @@
         class="gradient"
         :class="post.gradientClass"
         ref="contenteditable"
+        :placeholder="placeholder"
         contenteditable
         @input="onInput"
       ></div>
@@ -92,7 +93,7 @@ export default {
     },
     placeholder() {
       return this.$store.getters.loggedInUser
-        ? "What's on your mind, " + this.$store.getters.loggedInUser.username
+        ? "What's on your mind, " + this.$store.getters.loggedInUser.username + '?'
         : null;
     }
   },
@@ -224,6 +225,12 @@ main {
   display: block; /* For Firefox */
   color: gray;
   font-size: 14px;
+}
+
+[contenteditable="true"].gradient:empty:before  {
+    color: white;
+    font-size: 24px;
+    opacity: .6;
 }
 
 footer {

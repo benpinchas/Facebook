@@ -23,7 +23,7 @@
         </div>
       </header>
 
-    <span v-html="post.txt" style="font-size:15px;" v-if="post.type !== 'gradient'"></span>
+    <div v-html="post.txt" style="font-size:15px; margin-bottom:12px;" v-if="post.type !== 'gradient'"></div>
     </main>
     <!-- media-conatiner -->
  
@@ -123,6 +123,7 @@ export default {
 }
 main {
   padding: 12px;
+  padding-bottom: 0;
 }
 
 header {

@@ -61,7 +61,7 @@ async function toggleLike(postId, user) {
 
                 let notification = {
                     at: Date.now(),
-                    userId: post.owner.userId,
+                    userId: post.userId,
                     postId,
                     type: 'post-like',
                     isSeen: false,
@@ -109,7 +109,7 @@ async function saveComment(postId, txt, user) {
 
             let notification = {
                 at: Date.now(),
-                userId: post.owner.userId,
+                userId: post.userId,
                 postId,
                 type: 'post-comment',
                 isSeen: false,

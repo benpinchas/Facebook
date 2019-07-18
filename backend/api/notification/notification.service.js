@@ -27,7 +27,7 @@ async function save(notification) {
 async function query(userId) {
     let collection  = await dbService.getCollection('notification')
     try {
-        let notifications = await collection.find({userId}).toArray()        
+        let notifications = await collection.find({userId: ObjectId(userId)}).toArray()        
         return notifications
     }catch(err) {
         console.log('db notifications error')
