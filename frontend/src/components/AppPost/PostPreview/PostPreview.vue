@@ -89,7 +89,7 @@ export default {
       this.$store.dispatch({ type: "addComment", txt, postId: this.post._id });
     },
     toUserProfile() {
-      this.$router.push(`/user/${this.post.owner.userId}`);
+      this.$router.push(`/user/${this.post.user._id}`);
     }
   }
 };

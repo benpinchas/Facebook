@@ -8,7 +8,7 @@ module.exports = {
 
 
 async function query(userId) {
-
+    console.log(userId)
     // const criteria = {};
     // if (filterBy.user2Id) {
     //     criteria["user2.userId"] = filterBy.user2Id   
@@ -19,18 +19,18 @@ async function query(userId) {
 
     const collection = await dbService.getCollection('friendship')
     try {
-
+//$or: [ {"user1Id": ObjectId(userId)}, {"user2Id": ObjectId(userId)}]
         let friendships = await collection.aggregate([
             {
                 $match: 
-                    {$or: [ {"user1": ObjectId(userId)}, {"user2": ObjectId(userId)}]}
+                    {$or: [ {"user1Id": ObjectId(userId)}, {"user2Id": ObjectId(userId)}]}
 
             },
             {
                 $lookup:
                 {
                     from: 'user',
-                    localField: 'user1',
+                    localField: 'user1Id',
                     foreignField: '_id',
                     as: 'user1'
                 }
@@ -42,7 +42,7 @@ async function query(userId) {
                 $lookup:
                 {
                     from: 'user',
-                    localField: 'user2',
+                    localField: 'user2Id',
                     foreignField: '_id',
                     as: 'user2'
                 }
@@ -51,6 +51,7 @@ async function query(userId) {
                 $unwind: '$user2'
             }
         ]).toArray()
+        console.log('friendships', friendships)
         return friendships
 
 
@@ -66,12 +67,14 @@ async function query(userId) {
 
 async function save(friendship) {
     delete friendship._id
-    friendship.user1 = ObjectId(friendship.user1)
-    friendship.user2 = ObjectId(friendship.user2)
+    delete friendship.user1
+    delete friendship.user2
+    friendship.user1Id = ObjectId(friendship.user1Id)
+    friendship.user2Id = ObjectId(friendship.user2Id)
     let criteria = {
         $or: [
-            {$and: [{"user1": friendship.user1}, {"user2": friendship.user2}]},
-            {$and: [{"user1": friendship.user2}, {"user2": friendship.user1}]}
+            {$and: [{"user1Id": friendship.user1Id}, {"user2Id": friendship.user2Id}]},
+            {$and: [{"user1Id": friendship.user2Id}, {"user2Id": friendship.user1Id}]}
         ]
     }
     const collection = await dbService.getCollection('friendship')

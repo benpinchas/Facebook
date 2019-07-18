@@ -23,11 +23,13 @@ export default {
   },
   computed: {
     suggests() {
+      console.log(' this.$store.getters.suggests', this.$store.getters.suggests)
       return this.$store.getters.suggests
     }
   },
   async created() {
     this.$store.dispatch({type: 'loadSuggests'})
+    this.$store.dispatch({type: 'loadFriendshipUsers'})
   }
 };
 </script>

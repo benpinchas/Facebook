@@ -31,8 +31,8 @@ export default {
   methods: {
     addFriendship() {
       let friendship = {
-        user1: this.$store.getters.loggedInUser._id,
-        user2 : this.suggest._id,
+        user1Id: this.$store.getters.loggedInUser._id,
+        user2Id: this.suggest._id,
         at: Date.now(),
         isApproved: false,
         isSeen: false,

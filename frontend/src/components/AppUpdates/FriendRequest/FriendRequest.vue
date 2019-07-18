@@ -1,11 +1,11 @@
 <template>
   <div @click="toggleWindow" class="friendship-request">
     <i class="fas fa-user-friends header-icon" :class="classObj"></i>
-    <unseen-count :unseen="unseen" />
+    <!-- <unseen-count :unseen="unseen" /> -->
     <updates-window v-if="isWindow">
       <span slot="top">Friend Requests</span>
       <span slot="content">
-       <request-preview v-for="friendship in friendshipRequests" :friendship="friendship"></request-preview>
+       <request-preview v-for="user in requestingUsers" :user="user" :key="user._id"></request-preview>
       </span>
     </updates-window>
   </div>
@@ -30,15 +30,15 @@ export default {
   },
   computed: {
     unseen() {
-      return this.$store.getters.unseenFriendshipRequests
+      // return this.$store.getters.unseenFriendshipRequests
     },
-    friendshipRequests() {
-      console.log(this.$store.getters.friendshipRequests)
-      return  this.$store.getters.friendshipRequests
+    requestingUsers() {
+      console.log('requestingUsers', this.$store.getters.requestingUsers)
+      return  this.$store.getters.requestingUsers
     },
     classObj() {
       return {
-        unseen: this.unseen.length //global class
+        // unseen: this.unseen.length //global class
       };
     }
   },
@@ -48,7 +48,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({ type: "loadFriendships" });
+    // this.$store.dispatch({ type: "loadFriendships" });
   }
 };
 </script>

@@ -8,9 +8,9 @@ module.exports = {
 
 async function query(req, res) {
     let filterBy = req.query
-    console.log('filterBy query user', filterBy)
+    const loggedInUserId = req.session.user._id
     try {
-        let users = await UserService.query(filterBy)
+        let users = await UserService.query(filterBy, loggedInUserId)
         res.json(users)
     }catch(err) {
         console.log('ERROR: ',err);

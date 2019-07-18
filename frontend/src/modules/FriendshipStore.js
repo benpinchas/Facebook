@@ -2,44 +2,36 @@
 import UserService from '../services/UserService.js'
 
 import FriendshipService from '../services/FriendshipService.js'
+import { stat } from 'fs';
 
 export default { 
     state: {
-       friendships: [],
-    //    friendshipRequests: [],
-       suggests: []
+       suggests: [],
+       friendshipUsers: [],
+
     },
     getters: {
-        friendships(state) {
-            return state.friendships
-        },
-        friendshipRequests(state, getters, rootState, rootGetters) {
-            return state.friendships.filter(friendship => {
-                return friendship.user2._id === rootGetters.loggedInUser._id && !friendship.isApproved
-            })
-        },
-        friendshipsSents(state, getters, rootState, rootGetters) {
-            return state.friendships.filter(friendship => {
-                return friendship.user1.userId === rootGetters.loggedInUser._id && !friendship.isApproved
-            })
-        },
-        unseenFriendshipRequests(state, getters) {
-            return getters.friendshipRequests.filter(friendship => !friendship.isSeen)
-        },
         suggests(state) {
-            return state.suggests
+            return state.suggests.filter(user => {
+                return !user.friendship
+            })
         },
-        approvedFriendships(state) {
-            return state.friendships.filter(friendship => friendship.isApproved)
+        requestingUsers(state) {
+            return state.friendshipUsers.filter(user => {
+                console.log(user.friendship.isApproved, user.friendship.user1Id ===  user._id)
+                return !user.friendship.isApproved && user.friendship.user1Id ===  user._id
+            })
+        },
+        approvedUsers(state) {
+
         }
     },
     mutations: {
-        setFriendships(state, {friendships}) {
-            state.friendships = friendships
-            console.log(state.friendships);
-        },
         setSuggests(state, {suggests}) {
             state.suggests = suggests
+        },
+        setFriendshipUsers(state, {friendshipUsers}) {
+            state.friendshipUsers = friendshipUsers
         }
     },
     actions: {
@@ -47,25 +39,25 @@ export default {
             let addedFriendship = await FriendshipService.add(friendship)
             console.log(addedFriendship)
         },
-        async loadFriendships(context) {
-            let friendships = await FriendshipService.query()
-            console.log('friendships store action:', friendships)
-            context.commit({type: 'setFriendships', friendships})
-        },
-
         async saveFriendship(context, {friendship}) {
             let savedFriendship = await FriendshipService.save(friendship)
             console.log('savedFriendship',savedFriendship)
         },
 
-
-
-
+        async loadFriendshipUsers(context) {
+            let filterBy = {
+                isFriendship: true
+            }
+            let friendshipUsers = await UserService.query(filterBy)
+            console.log('friendshipUsers', friendshipUsers)
+            context.commit({type: 'setFriendshipUsers', friendshipUsers})
+        },
 
 
          async loadSuggests(context ,{fiterBy}) {
             let suggests = await UserService.getUsers()
-            // console.log('suggests', suggests)
+            console.log('suggests', suggests)
+
             context.commit({type: 'setSuggests', suggests})
         },
 

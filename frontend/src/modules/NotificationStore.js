@@ -23,7 +23,7 @@ export default {
     actions: {
         async loadNotifications(context) {
             let notifications = await NotificationService.query()
-            console.log('notifications store:', notifications)
+            // console.log('notifications store:', notifications)
             context.commit({type: 'setNotifications', notifications})
         },
         async setAllSeen(context) {

@@ -1,8 +1,8 @@
 <template>
   <div class="request-preview">
     <div class="profile-image-container-thumb">
-      <img :src="friendship.user1.url.profileImg" alt />
-       <a class="username">{{friendship.user1.username}}</a> 
+      <img :src="user.url.profileImg" alt />
+       <a class="username">{{user.username}}</a> 
 
     </div>
     <div>
@@ -15,11 +15,11 @@
 
 <script>
 export default {
-    props: ['friendship'],
+    props: ['user'],
     methods: {
         confirmFriendship() {
-            this.friendship.isApproved = true
-            this.$store.dispatch({type: 'saveFriendship', friendship: this.friendship})
+            this.user.friendship.isApproved = true
+            this.$store.dispatch({type: 'saveFriendship', friendship:  this.user.friendship})
         }
     }
 };

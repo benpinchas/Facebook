@@ -31,7 +31,7 @@ async function query() {
             $unwind: '$user'
         }
     ]).toArray()
-    console.log("POSTS", posts)
+    // console.log("POSTS", posts)
     return posts
 }
 
