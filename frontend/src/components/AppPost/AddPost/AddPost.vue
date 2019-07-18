@@ -231,7 +231,7 @@ main {
     color: white;
     font-size: 24px;
     opacity: .6;
-    
+
 }
 
 footer {

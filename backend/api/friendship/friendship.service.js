@@ -19,9 +19,44 @@ async function query(userId) {
 
     const collection = await dbService.getCollection('friendship')
     try {
-        let friendships = await collection.find({$or: [ {"user1.userId": userId}, {"user2.userId": userId}]}).toArray();
-        console.log(friendships ,'friendship service')
+
+        let friendships = await collection.aggregate([
+            {
+                $match: 
+                    {$or: [ {"user1": ObjectId(userId)}, {"user2": ObjectId(userId)}]}
+
+            },
+            {
+                $lookup:
+                {
+                    from: 'user',
+                    localField: 'user1',
+                    foreignField: '_id',
+                    as: 'user1'
+                }
+            },
+            {
+                $unwind: '$user1'
+            },
+            {
+                $lookup:
+                {
+                    from: 'user',
+                    localField: 'user2',
+                    foreignField: '_id',
+                    as: 'user2'
+                }
+            },
+            {
+                $unwind: '$user2'
+            }
+        ]).toArray()
         return friendships
+
+
+        // let friendships = await collection.find({$or: [ {"user1": ObjectId(userId)}, {"user2": ObjectId(userId)}]}).toArray();
+        // console.log(friendships ,'friendship service')
+        // return friendships
     } catch (err) {
         console.log(`ERROR: cannot query friendship`)
         throw err;
@@ -31,10 +66,12 @@ async function query(userId) {
 
 async function save(friendship) {
     delete friendship._id
+    friendship.user1 = ObjectId(friendship.user1)
+    friendship.user2 = ObjectId(friendship.user2)
     let criteria = {
         $or: [
-            {$and: [{"user1.userId": friendship.user1.userId}, {"user2.userId": friendship.user2.userId}]},
-            {$and: [{"user1.userId": friendship.user2.userId}, {"user2.userId": friendship.user1.userId}]}
+            {$and: [{"user1": friendship.user1}, {"user2": friendship.user2}]},
+            {$and: [{"user1": friendship.user2}, {"user2": friendship.user1}]}
         ]
     }
     const collection = await dbService.getCollection('friendship')

@@ -5,7 +5,7 @@
     <updates-window v-if="isWindow">
       <span slot="top">Friend Requests</span>
       <span slot="content">
-       <request-preview v-for="friendship in friendshipRequests" :friendship="friendship">ll</request-preview>
+       <request-preview v-for="friendship in friendshipRequests" :friendship="friendship"></request-preview>
       </span>
     </updates-window>
   </div>

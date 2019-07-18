@@ -1,8 +1,9 @@
 <template>
   <div class="request-preview">
     <div class="profile-image-container-thumb">
-      <img :src="friendship.user1.profileImg" alt />
+      <img :src="friendship.user1.url.profileImg" alt />
        <a class="username">{{friendship.user1.username}}</a> 
+
     </div>
     <div>
         <button class="confirm" @click="confirmFriendship">Confirm</button>

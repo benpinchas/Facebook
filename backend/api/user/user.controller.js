@@ -20,9 +20,11 @@ async function query(req, res) {
 
 
 async function getById(req, res) {
+    const loggedInUserId = req.session.user._id
+    // console.log('loggedInUserId', loggedInUserId)
     const {userId} = req.params
     try {
-        let user = await UserService.getById(userId)
+        let user = await UserService.getById(loggedInUserId, userId)
         delete user.password
         res.json(user)
     }catch(err) {

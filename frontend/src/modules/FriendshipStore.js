@@ -15,7 +15,7 @@ export default {
         },
         friendshipRequests(state, getters, rootState, rootGetters) {
             return state.friendships.filter(friendship => {
-                return friendship.user2.userId === rootGetters.loggedInUser._id && !friendship.isApproved
+                return friendship.user2._id === rootGetters.loggedInUser._id && !friendship.isApproved
             })
         },
         friendshipsSents(state, getters, rootState, rootGetters) {
@@ -49,12 +49,13 @@ export default {
         },
         async loadFriendships(context) {
             let friendships = await FriendshipService.query()
-            // console.log('friendships store action:', friendships)
+            console.log('friendships store action:', friendships)
             context.commit({type: 'setFriendships', friendships})
         },
 
         async saveFriendship(context, {friendship}) {
             let savedFriendship = await FriendshipService.save(friendship)
+            console.log('savedFriendship',savedFriendship)
         },
 
 

@@ -31,16 +31,8 @@ export default {
   methods: {
     addFriendship() {
       let friendship = {
-        user1: {
-          userId: this.$store.getters.loggedInUser._id,
-          username: this.$store.getters.loggedInUser.username,
-          profileImg: this.$store.getters.loggedInUser.url.profileImg
-        },
-        user2 : { 
-          userId:  this.suggest._id,
-          username: this.suggest.username,
-          profileImg: this.suggest.url.profileImg
-        },
+        user1: this.$store.getters.loggedInUser._id,
+        user2 : this.suggest._id,
         at: Date.now(),
         isApproved: false,
         isSeen: false,

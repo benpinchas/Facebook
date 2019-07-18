@@ -13,27 +13,26 @@ module.exports = {
 
 async function query() {
     const collection = await dbService.getCollection('post')
-        // let criteria = {}
-        // criteria.userId = new ObjectId('5d2ae89cccd9bb8b258c7a99')
-        let posts = await collection.aggregate([
+    // let criteria = {}
+    let posts = await collection.aggregate([
+        {
+            $match: {}
+        },
+        {
+            $lookup:
             {
-                $match: {}
-            },
-            {
-                $lookup:
-                {
-                    from: 'user',
-                    localField: 'userId',
-                    foreignField: '_id',
-                    as: 'user'
-                }
-            },
-            {
-                $unwind: '$user'
+                from: 'user',
+                localField: 'userId',
+                foreignField: '_id',
+                as: 'user'
             }
-        ]).toArray()
-        console.log("POSTS", posts)
-        return posts
+        },
+        {
+            $unwind: '$user'
+        }
+    ]).toArray()
+    console.log("POSTS", posts)
+    return posts
 }
 
 

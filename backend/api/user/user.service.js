@@ -42,17 +42,39 @@ async function query(filterBy = {}) {
     }
 }
 
-async function getById(userId) {
+// async function getById(userId) {
+//     const collection = await dbService.getCollection('user')
+//     console.log(userId)
+//     try {
+//         const user = await collection.findOne({"_id":ObjectId(userId)})
+//         return user
+//     } catch (err) {
+//         console.log(`ERROR: while finding user ${userId}`)
+//         throw err;
+//     }
+// }
+
+async function getById(loggedInUserId, userId) {
     const collection = await dbService.getCollection('user')
     console.log(userId)
     try {
         const user = await collection.findOne({"_id":ObjectId(userId)})
+        const friendshipCollection  =  await dbService.getCollection('friendship')
+        const friendship = await friendshipCollection.findOne({
+            $or: [
+                {$and: [{"user1": ObjectId(loggedInUserId)}, {"user2": ObjectId(userId)}]},
+                {$and: [{"user1": ObjectId(userId)}, {"user2": ObjectId(loggedInUserId)}]}
+            ]
+        })
+        user.friendship = friendship
         return user
     } catch (err) {
         console.log(`ERROR: while finding user ${userId}`)
         throw err;
     }
-}
+} 
+
+
 async function getByEmail(email) {
     const collection = await dbService.getCollection('user')
     try {

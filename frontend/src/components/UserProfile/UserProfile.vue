@@ -7,7 +7,7 @@
       >
         <my-loader v-if="isLoadCoverImg" />
         <!-- {{friendshipStatus}} -->
-        <!-- {{user}} -->
+
         <upload-image
           v-if="canEdit"
           @setImageUrl="setCoverImage"
@@ -36,6 +36,11 @@
         </button>
       </div>
     </div>
+
+
+        <pre class="dev" style="color:white" >
+           {{user}}
+        </pre>
   </section>
 </template>
 

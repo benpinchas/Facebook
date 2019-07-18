@@ -17,6 +17,7 @@ async function query(req, res) {
 
 async function save(req, res) {
     const friendship =  req.body
+    console.log('COMTROLLER friendship', friendship)
     try {
         let savedFriendship = await FriendshipService.save(friendship)
         res.json(savedFriendship)

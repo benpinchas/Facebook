@@ -34,7 +34,8 @@ body {
 
 
 .dev {
-    background-color: rgba(65, 65, 65, 0.198);
+    /* background-color: rgba(65, 65, 65, 0.198); */
+    background-color: #2c2c2cad;
 }
 
 button, input {
