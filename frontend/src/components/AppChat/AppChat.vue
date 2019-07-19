@@ -1,24 +1,30 @@
 <template>
   <div class="app-chat">
     <div class="top" @click="toggleList">
-      <span>Caht (18)</span>
+      <span>Caht ({{users.length}})</span>
       <i class="far fa-edit" style="font-size:16px;"></i>
     </div>
-    <friendship-list v-if="isShowList" />
+    <contact-list v-if="isShowList" :users="users" />
   </div>
 </template>
 
 
 <script>
-import FriendshipList from "./FriendshipList.vue";
+import ContactList from "./ContactList.vue";
 export default {
   components: {
-    FriendshipList
+    ContactList
   },
   data() {
     return {
       isShowList: false
     };
+  },
+  computed: {
+    users() {
+      console.log('this.$store.getters.approvedUsers;', this.$store.getters.approvedUsers)
+      return this.$store.getters.approvedUsers;
+    }
   },
   methods: {
     toggleList() {

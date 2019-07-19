@@ -23,7 +23,7 @@ export default {
             })
         },
         approvedUsers(state) {
-
+            return state.friendshipUsers.filter(user => user.friendship.isApproved)
         }
     },
     mutations: {

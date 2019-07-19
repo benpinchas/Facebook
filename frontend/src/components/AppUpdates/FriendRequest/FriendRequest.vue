@@ -1,11 +1,11 @@
 <template>
   <div @click="toggleWindow" class="friendship-request">
     <i class="fas fa-user-friends header-icon" :class="classObj"></i>
-    <!-- <unseen-count :unseen="unseen" /> -->
+    <unseen-count :unseen="unseen" />
     <updates-window v-if="isWindow">
       <span slot="top">Friend Requests</span>
       <span slot="content">
-       <request-preview v-for="user in requestingUsers" :user="user" :key="user._id"></request-preview>
+        <request-preview v-for="user in requestingUsers" :user="user" :key="user._id"></request-preview>
       </span>
     </updates-window>
   </div>
@@ -16,7 +16,7 @@
 <script>
 import unseenCount from "../UnseenCount/UnseenCount.vue";
 import UpdatesWindow from "../../util/UpdatesWindow.vue";
-import RequestPreview from '../../Friendship/RequestPreview.vue'
+import RequestPreview from "../../Friendship/RequestPreview.vue";
 export default {
   components: {
     UpdatesWindow,
@@ -30,15 +30,15 @@ export default {
   },
   computed: {
     unseen() {
-      // return this.$store.getters.unseenFriendshipRequests
+      return this.$store.getters.requestingUsers.filter(req => !req.isSeen);
     },
     requestingUsers() {
-      console.log('requestingUsers', this.$store.getters.requestingUsers)
-      return  this.$store.getters.requestingUsers
+      console.log("requestingUsers", this.$store.getters.requestingUsers);
+      return this.$store.getters.requestingUsers;
     },
     classObj() {
       return {
-        // unseen: this.unseen.length //global class
+        unseen: this.unseen.length //global class
       };
     }
   },

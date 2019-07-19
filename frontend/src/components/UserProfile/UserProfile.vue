@@ -28,9 +28,14 @@
         <h1 class="username">{{user.username}}</h1>
       </div>
       <div class="btns-container">
-        <button class="profile-btn">
+        
+        <!-- <button class="profile-btn">
           <i class="fas fa-check"></i> Friends
-        </button>
+        </button> -->
+        
+        <friendship-button :user="user"></friendship-button>
+
+        
         <button>
           <i class="fab fa-facebook-messenger"></i> Message
         </button>
@@ -50,10 +55,12 @@
 import UserService from "../../services/UserService.js";
 import UploadImage from "../util/UploadImage.vue";
 import MyLoader from "../util/MyLoader.vue";
+import FriendshipButton from '../util/friendship-btn/friendship-btn.vue'
 export default {
   components: {
     UploadImage,
-    MyLoader
+    MyLoader,
+    FriendshipButton
   },
   data() {
     return {

@@ -1,24 +1,20 @@
 <template>
   <div class="friendship-list">
-    <friendship-preview
-      v-for="friendship in friendships"
-      :friendship="friendship"
-      :key="friendship._id"
+    <contact-preview
+      v-for="user in users"
+      :user="user"
+      :key="user._id"
     />
   </div>
 </template>
 
 <script>
-import FriendshipPreview from "./FriendshipPreview.vue";
+import ContactPreview from "./ContactPreview.vue";
 export default {
+  props: ['users'],
   components: {
-    FriendshipPreview
+    ContactPreview
   },
-  computed: {
-    friendships() {
-      return this.$store.getters.approvedFriendships;
-    }
-  }
 };
 </script>
 

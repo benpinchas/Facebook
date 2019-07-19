@@ -1,8 +1,8 @@
 <template>
-  <div class="friendship-preview">
+  <div class="contact-preview">
     <div class="profile-image-container-thumb">
-      <img :src="friendship.user1.profileImg" alt />
-      {{friendship.user1.username}}
+      <img :src="user.url.profileImg" alt />
+      {{user.username}}
     </div>
 
     <div>
@@ -15,13 +15,13 @@
 </template>
 <script>
 export default {
-  props: ["friendship"]
+  props: ["user"]
 };
 </script>
 
 
 <style scoped>
-.friendship-preview {
+.contact-preview {
   cursor: pointer;
   height: 46px;
   display: flex;
@@ -33,7 +33,7 @@ export default {
   justify-content: space-between;
 }
 
-.friendship-preview:hover {
+.contact-preview:hover {
     background-color: rgb(250, 250, 250);
 }
 

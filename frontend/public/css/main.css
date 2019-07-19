@@ -14,14 +14,14 @@
 
 .g-profile-image-container-thumb-small {
     margin-right: 13px;
-  }
+}
   
 .g-profile-image-container-thumb-small img {
     width: 41px;
     height: 41px;
     border-radius: 30px;
     object-fit: cover;
-  }
+}
 
  
 
@@ -29,7 +29,7 @@
 body {
     margin: 0;
     background-color: #e9ebee;
-     color: #272727;
+    color: #272727;
 }
 
 
@@ -46,7 +46,11 @@ button {
 }
 
 button:hover {
-    opacity: 0.8;
+    opacity: 0.9;
+}
+
+button:disabled:hover {
+    opacity: 1;
 }
 
 /* UTIL */
