@@ -1,5 +1,5 @@
 <template>
-  <div class="post-preview floating-box" v-if="user">
+  <div class="post-preview floating-box" v-if="post">
     <main>
       <header>
         <div class="profile-image-container-thumb">
@@ -8,15 +8,15 @@
 
         <div class="info-container" style="padding-top: 3px;">
           <div style="margin-bottom: 5px;">
-            <a href @click.prevent="toUserProfile">{{user.username | fUsername}}</a>
-             <span v-if="post.userId !== post.user2Id">
+            <a href @click.prevent="toUserProfile">{{user.username}}</a>
+            <span v-if="post.userId !== post.user2Id">
               &nbsp;&#9656;&nbsp;
               <a href @click.prevent="$router.push(`/user/${post.user2Id}`)">{{post.user2.username | fUsername}}</a>
              </span>
           </div>
 
           <div class="time-container">
-            <span class="time" @click="$router.push(`/post/${post._id}`)">{{post.at | timeAgo}}</span>
+            <span class="time" @click="$router.push(`/post/${post._id}`)">40 min ago</span>
             &#183;
             <i class="fas fa-globe-americas"></i>
           </div>
@@ -57,12 +57,12 @@
 
 
 <script>
-import InteractionsBtns from "./InteractionsButtons.vue";
-import PostComments from "./PostComment/PostComment.vue";
-import ContentPreview from "../ContentPreview/ContentPreview.vue";
+import PostService from "../services/PostService.js";
+import InteractionsBtns from "../components/AppPost/PostPreview/InteractionsButtons.vue";
+import PostComments from "../components/AppPost/PostPreview/PostComment/PostComment.vue";
+import ContentPreview from "../components/AppPost/ContentPreview/ContentPreview.vue";
 import { setInterval } from "timers";
 export default {
-  props: ["post"],
   components: {
     InteractionsBtns,
     PostComments,
@@ -70,7 +70,8 @@ export default {
   },
   data() {
     return {
-      showComments: false
+      showComments: true,
+      post: null
     };
   },
   computed: {
@@ -90,6 +91,17 @@ export default {
       this.showComments = !this.showComments;
     },
     toggleLike() {
+      let likeIdx = this.post.likedBy.findIndex(
+        like => like.userId === this.$store.getters.loggedInUser._id
+      );
+      if (likeIdx === -1) {
+        this.post.likedBy.unshift({
+          userId: this.$store.getters.loggedInUser._id,
+          username: this.$store.getters.loggedInUser.username
+        });
+      } else {
+        this.post.likedBy.splice(likeIdx, 1);
+      }
       this.$store.dispatch({
         type: "toggleLike",
         userId: this.$store.getters.loggedInUser._id,
@@ -103,18 +115,32 @@ export default {
         postId: this.post._id,
         txt,
         owner: {
-          userId: this.$store.getters.loggedInUser._id ,
-          username:  this.$store.getters.loggedInUser.username,
-          profileImg:  this.$store.getters.loggedInUser.url.profileImg
+          userId: this.$store.getters.loggedInUser._id,
+          username: this.$store.getters.loggedInUser.username,
+          profileImg: this.$store.getters.loggedInUser.url.profileImg
         },
         likedBy: []
       };
+      this.post.comments.push(comment);
       this.$store.dispatch({ type: "saveComment", comment });
     },
     toUserProfile() {
       this.$router.push(`/user/${this.post.user._id}`);
+    },
+    async loadPost() {
+      let { postId } = this.$route.params;
+      let post = await PostService.getById(postId);
+      this.post = post;
     }
   },
+  created() {
+    this.loadPost();
+  },
+  watch: {
+      "$route.params.postId"() {
+          this.loadPost()
+      }
+  }
 };
 </script>
 

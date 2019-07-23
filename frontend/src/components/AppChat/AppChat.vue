@@ -1,7 +1,7 @@
 <template>
   <div class="app-chat">
     <div class="top" @click="toggleList">
-      <span>Caht ({{users.length}})</span>
+      <span>Chat ({{users.length}})</span>
       <i class="far fa-edit" style="font-size:16px;"></i>
     </div>
     <contact-list v-if="isShowList" :users="users" />

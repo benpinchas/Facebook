@@ -13,16 +13,13 @@
 </template>
 
 <script>
+import { setInterval } from 'timers';
 export default {
-  props: ["likedBy"],
+  props: ['isLiked'],
   computed: {
     likeBtnClass() {
       return {
-        liked: this.$store.getters.loggedInUser
-          ? this.likedBy.find(
-              by => by.userId === this.$store.getters.loggedInUser._id
-            )
-          : false
+        liked: this.isLiked
       };
     }
   },
@@ -33,7 +30,7 @@ export default {
     toggleComments() {
       this.$emit("toggleComments");
     }
-  }
+  },
 };
 </script>
 

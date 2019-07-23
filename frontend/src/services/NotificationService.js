@@ -1,7 +1,9 @@
 import HttpService from './HttpService.js'
+import { async } from 'q';
 
 export default {
     query,
+    setAllSeen
 }
 
 
@@ -10,7 +12,9 @@ async function query() {
 }
 
 
-
+async function setAllSeen() {
+    return  HttpService.put('api/notification/seen')
+}
 
 
 

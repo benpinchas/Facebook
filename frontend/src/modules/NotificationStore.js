@@ -28,6 +28,7 @@ export default {
         },
         async setAllSeen(context) {
             context.commit({type: 'setAllSeen'})
+            await NotificationService.setAllSeen()
         }
     }
 }

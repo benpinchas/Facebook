@@ -25,7 +25,7 @@
           <my-loader v-if="isLoadProfileImg" />
         </div>
 
-        <h1 class="username">{{user.username}}</h1>
+        <h1 class="username">{{user.username | fUsername}}</h1>
       </div>
       <div class="btns-container">
         
@@ -43,9 +43,9 @@
     </div>
 
 
-        <pre class="dev" style="color:white" >
+        <!-- <pre class="dev" style="color:white" >
            {{user}}
-        </pre>
+        </pre> -->
   </section>
 </template>
 
@@ -62,9 +62,9 @@ export default {
     MyLoader,
     FriendshipButton
   },
+  props: ['user'],
   data() {
     return {
-      user: null,
       isLoadProfileImg: false,
       isLoadCoverImg: false
     };
@@ -92,15 +92,6 @@ export default {
     }
   },
   methods: {
-    async loadUser() {
-      if (this.$route.params.userId) {
-        let user = await UserService.getById(this.$route.params.userId);
-        console.log(user);
-        this.user = user;
-        window.scrollTo(0, 0);
-      }
-    },
-
     async setProfileImage(prmImageUrl) {
       this.isLoadProfileImg = true;
       let prevImageUrl = this.user.url.profileImg;
@@ -129,17 +120,6 @@ export default {
       }
     }
   },
-  created() {
-    this.loadUser();
-  },
-  watch: {
-    "$route.params.userId": async function() {
-      this.loadUser();
-    }
-    // "$store.getters.loggedInUser": function() {
-    //   this.user = null
-    // },
-  }
 };
 </script>
 
@@ -150,6 +130,7 @@ export default {
 <style scoped>
 .user-profile {
   /* background-color: pink; */
+  max-width: 100%;
 }
 
 .cover-img-container {

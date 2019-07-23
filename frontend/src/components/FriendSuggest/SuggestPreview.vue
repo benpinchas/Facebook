@@ -2,18 +2,16 @@
   <div>
     <header class="g-user-snippet-container-small">
       <div class="g-profile-image-container-thumb-small">
-        <img :src="(suggest.url)? suggest.url.profileImg : null" />
+        <img :src="(user.url)? user.url.profileImg : null" />
       </div>
 
-      <div class="info-container">
-        <div style="margin-bottom: 3px;" @click.prevent="toUserProfile">
-          <a href>{{suggest.username}}</a>
+      <div class="secondary-container">
+        <div style="margin-bottom: 3px;" @click.prevent="readUser">
+          <a href>{{user.username}}</a>
         </div>
 
-        <div class="buttons-container">
-          <button @click="addFriendship">
-            <i class="fas fa-user-plus"></i> Add
-          </button>
+        <div class="btns-container">
+          <friendship-btn :user="user" class="friendship-btn" />
         </div>
       </div>
     </header>
@@ -22,27 +20,18 @@
 
 
 <script>
-//TODO: change suggest to friendship
+import FriendshipBtn from "../util/friendship-btn/friendship-btn.vue";
 export default {
-  props: ["suggest"],
+  props: ["user"],
+  components: {
+    FriendshipBtn
+  },
   data() {
     return {};
   },
   methods: {
-    addFriendship() {
-      let friendship = {
-        user1Id: this.$store.getters.loggedInUser._id,
-        user2Id: this.suggest._id,
-        at: Date.now(),
-        isApproved: false,
-        isSeen: false,
-        masg: [{ txt: "hello" }, { txt: "shalom" }]
-      };
-      console.log(friendship)
-      this.$store.dispatch({ type: "addFriendship", friendship });
-    },
-    toUserProfile() {
-      this.$router.push(`/user/${this.suggest._id}`);
+    readUser() {
+      this.$router.push(`/user/${this.user._id}`);
     }
   }
 };
@@ -52,18 +41,13 @@ export default {
 <style scoped>
 header {
 }
+.secondary-container {
+  flex-grow: 1;
+  flex-direction: column;
 
-button {
-  background-color: #f5f6f7;
-  border-color: #ccd0d5;
-  color: #4b4f56;
-  line-height: 20px;
-  font-size: 14px;
 }
 
-button i {
-  font-size: 11px;
-}
+
 </style>
 
 

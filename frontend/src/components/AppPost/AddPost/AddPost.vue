@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <div class="overlay"></div> -->
-    <div class="add-post floating-box" v-if="user">
+    <div class="add-post floating-box" :class="classObj" v-if="user && post">
       <header>Create Post</header>
       <main v-if="post.type !== 'gradient'">
         <div class="profile-image-container-thumb">
@@ -20,7 +20,7 @@
         <div class="realtive-wrapper">
           <content-preview :type="post.type" :content="post.content" :post="post" />
 
-          <my-loader v-if="isLoading" />
+          <my-loader v-if="isLoadingContentPreview" />
         </div>
       </main>
 
@@ -45,6 +45,7 @@
           </div>
 
           <div class="gradient-container">
+            <div @click="clearType" class="regular"></div>
             <div @click="setGradient('purple')" class="purple"></div>
             <div @click="setGradient('party')" class="party-small"></div>
             <div @click="setGradient('poop')" class="poop-small"></div>
@@ -75,9 +76,41 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
-      post: {
+      isLoadingPublishPost: false,
+      isLoadingContentPreview: false,
+      post: null
+    };
+  },
+  computed: {
+    user() {
+      return  this.$store.getters.loggedInUser || {}
+    },
+    placeholder() {
+      return this.$store.getters.loggedInUser
+        ? "What's on your mind, " +
+            this.$store.getters.loggedInUser.username +
+            "?"
+        : null;
+    },
+    classObj() {
+      return {
+        loading : this.isLoadingPublishPost
+      }
+    }
+  },
+  methods: {
+    async addPost() {
+      this.isLoadingPublishPost = true
+      await this.$store.dispatch({ type: "addPost", post: this.post });
+      this.clearPost();
+      this.isLoadingPublishPost = false
+    },
+    clearPost() {
+      if(this.$refs.contenteditable) this.$refs.contenteditable.innerText = ''
+      this.post = {
+        at: Date.now(),
         userId: this.$store.getters.loggedInUser._id, //TODO: in the backend with session.
+        user2Id: this.$route.params.userId || this.$store.getters.loggedInUser._id,
         txt: "",
         type: "", //image, gradient, youtube, checkin, gradient
         content: "",
@@ -85,51 +118,41 @@ export default {
         comments: [],
         likedBy: []
       }
-    };
-  },
-  computed: {
-    user() {
-      return this.$store.getters.loggedInUser;
+      console.log(this.post);
     },
-    placeholder() {
-      return this.$store.getters.loggedInUser
-        ? "What's on your mind, " + this.$store.getters.loggedInUser.username + '?'
-        : null;
-    }
-  },
-  methods: {
-    addPost() {
-      this.$store.dispatch({ type: "addPost", post: this.post });
-    },
-    async onInput() {
+    onInput() {
       this.post.txt = this.$refs.contenteditable.innerText;
-      // if ( this.post.txt.length > 150 && this.post.type === 'gradient') this.post.type = ''
-
-      // let linkDeatails = await PostService.getLinkDetails(
-      //   this.$refs.contenteditable.innerText
-      // );
-      // this.post.linkDeatails = linkDeatails;
-      // console.log(linkDeatails);
     },
-
     setGradient(gradientClass) {
       this.post.type = "gradient";
       this.post.gradientClass = gradientClass;
+    },
+    clearType() {
+      this.post.type = "";
     },
     clickImageInput() {
       this.$refs.imageInput.$el.click();
     },
     async setImageUrl(prmImageUrl) {
-      this.isLoading = true;
+      this.isLoadingContentPreview = true;
       try {
         this.post.type = "image";
         this.post.content = await prmImageUrl;
       } catch (err) {
         console.log(err);
       } finally {
-        this.isLoading = false;
+        this.isLoadingContentPreview = false;
       }
       console.log(this.post.content);
+    }
+  },
+  mounted() {
+    this.clearPost()
+  },
+  watch: {
+    "$route.params.userId"() {
+      console.log(this.$route.params.userId)
+      this.clearPost()
     }
   }
 };
@@ -188,6 +211,10 @@ export default {
   flex-direction: column;
 }
 
+.add-post.loading {
+  opacity: 0.5;
+}
+
 header {
   padding: 8px 10px;
   background-color: #f5f6f7;
@@ -227,11 +254,10 @@ main {
   font-size: 14px;
 }
 
-[contenteditable="true"].gradient:empty:before  {
-    color: white;
-    font-size: 24px;
-    opacity: .6;
-
+[contenteditable="true"].gradient:empty:before {
+  color: white;
+  font-size: 24px;
+  opacity: 0.6;
 }
 
 footer {

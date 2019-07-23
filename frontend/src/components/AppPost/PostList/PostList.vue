@@ -1,6 +1,6 @@
 <template>
     <div class="post-list">
-        <post-preview v-for="post in posts" :post="post"></post-preview>
+        <post-preview v-for="post in posts"  :key="post._id" :post="post">{{post._id}}</post-preview>
     </div>
 </template>
 
@@ -15,8 +15,20 @@ export default {
             return this.$store.getters.posts
         }
     },
+    methods: {
+        async loadPosts() {
+            //TODO: implement loader (the async await is for the loader)
+            let {userId} = this.$route.params
+            await this.$store.dispatch({type: 'loadPosts', filterBy: {userId}})
+        }
+    },
     created() {
-        this.$store.dispatch({type: 'loadPosts'})
+       this.loadPosts()
+    },
+    watch: {
+        "$route.params.userId"() {
+             this.loadPosts()
+        }
     }
 }
 </script>

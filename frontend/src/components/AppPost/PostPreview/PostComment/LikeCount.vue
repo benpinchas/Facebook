@@ -3,14 +3,16 @@
     <div class="img-container">
       <img src="@/assets/like.png" alt />
     </div>
-    <span class="count">38</span>
+    <span class="count">{{likesCount}}</span>
   </span>
 </template>
 
 
 
 <script>
-export default {};
+export default {
+  props: ['likesCount']
+};
 </script>
 
 

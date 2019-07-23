@@ -4,9 +4,10 @@ const ObjectId = require('mongodb').ObjectId
 
 
 async function query(req, res) {
-    // const filterBy = req.body GET request
+    const filterBy = req.query
+    console.log('filterBy, req.query', filterBy, req.query)
     try {
-        const posts = await postService.query()
+        const posts = await postService.query(filterBy)
         res.json(posts)
     } catch (err) {
         res.status(401).send({ error: err })
@@ -14,11 +15,23 @@ async function query(req, res) {
 
 }
 
+async function getById(req, res) {
+    const {postId} = req.params
+    try {
+        const post = await postService.getById(postId)
+        res.json(post)
+    } catch (err) {
+        res.status(401).send({ error: err })
+    }
+}
+
 async function save(req, res) {
+    const loggedInUser = req.session.user
     const post = req.body
     post.userId = ObjectId(req.session.user._id)
+    post.user2Id = ObjectId(post.user2Id)
     try {
-        const savedPost = await postService.save(post)
+        const savedPost = await postService.save(post, loggedInUser)
         res.json(savedPost)
     } catch (err) {
         res.status(401).send({ error: err })
@@ -37,11 +50,10 @@ async function toggleLike(req, res) {
 }
 
 async function saveComment(req, res) {
-    const {txt, postId} = req.body
-    const user = req.session.user
-    // comment.owner = userService.makeOwner(req.session.user)
+    const comment = req.body
     try {
-       let savedComment =  await postService.saveComment(postId, txt, user)
+       let savedComment =  await postService.saveComment(comment)
+       console.log('savedComment', savedComment)
        res.json(savedComment)
     }catch(err) {
         console.log(err)
@@ -53,5 +65,6 @@ module.exports = {
     save,
     query,
     toggleLike,
-    saveComment
+    saveComment,
+    getById
 }

@@ -3,7 +3,7 @@
     <side-box>
       <span slot="headline">People You May Know</span>
       <span slot="main">
-        <suggest-preview v-for="suggest in suggests" :suggest="suggest" />
+        <suggest-preview v-for="suggest in suggests" :user="suggest" />
       </span>
     </side-box>
   </div>

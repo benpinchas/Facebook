@@ -61,69 +61,62 @@ async function query(filterBy = {}, loggedInUserId) {
 
     if (filterBy.isFriendship === "true") {
         const collection = await dbService.getCollection('friendship')
-        const friendships = await collection.find({$or: [{user1Id: ObjectId(loggedInUserId)}, {user2Id:  ObjectId(loggedInUserId)}]}).toArray()
-        console.log(friendships)
+        const friendships = await collection.find({ $or: [{ user1Id: ObjectId(loggedInUserId) }, { user2Id: ObjectId(loggedInUserId) }] }).toArray()
         const userIds = friendships.map(friendship => {
             // console.log(friendship.user1Id.toString() === loggedInUserId)
-            let id = (friendship.user1Id.toString() === loggedInUserId)? friendship.user2Id : friendship.user1Id
+            let id = (friendship.user1Id.toString() === loggedInUserId) ? friendship.user2Id : friendship.user1Id
             return id
         })
-        console.log('userIds', userIds)
-    
-        let orArr = userIds.map(userId => {return {"_id" : userId}})
-        // console.log(orArr)
-    
-    
+
+        let orArr = userIds.map(userId => { return { "_id": userId } })
+
         let prmUsers = userIds.map(userId => {
             return getById(loggedInUserId, userId)
         })
-        console.log(prmUsers)
         return Promise.all(prmUsers)
             .then(users => {
-                console.log('users}}users')
                 return users
             })
+
     } else {
-
-    const criteria = {};
-    if (filterBy.txt) {
-        criteria.username = { $regex: `${filterBy.txt}`, $options: 'i' }
-    }
-
-  
+        const criteria = {};
+        if (filterBy.txt) {
+            criteria.username = { $regex: `${filterBy.txt}`, $options: 'i' }
+        }
+        
         let limit = (filterBy.limit) ? parseInt(filterBy.limit) : 10
 
-    const collection = await dbService.getCollection('user')
-    collection.createIndex({ username: "text" })
-    try {
-        const users = await collection.find(criteria).limit(limit).toArray();
-        const friendshipCollection = await dbService.getCollection('friendship')
+        const collection = await dbService.getCollection('user')
+        collection.createIndex({ username: "text" })
+        try {
+            const users = await collection.find(criteria).limit(limit).toArray();
+            const friendshipCollection = await dbService.getCollection('friendship')
 
-        let prmMappedUsers = await users.map(async user => {
-            const friendship = await friendshipCollection.findOne({
-                $or: [
-                    { $and: [{ "user1Id": ObjectId(user._id) }, { "user2Id": ObjectId(loggedInUserId) }] },
-                    { $and: [{ "user1Id": ObjectId(loggedInUserId) }, { "user2Id": ObjectId(user._id) }] }
-                ]
+            let prmMappedUsers = await users.map(async user => {
+                const friendship = await friendshipCollection.findOne({
+                    $or: [
+                        { $and: [{ "user1Id": ObjectId(user._id) }, { "user2Id": ObjectId(loggedInUserId) }] },
+                        { $and: [{ "user1Id": ObjectId(loggedInUserId) }, { "user2Id": ObjectId(user._id) }] }
+                    ]
+                })
+                user.friendship = friendship
+                return user
             })
-            user.friendship = friendship
-            return user
-        })
-        return Promise.all(prmMappedUsers)
-            .then(res => res)
-    } catch (err) {
-        console.log('ERROR: cannot find users')
-        throw err;
-    }
+            return Promise.all(prmMappedUsers)
+                .then(res => res)
+        } catch (err) {
+            console.log('ERROR: cannot find users')
+            throw err;
+        }
 
-}
+    }
 
 
     return users
     // if (filterBy.isFriendship === "true") {
     //     criteria.
     // }
-    
+
     /*
     const collection = await dbService.getCollection('friendship')
     const friendships = await collection.find({$or: [{user1Id: ObjectId(loggedInUserId)}, {user2Id:  ObjectId(loggedInUserId)}]}).toArray()
@@ -149,7 +142,7 @@ async function query(filterBy = {}, loggedInUserId) {
             return users
         })
     */
-    
+
     // const userCollection =  await dbService.getCollection('user')
     // const users = await userCollection.find({$or: orArr}).toArray()
 
@@ -163,7 +156,7 @@ async function query(filterBy = {}, loggedInUserId) {
     //     let users = await collection.aggregate([
     //         {
     //             $match: {
-                    
+
     //             }
 
     //         },
@@ -187,31 +180,31 @@ async function query(filterBy = {}, loggedInUserId) {
     // }
 
 
-// ////////////////
-//     let limit = (filterBy.limit) ? parseInt(filterBy.limit) : 10
+    // ////////////////
+    //     let limit = (filterBy.limit) ? parseInt(filterBy.limit) : 10
 
-//     const collection = await dbService.getCollection('user')
-//     collection.createIndex({ username: "text" })
-//     try {
-//         const users = await collection.find(criteria).limit(limit).toArray();
-//         const friendshipCollection = await dbService.getCollection('friendship')
+    //     const collection = await dbService.getCollection('user')
+    //     collection.createIndex({ username: "text" })
+    //     try {
+    //         const users = await collection.find(criteria).limit(limit).toArray();
+    //         const friendshipCollection = await dbService.getCollection('friendship')
 
-//         let prmMappedUsers = await users.map(async user => {
-//             const friendship = await friendshipCollection.findOne({
-//                 $or: [
-//                     { $and: [{ "user1Id": ObjectId(user._id) }, { "user2Id": ObjectId('5d2ae89cccd9bb8b258c7a99') }] },
-//                     { $and: [{ "user1Id": ObjectId('5d2ae89cccd9bb8b258c7a99') }, { "user2Id": ObjectId(user._id) }] }
-//                 ]
-//             })
-//             user.friendship = friendship
-//             return user
-//         })
-//         return Promise.all(prmMappedUsers)
-//             .then(res => res)
-//     } catch (err) {
-//         console.log('ERROR: cannot find users')
-//         throw err;
-//     }
+    //         let prmMappedUsers = await users.map(async user => {
+    //             const friendship = await friendshipCollection.findOne({
+    //                 $or: [
+    //                     { $and: [{ "user1Id": ObjectId(user._id) }, { "user2Id": ObjectId('5d2ae89cccd9bb8b258c7a99') }] },
+    //                     { $and: [{ "user1Id": ObjectId('5d2ae89cccd9bb8b258c7a99') }, { "user2Id": ObjectId(user._id) }] }
+    //                 ]
+    //             })
+    //             user.friendship = friendship
+    //             return user
+    //         })
+    //         return Promise.all(prmMappedUsers)
+    //             .then(res => res)
+    //     } catch (err) {
+    //         console.log('ERROR: cannot find users')
+    //         throw err;
+    //     }
 }
 
 // async function getById(userId) {
@@ -239,6 +232,31 @@ async function getById(loggedInUserId, userId) {
             ]
         })
         user.friendship = friendship
+       
+        let friendships = await friendshipCollection.find({
+            $or: [{ "user1Id": ObjectId(userId) }, { "user2Id": ObjectId(userId) }],
+            $and: [{isApproved: true}]
+        }).toArray()
+
+        let friendsIds = friendships.map(friendship => {
+            return (friendship.user1Id.equals(ObjectId(userId)))? friendship.user2Id : friendship.user1Id
+        })
+
+        let orArr =  friendsIds.map(id => {
+            return {"_id": id}
+        })
+
+        if (orArr.length) {
+            let friends = await collection.find({
+                $or: orArr
+            }).toArray()
+    
+            user.friends = friends;
+        }else {
+            user.friends = []
+        }
+
+        
         return user
     } catch (err) {
         console.log(`ERROR: while finding user ${userId}`)

@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     type() {
-      if (this.user._id === this.$store.getters.loggedInUser._id) return null;
+      if (!this.$store.getters.loggedInUser || this.user._id === this.$store.getters.loggedInUser._id) return null;
       if (!this.user.friendship) return "add";
       if (this.user.friendship.isApproved) return "approved";
       if (this.user.friendship.user1Id === this.user._id) return "confirm";
@@ -42,17 +42,19 @@ export default {
         at: Date.now(),
         isApproved: false,
         isSeen: false,
-        masg: [{ txt: "hello" }, { txt: "shalom" }]
+        msg: [{ txt: "hello" }, { txt: "shalom" }]
       };
-      this.$store.dispatch({ type: "saveFriendship", friendship });
+      this.user.friendship = friendship
+      this.$store.dispatch({ type: "saveFriendship", friendship});
       console.log("OK");
     },
     approveFriendship() {
-      let friendship = { ...user.friendship };
-      friendship.isApproved = true;
-      this.$store.dispatch({ type: "saveFriendship", friendship });
+      this.user.friendship.isApproved = true;
+      this.$store.dispatch({ type: "saveFriendship", friendship:this.user.friendship});
     },
-
+  },
+  mounted() {
+    console.log('USER:', this.user)
   }
 };
 </script>
@@ -65,7 +67,7 @@ button {
   color: #4b4f56;
   font-size: 13px;
   font-weight: 500;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   padding: 4px 11px;
 }
 </style>

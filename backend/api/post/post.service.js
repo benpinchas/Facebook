@@ -7,17 +7,23 @@ module.exports = {
     save,
     query,
     toggleLike,
-    saveComment
+    saveComment,
+    getById
 }
 
 
-async function query() {
+async function query(filterBy = {}) {
+    let criteria = {}
+    if (filterBy.user2Id) {
+        criteria.user2Id = ObjectId(filterBy.user2Id)
+    }
+    console.log('criteria', criteria)
     const collection = await dbService.getCollection('post')
-    // let criteria = {}
     let posts = await collection.aggregate([
         {
-            $match: {}
+            $match: criteria
         },
+        { $sort: { at: -1 } },
         {
             $lookup:
             {
@@ -29,6 +35,18 @@ async function query() {
         },
         {
             $unwind: '$user'
+        },
+        {
+            $lookup:
+            {
+                from: 'user',
+                localField: 'user2Id',
+                foreignField: '_id',
+                as: 'user2'
+            }
+        },
+        {
+            $unwind: '$user2'
         }
     ]).toArray()
     // console.log("POSTS", posts)
@@ -36,11 +54,65 @@ async function query() {
 }
 
 
+async function getById(postId) {
+    const collection = await dbService.getCollection('post')
+    try {
+        let posts = await collection.aggregate([
+            {
+                $match: { "_id": ObjectId(postId) }
+            },
+            {
+                $lookup:
+                {
+                    from: 'user',
+                    localField: 'userId',
+                    foreignField: '_id',
+                    as: 'user'
+                }
+            },
+            {
+                $unwind: '$user'
+            },
+            {
+                $lookup:
+                {
+                    from: 'user',
+                    localField: 'user2Id',
+                    foreignField: '_id',
+                    as: 'user2'
+                }
+            },
+            {
+                $unwind: '$user2'
+            }
+        ]).toArray()
+        console.log(' posts[0]', posts[0])
+        return posts[0]
+    } catch (err) {
+        console.log(`ERROR: cannot insert post`)
+        throw err;
+    }
+}
 
-async function save(post) {
+
+async function save(post, loggedInUser) {
     const collection = await dbService.getCollection('post')
     try {
         await collection.insertOne(post);
+        if (post.userId !== post.user2Id) {
+            let notification = {
+                at: Date.now(),
+                userId: post.user2Id,
+                postId: post._id,
+                type: 'post-wall',
+                isSeen: false,
+                isRead: false,
+                txt: `<span class="strong"> ${loggedInUser.username} </span> posted on your wall`,
+                imgUrl: loggedInUser.url.profileImg
+            }
+            await NotificationService.save(notification)
+        }
+
         return post;
     } catch (err) {
         console.log(`ERROR: cannot insert post`)
@@ -81,51 +153,48 @@ async function toggleLike(postId, user) {
     }
 }
 
-//comment, postId 
-async function saveComment(postId, txt, user) {
+async function saveComment(comment) {
     const collection = await dbService.getCollection('post')
     try {
-        let post = await collection.findOne({ _id: ObjectId(postId) })
-        if (post) {
 
-            let comment = {
-                postId,
-                txt,
-                owner: { userId: user._id, username: user.username, profileImg: user.url.profileImg }, //TODO _makeOwner
-                likedBy: []
-            }
-            post.comments.push(comment)
-            await collection.replaceOne({ "_id": ObjectId(post._id) }, { $set: post })
+        let post = await collection.findOne({ _id: ObjectId(comment.postId) })
+        let commentIdx = post.comments.findIndex(currComment => currComment._id === comment._id)
 
-            var result = [];
+        if (commentIdx >= 0) {
+            post.comments.splice(commentIdx, 1, comment)
+        } else {
+            post.comments.unshift(comment)
+
+            //Notification
+            var commenters = [];
             post.comments.forEach(comment => {
-                if (result.indexOf(comment.owner.userId) < 0) {
-                    result.push(comment.owner.userId);
+                if (commenters.indexOf(comment.owner.userId) < 0) {
+                    commenters.push(comment.owner.userId);
                 }
             });
 
-            let userCount = result.length
+            let userCount = commenters.length //commenterCount
 
             let notification = {
                 at: Date.now(),
                 userId: post.userId,
-                postId,
+                postId: post._id,
                 type: 'post-comment',
                 isSeen: false,
                 isRead: false,
                 txt: (userCount > 1) ? ` <span class="strong"> ${post.comments[0].owner.username} </span> and <span class="strong"> ${userCount - 1} </span> others commeneted on your post` : `<span class="strong"> ${post.comments[0].owner.username} </span> commented on your post`,
-                imgUrl: user.url.profileImg
+                imgUrl: comment.owner.profileImg
             }
             await NotificationService.save(notification)
-
-            return post
         }
+
+        await collection.replaceOne({ "_id": ObjectId(post._id) }, { $set: post })
+        console.log('comment:', comment)
+        return comment
     } catch (err) {
         console.log('ERROR: ', err)
     }
 }
-
-
 
 
 

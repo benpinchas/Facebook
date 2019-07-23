@@ -2,7 +2,7 @@
   <header>
     <main v-if="loggedInUser">
       <div class="wrapper">
-        <i class="fab fa-facebook-square logo"></i>
+        <i class="fab fa-facebook-square logo" @click="$router.push('/')"></i>
         <app-search />
       </div>
 
@@ -78,6 +78,7 @@ main {
 
 .logo {
   font-size: 28px;
+  cursor: pointer;
 }
 
 .wrapper {

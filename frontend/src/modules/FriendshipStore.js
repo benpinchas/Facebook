@@ -11,9 +11,9 @@ export default {
 
     },
     getters: {
-        suggests(state) {
+        suggests(state, getters) { //TODO: improve
             return state.suggests.filter(user => {
-                return !user.friendship
+                return !user.friendship && user._id !== getters.loggedInUser._id
             })
         },
         requestingUsers(state) {
@@ -32,16 +32,21 @@ export default {
         },
         setFriendshipUsers(state, {friendshipUsers}) {
             state.friendshipUsers = friendshipUsers
+        },
+        saveUserFriendship(state, {user}) {
+            // let user = state.friendshipUsers.find(curruser => user.)
         }
     },
     actions: {
-        async addFriendship(context, {friendship}) {
-            let addedFriendship = await FriendshipService.add(friendship)
-            console.log(addedFriendship)
-        },
+        // async addFriendship(context, {friendship}) {
+        //     let addedFriendship = await FriendshipService.add(friendship)
+        //     console.log(addedFriendship)
+        // },
         async saveFriendship(context, {friendship}) {
+            console.log('user store' , friendship)
             let savedFriendship = await FriendshipService.save(friendship)
-            console.log('savedFriendship',savedFriendship)
+            console.log('savedFriendship', savedFriendship)
+            // context.commit('saveUserFriendship', user)
         },
 
         async loadFriendshipUsers(context) {
@@ -55,7 +60,7 @@ export default {
 
 
          async loadSuggests(context ,{fiterBy}) {
-            let suggests = await UserService.getUsers()
+            let suggests = await UserService.query()
             console.log('suggests', suggests)
 
             context.commit({type: 'setSuggests', suggests})

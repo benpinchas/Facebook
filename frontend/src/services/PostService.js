@@ -4,21 +4,16 @@ import { async } from 'q';
 export default {
     save,
     query,
-    getLinkDetails,
     toggleLike,
-    addComment
+    saveComment,
+    getById
 }
 
-async function getLinkDetails(txt) {
-    return {
-        "iframe": `<iframe width="100%" height="280px" style="border:none" src="https://www.youtube.com/embed/tgbNymZ7vqY"> </iframe>`,
-        "title": "Google",
-        "description": "Search webpages, images, videos and more.",
-        "image": "https:\/\/www.google.com\/images\/logo.png",
-        "url": "https:\/\/www.google.com"
-    }
-}
 
+
+async function getById(postId) {
+    return HttpService.get(`api/post/${postId}`)
+}
 
 async function save(post) {
     let savedPost = await HttpService.post('api/post', post)
@@ -33,16 +28,14 @@ async function toggleLike({ userId, postId }) {
 }
 
 
-async function addComment({ txt, postId }) {
-    await HttpService.post('api/post/comment', { txt, postId })
-    console.log('comment added')
+async function saveComment(comment) {
+    return await HttpService.post('api/post/comment', comment)
+    console.log('comment saved!')
 }
 
 
-
-
 async function query(filterBy) {
-    let posts = await HttpService.get('api/post')
+    let posts = await HttpService.get('api/post', filterBy)
     return posts
 }
 

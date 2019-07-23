@@ -2,6 +2,7 @@
 .g-user-snippet-container-small {
     display: flex;
     margin-bottom: 10px;
+    align-items: center;
 }
 
 .g-user-snippet-container-small a {
@@ -175,6 +176,11 @@ button.delete {
 }
 .party{
     background-image: url("https://scontent.fhfa1-1.fna.fbcdn.net/v/t39.10873-6/45049809_739108456421632_24011482819723264_n.jpg?_nc_cat=1&_nc_oc=AQlhwKdLOG5KF3fiMaDz6m5j01-CWQS1qx-4y9zyej4Sq6-zB1bxCHcp7vZh4Av5TBs&_nc_ht=scontent.fhfa1-1.fna&oh=0aa5457431b3c6586149ee701b1a247b&oe=5DC13F6E");
+}
+.regular {
+    background-color: #f1f1f1;
+    background-image: url('https://www.pets-n-friends.com/image.edit/imagelibrary/petsnfriends/shapes/line_45_008_pure_red.png');
+    background-size: cover;
 }
 
 .poop-small {

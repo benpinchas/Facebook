@@ -51,7 +51,6 @@ async function query(userId) {
                 $unwind: '$user2'
             }
         ]).toArray()
-        console.log('friendships', friendships)
         return friendships
 
 

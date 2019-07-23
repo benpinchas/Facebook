@@ -3,7 +3,8 @@ const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
     query,
-    save
+    save,
+    setAllSeen
 }
 
 async function save(notification) {
@@ -29,6 +30,23 @@ async function query(userId) {
     try {
         let notifications = await collection.find({userId: ObjectId(userId)}).toArray()        
         return notifications
+    }catch(err) {
+        console.log('db notifications error')
+        throw err
+    }
+}
+
+
+async function setAllSeen(userId) {
+    let collection  = await dbService.getCollection('notification')
+    try {
+        let notifications = await collection.find({userId: ObjectId(userId)}).toArray() 
+        notifications.forEach(async notification => {
+            notification.isSeen = true
+            await collection.replaceOne({ "_id": ObjectId(userId) }, { $set: notification })
+        })
+        
+        return {}
     }catch(err) {
         console.log('db notifications error')
         throw err
