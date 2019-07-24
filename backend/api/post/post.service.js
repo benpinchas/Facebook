@@ -99,7 +99,7 @@ async function save(post, loggedInUser) {
     const collection = await dbService.getCollection('post')
     try {
         await collection.insertOne(post);
-        if (post.userId !== post.user2Id) {
+        if (!post.userId.equals(post.user2Id)) {
             let notification = {
                 at: Date.now(),
                 userId: post.user2Id,

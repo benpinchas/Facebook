@@ -1,6 +1,6 @@
 
-const socketIO = require('socket.io');
-const roomService = require('./room-service');
+const socketIO = require('socket.io');   
+// const roomService = require('./RoomService');
 
 var io;
 var activeUsersCount = 0;
@@ -17,24 +17,25 @@ function setup(http) {
             activeUsersCount--;
         });
 
-        socket.on('chat join', (user) => {
-            room = roomService.placeInRoom(user)
-            console.log('Placed', user, 'in room:', room);
-            socket.join(room.id);
+        socket.on('user login', (userId) => {
+            console.log('socket: user login', userId)
+            socket.join(userId);
         });
 
-        socket.on('chat msg', (msg) => {
+        socket.on('chat msg', (msg, userId) => {
             console.log('message: ' + msg);
-            io.to(room.id).emit('chat newMsg', msg);
+            io.to(userId).emit('chat newMsg', msg);
         });
     });
+}
 
-
-
-
+function emit(room, type, data) {
+    io.to(room).emit(type, data)
+    console.log(room, type, data)
 }
 
 
 module.exports = {
-    setup
+    setup,
+    emit
 }

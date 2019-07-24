@@ -1,4 +1,5 @@
 import UserService from '../services/UserService.js'
+import socket from '../services/SocketService.js'
 
 export default {
     state: {
@@ -18,6 +19,8 @@ export default {
         async login(context, { credentials }) {
             let user = await UserService.login(credentials)
             context.commit({ type: 'setUser', user })
+
+            socket.emit('user login', context.state.loggedInUser._id)
         },
         async signup(context, { credentials }) {
             try {
@@ -44,6 +47,6 @@ export default {
             } catch (err) {
                 throw err  
             }
-        }
+        },
     }
 }

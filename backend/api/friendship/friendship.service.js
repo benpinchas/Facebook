@@ -1,5 +1,6 @@
 const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
+const SocketService = require('../../services/socket.service')
 
 module.exports = {
     query,
@@ -79,6 +80,7 @@ async function save(friendship) {
     const collection = await dbService.getCollection('friendship')
     try {
         await collection.replaceOne(criteria, friendship, {upsert: true});
+        SocketService.emit(friendship.user2Id, 'new friendship')
         return friendship;
     } catch (err) {
         console.log(`ERROR: cannot insert friendship`)

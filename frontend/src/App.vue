@@ -13,6 +13,9 @@ export default {
   components: {
     AppHeader,
     AppChat
+  },
+  created() {
+    this.$store.dispatch({type:'socketListener'})
   }
 };
 </script>

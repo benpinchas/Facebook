@@ -1,5 +1,6 @@
 const dbService = require('../../services/db.service')
 const ObjectId = require('mongodb').ObjectId
+const SocketService = require('../../services/socket.service')
 
 module.exports = {
     query,
@@ -8,7 +9,6 @@ module.exports = {
 }
 
 async function save(notification) {
-    console.log(notification)
     let collection  = await dbService.getCollection('notification')
     try {
         const {postId, userId, type} = notification
@@ -19,6 +19,7 @@ async function save(notification) {
         } else {
             await collection.insertOne(notification)
         }
+        SocketService.emit(userId, 'new notification', notification)
     }catch(err) {
         console.log('ERRORL: while saveing notification', err)
     }
@@ -28,7 +29,7 @@ async function save(notification) {
 async function query(userId) {
     let collection  = await dbService.getCollection('notification')
     try {
-        let notifications = await collection.find({userId: ObjectId(userId)}).toArray()        
+        let notifications = await collection.find({userId: ObjectId(userId)}).sort( { at: -1 } ).toArray()        
         return notifications
     }catch(err) {
         console.log('db notifications error')

@@ -1,4 +1,5 @@
 import NotificationService from '../services/NotificationService.js'
+import socket from '../services/SocketService.js'
 
 export default { 
     state: {
