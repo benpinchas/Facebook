@@ -1,6 +1,6 @@
 <template>
   <section class="user-profile" v-if="isShow">
-    <div class="main" v-if="user">
+    <div class="main dark-set-2" v-if="user">
       <div
         class="cover-img-container"
         v-bind:style="{ 'background-image': 'url('+user.url.coverImg+')' }"

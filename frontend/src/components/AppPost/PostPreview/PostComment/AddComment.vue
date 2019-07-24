@@ -6,7 +6,7 @@
     <div class="realtive"></div>
     <div
       ref="contenteditable"
-      class="comment-container"
+      class="comment-container dark-set-1 "
       placeholder="Write a comment..."
       contenteditable
     ></div>

@@ -4,9 +4,9 @@
       <img :src="comment.owner.profileImg" alt />
     </div>
     <div>
-      <div class="comment-container">
+      <div class="comment-container dark-set-1">
         <div class="name-container" style="margin-bottom: 3px;">
-          <a href @click.prevent="readUser">{{comment.owner.username | fUsername}}</a>
+          <a class="username-color" href @click.prevent="readUser">{{comment.owner.username | fUsername}}</a>
         </div>
         <div style="padding:2px;">{{comment.txt}}</div>
 
@@ -68,7 +68,7 @@ export default {
   color: #606770;
 }
 
-.actions-container a {
+ a {
   color: #385898;
 }
 
@@ -99,7 +99,7 @@ export default {
 }
 
 .name-container a {
-  color: #385898;
+  /* color: #385898; */
   cursor: pointer;
   text-decoration: none;
   font-weight: 600;

@@ -1,3 +1,5 @@
+@import './app-theme.css';
+
 /* GLOBAL */
 .g-user-snippet-container-small {
     display: flex;
@@ -26,12 +28,10 @@
 
  
 
-
 body {
     margin: 0;
-    background-color: #e9ebee;
-    color: #272727;
 }
+
 
 
 .dev {
@@ -55,10 +55,6 @@ button:disabled:hover {
 }
 
 /* UTIL */
-.floating-box {
-    background-color: white;
-    border-radius: 2px;
-}
 
 
 

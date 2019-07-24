@@ -15,7 +15,7 @@
              </span>
           </div>
 
-          <div class="time-container">
+          <div class="time-container system-color">
             <span class="time" @click="$router.push(`/post/${post._id}`)">{{post.at | timeAgo}}</span>
             &#183;
             <i class="fas fa-globe-americas"></i>
@@ -34,7 +34,7 @@
     <content-preview :type="post.type" :content="post.content" :post="post" />
 
     <footer>
-      <div class="stats-container">
+      <div class="stats-container system-color">
         <p class="like-count">
           <span v-if="post.likedBy.length">{{post.likedBy.length}} Likes</span>
         </p>
@@ -168,7 +168,7 @@ header {
 
 .time-container {
   font-size: 12px;
-  color: #787c81;
+  /* color: #787c81; */
 }
 
 .time {
@@ -193,7 +193,7 @@ footer {
 
 .stats-container {
   border-bottom: 1px solid lightgray;
-  color: gray;
+  /* color: gray; */
   font-size: 14px;
   padding-top: 6px;
   padding-bottom: 7px;

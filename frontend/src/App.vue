@@ -3,16 +3,19 @@
     <app-header></app-header>
     <router-view class="router" />
     <app-chat/>
+    <app-theme/>
   </div>
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader/AppHeader.vue";
 import AppChat from './components/AppChat/AppChat.vue'
+import AppTheme from './components/util/App-Theme/App-Theme.vue'
 export default {
   components: {
     AppHeader,
-    AppChat
+    AppChat,
+    AppTheme
   },
   created() {
     this.$store.dispatch({type:'socketListener'})

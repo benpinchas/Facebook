@@ -14,6 +14,7 @@ export default {
             socket.emit('user login', this.getters.loggedInUser._id)
             
             socket.on('new notification', notification => {
+              console.log('SOCKET NOTIFICATION!')
               context.dispatch({type:'loadNotifications'})
             })
 
