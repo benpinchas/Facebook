@@ -4,16 +4,23 @@ import socket from '../services/SocketService.js'
 export default {
     state: {
         loggedInUser: UserService.getLoggedInUser(),
+        activeUsers: []
     },
     getters: {
         loggedInUser(state) {
             return state.loggedInUser
         },
+        activeUsers(state) {
+            return state.activeUsers
+        }
     },
     mutations: {
         setUser(state, { user }) {
             state.loggedInUser = user
         },
+        setActiveUsers(state, {activeUsers}) {
+            state.activeUsers = activeUsers
+        }
     },
     actions: {
         async login(context, { credentials }) {
@@ -34,6 +41,7 @@ export default {
             try {
                 await UserService.logout()
                 context.commit({ type: 'setUser', user: null })
+                socket.emit('logout')
             } catch (err) {
                 console.log(err);
             }

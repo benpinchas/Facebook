@@ -760,3 +760,25 @@ Wed, 24 Jul 2019 14:28:40 GMT - Debug - auth.service - login with email: t
 Wed, 24 Jul 2019 14:29:02 GMT - Debug - auth.service - login with email: opal
 Wed, 24 Jul 2019 15:30:32 GMT - Debug - auth.service - login with email: a
 Wed, 24 Jul 2019 15:45:43 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:24:37 GMT - Debug - , null
+Wed, 24 Jul 2019 19:24:37 GMT - Error - [SIGNUP] email, username and password are required!
+Wed, 24 Jul 2019 19:24:45 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:25:28 GMT - Debug - auth.service - login with email: gaya
+Wed, 24 Jul 2019 19:31:06 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:31:22 GMT - Debug - auth.service - login with email: gaya
+Wed, 24 Jul 2019 19:32:29 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:32:38 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:34:04 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:36:38 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:37:01 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:37:14 GMT - Debug - auth.service - login with email: gaya
+Wed, 24 Jul 2019 19:47:44 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:49:32 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:49:52 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 19:50:04 GMT - Debug - auth.service - login with email: gaya
+Wed, 24 Jul 2019 20:02:37 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 20:04:16 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 20:04:42 GMT - Debug - auth.service - login with email: opal
+Wed, 24 Jul 2019 20:06:56 GMT - Debug - auth.service - login with email: a
+Wed, 24 Jul 2019 20:07:29 GMT - Debug - auth.service - login with email: gaya
+Wed, 24 Jul 2019 20:08:46 GMT - Debug - auth.service - login with email: gaya

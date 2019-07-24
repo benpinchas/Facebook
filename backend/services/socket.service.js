@@ -3,23 +3,40 @@ const socketIO = require('socket.io');
 // const roomService = require('./RoomService');
 
 var io;
-var activeUsersCount = 0;
+let activeUsers = []
 
 function setup(http) {
     io = socketIO(http);
     io.on('connection', function (socket) {
         console.log('a user connected');
-        var room;
-        activeUsersCount++;
-
+        let gUserId = null
         socket.on('disconnect', () => {
             console.log('user disconnected');
-            activeUsersCount--;
+            console.log('gUserId ::', gUserId )
+            let userIdx = activeUsers.findIndex(userId => userId === gUserId)
+            if (userIdx !== -1) {
+                activeUsers.splice(userIdx, 1)
+                io.emit('activeUsers changed', activeUsers)
+            }
         });
+
+        socket.on('logout', () => {
+            console.log('user logout', gUserId);
+            let userIdx = activeUsers.findIndex(userId => userId === gUserId)
+            if (userIdx !== -1) {
+                activeUsers.splice(userIdx, 1)
+                io.emit('activeUsers changed', activeUsers)
+            }
+        })
 
         socket.on('user login', (userId) => {
             console.log('socket: user login', userId)
+            gUserId = userId
+            if (!activeUsers.find(id => id === userId)) {
+                activeUsers.push(userId)
+            }
             socket.join(userId);
+            io.emit('activeUsers changed', activeUsers)
         });
 
         socket.on('chat msg', (msg, userId) => {

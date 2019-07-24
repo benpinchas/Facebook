@@ -22,7 +22,6 @@ export default {
   },
   computed: {
     users() {
-      console.log('this.$store.getters.approvedUsers;', this.$store.getters.approvedUsers)
       return this.$store.getters.approvedUsers;
     }
   },

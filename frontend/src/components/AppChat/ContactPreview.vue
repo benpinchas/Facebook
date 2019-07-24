@@ -7,7 +7,7 @@
 
     <div>
 
-      <span class="dot online"></span>
+    <span class="dot" :class="classObj"></span>
       <!-- <button class="confirm" @click="confirmFriendship">Confirm</button>
       <button class="delete">Delete</button>-->
     </div>
@@ -15,7 +15,18 @@
 </template>
 <script>
 export default {
-  props: ["user"]
+  props: ["user"],
+  computed: {
+    isActive() {
+      console.log(this.$store.getters)
+      // return this.$store.getters.activeUsers.find(userId => userId === this.user._id)
+    },
+    classObj() {
+      return {
+        active: this.$store.getters.activeUsers.find(userId => userId === this.user._id)
+      } 
+    }
+  }
 };
 </script>
 
@@ -59,7 +70,7 @@ export default {
   display: inline-block;
 }
 
-.online {
+.active {
     background-color: rgb(66, 183, 42);
 }
 

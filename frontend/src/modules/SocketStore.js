@@ -13,6 +13,11 @@ export default {
             console.log('LISTEN TO SOCKET')
             socket.emit('user login', this.getters.loggedInUser._id)
             
+            socket.on('activeUsers changed', activeUsers =>  {
+                console.log('activeUsers', activeUsers)
+                context.commit({type: 'setActiveUsers', activeUsers})
+            })
+
             socket.on('new notification', notification => {
               console.log('SOCKET NOTIFICATION!')
               context.dispatch({type:'loadNotifications'})
