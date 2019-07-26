@@ -84,6 +84,13 @@ i {
 i:hover { 
   color: rgba(255, 255, 255, 0.829);
 }
+
+@media (max-width: 670px) {
+  .app-register {
+    width: 382px;
+  }
+}
+
 </style>
 
 

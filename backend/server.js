@@ -57,6 +57,9 @@ app.use('/api/friendship', friendshipRoutes)
 const notificationsRoutes = require ('./api/notification/notification.routes.js')
 app.use('/api/notification', notificationsRoutes)
 
+const chatRoutes = require ('./api/chat/chat.routes.js')
+app.use('/api/chat', chatRoutes)
+
 
 
 

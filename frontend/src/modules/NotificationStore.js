@@ -17,8 +17,9 @@ export default {
         setNotifications(state, {notifications}) {
             state.notifications = notifications
         },
-        setAllSeen(state) {
-            state.notifications.forEach(notification => notification.isSeen = true)
+        updateNotification(state, {notification}) {
+            let notificationIdx = state.notifications.findIndex(currNotification => currNotification._id === notification._id)
+            state.notifications.splice(notificationIdx, 1, notification)
         }
     },
     actions: {
@@ -28,8 +29,13 @@ export default {
             context.commit({type: 'setNotifications', notifications})
         },
         async setAllSeen(context) {
-            context.commit({type: 'setAllSeen'})
-            await NotificationService.setAllSeen()
+            //DELETE
+            // context.commit({type: 'setAllSeen'})
+            // await NotificationService.setAllSeen()
+        },
+        async updateNotification(context, {notification}) {
+            context.commit({type: 'updateNotification', notification})
+            await NotificationService.update(notification)
         }
     }
 }

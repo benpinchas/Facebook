@@ -31,7 +31,15 @@
 body {
     margin: 0;
 }
+@media(max-width: 670px) {
+    body {
+        padding-bottom: 68px;
+    }
+    input {
+        font-size: 17px !important;
+    }
 
+}
 
 
 .dev {

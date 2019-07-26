@@ -112,7 +112,7 @@ export default {
         userId: this.$store.getters.loggedInUser._id, //TODO: in the backend with session.
         user2Id: this.$route.params.userId || this.$store.getters.loggedInUser._id,
         txt: "",
-        type: "", //image, gradient, youtube, checkin, gradient
+        type: "", 
         content: "",
         gradientClass: "a",
         comments: [],

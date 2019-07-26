@@ -13,7 +13,9 @@
 
 
 <script>
-export default {};
+export default {
+  
+};
 </script>
 
 
@@ -43,6 +45,15 @@ export default {};
 .content-container {
   overflow-y: scroll;
   height: 94%;
+}
+
+@media (max-width: 670px) {
+.updates-window {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 94%;
+} 
 }
 </style>
 

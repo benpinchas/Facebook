@@ -3,7 +3,8 @@ import { async } from 'q';
 
 export default {
     query,
-    setAllSeen
+    setAllSeen,
+    update
 }
 
 
@@ -13,7 +14,11 @@ async function query() {
 
 
 async function setAllSeen() {
-    return  HttpService.put('api/notification/seen')
+    // return  HttpService.put('api/notification/seen')
+}
+
+async function update(notification) {
+    return HttpService.put('api/notification', notification)
 }
 
 

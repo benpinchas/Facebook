@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-preview">
+  <div class="contact-preview" @click="loadChat">
     <div class="profile-image-container-thumb">
       <img :src="user.url.profileImg" alt />
       {{user.username}}
@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import { mkdir } from 'fs';
 export default {
   props: ["user"],
   computed: {
@@ -25,6 +26,11 @@ export default {
       return {
         active: this.$store.getters.activeUsers.find(userId => userId === this.user._id)
       } 
+    }
+  },
+  methods: {
+    loadChat() {
+      this.$store.dispatch({type: 'loadChat', userId: this.user._id})
     }
   }
 };

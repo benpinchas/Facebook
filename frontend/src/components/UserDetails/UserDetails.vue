@@ -28,24 +28,21 @@
         <h1 class="username">{{user.username | fUsername}}</h1>
       </div>
       <div class="btns-container">
-        
         <!-- <button class="profile-btn">
           <i class="fas fa-check"></i> Friends
-        </button> -->
-        
+        </button>-->
+
         <friendship-button :user="user"></friendship-button>
 
-        
         <button>
           <i class="fab fa-facebook-messenger"></i> Message
         </button>
       </div>
     </div>
 
-
-        <!-- <pre class="dev" style="color:white" >
+    <!-- <pre class="dev" style="color:white" >
            {{user}}
-        </pre> -->
+    </pre>-->
   </section>
 </template>
 
@@ -55,14 +52,14 @@
 import UserService from "../../services/UserService.js";
 import UploadImage from "../util/UploadImage.vue";
 import MyLoader from "../util/MyLoader.vue";
-import FriendshipButton from '../util/friendship-btn/friendship-btn.vue'
+import FriendshipButton from "../util/friendship-btn/friendship-btn.vue";
 export default {
   components: {
     UploadImage,
     MyLoader,
     FriendshipButton
   },
-  props: ['user'],
+  props: ["user"],
   data() {
     return {
       isLoadProfileImg: false,
@@ -112,14 +109,14 @@ export default {
         let imageUrl = await prmImageUrl;
         this.user.url.coverImg = imageUrl;
         await this.$store.dispatch({ type: "saveUser", user: this.user });
-        console.log('user saved')
+        console.log("user saved");
       } catch (err) {
         this.user.url.coverImg = prevImageUrl;
       } finally {
         this.isLoadCoverImg = false;
       }
     }
-  },
+  }
 };
 </script>
 
@@ -258,20 +255,12 @@ export default {
   background-color: rgba(0, 0, 0, 0.418);
   font-size: 12px;
 }
-
-/* .profile-img-input {
-  position: absolute;
-  bottom: -40px;
-  left: 2%;
-  width: 170px;
+@media (max-width: 670px) {
+  .profile-img {
+    width: 120px;
+    height: 120px;
+  }
 }
-.profile-img-input::before {
-  background-color: black;
-  border-radius: 2px;
-  height: 100px;
-  width: 220px;
-  padding-left: 24px;
-} */
 </style>
 
 

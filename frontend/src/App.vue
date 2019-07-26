@@ -4,6 +4,7 @@
     <router-view class="router" />
     <app-chat/>
     <app-theme/>
+    <mobile-bar/>
   </div>
 </template>
 
@@ -11,11 +12,13 @@
 import AppHeader from "./components/AppHeader/AppHeader.vue";
 import AppChat from './components/AppChat/AppChat.vue'
 import AppTheme from './components/util/App-Theme/App-Theme.vue'
+import MobileBar from './components/MobileBar/MobileBar.vue'
 export default {
   components: {
     AppHeader,
     AppChat,
-    AppTheme
+    AppTheme,
+    MobileBar
   },
   created() {
     this.$store.dispatch({type:'socketListener'})

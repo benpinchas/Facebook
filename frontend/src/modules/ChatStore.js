@@ -1,23 +1,29 @@
+import ChatService from '../services/ChatService.js'
 import socket from '../services/SocketService.js'
 
 export default {
     state: {
         chats:[],
-        msgs: [{ from: "Avi", txt: "Rollaa" }, { from: "Kobi", txt: "bolla" }]
     },
     getters: {
-        msgs(state) {
-            return state.msgs; 
+        chats(state) {
+            return state.chats
         }
     },
     mutations: {
         addMsg(state, {msg}) {
             state.msgs.push(msg);
+        },
+        setChat(state, {chat}) {
+            state.chats.push(chat)
         }
     },
     actions: {
-        chatJoin(context, {userId}) {
-        },
+       async loadChat(context, {userId}) {
+            let chat = await ChatService.loadChat({userId})
+            console.log('CHAT', chat)
+            context.commit('setChat', chat)
+       },
         sendMsg(context, {msg, roomId}) {
             socket.emit('chat msg', msg, roomId)
         },

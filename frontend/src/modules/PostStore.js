@@ -55,8 +55,8 @@ export default {
        async toggleLike({commit,getters}, {userId, postId}) {
            //TODO: remove userId from the payload
            let loggedInUser = getters.loggedInUser
-           await PostService.toggleLike({postId, loggedInUser})
            commit('toggleLike', {postId, loggedInUser})
+           await PostService.toggleLike({postId, loggedInUser})
        },
        async saveComment(context, {comment}) {
            let savedComment = await PostService.saveComment(comment)

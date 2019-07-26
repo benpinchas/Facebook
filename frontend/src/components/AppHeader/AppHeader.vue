@@ -6,7 +6,7 @@
         <app-search />
       </div>
 
-      <div class="wrapper">
+      <div class="wrapper hide-mobile">
         <div class="link-container" @click="$router.push(`/user/${loggedInUser._id}`)">
           <img :src="loggedInUser.url.profileImg" />
           {{loggedInUser.username}}
@@ -16,8 +16,8 @@
         <div class="sep"></div>
         <app-updates />
         <div class="sep"></div>
-        <app-register></app-register>
       </div>
+      <app-register></app-register>
     </main>
 
     <main v-else>
@@ -49,6 +49,7 @@ export default {
 
 
 <style scoped>
+
 header {
   background-color: #4267b2;
   border-bottom: 1px solid #29487d;
@@ -119,6 +120,9 @@ main {
 @media (max-width: 670px) {
   header {
     min-height: 90px;
+  }
+  .hide-mobile {
+    display: none;
   }
 }
 </style>

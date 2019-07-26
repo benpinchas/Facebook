@@ -33,8 +33,8 @@ img {
     position: fixed;
     width: 50px;
     height: 50px;
-    bottom: 30px;
-    left: 20px;
+    top: 100px;
+    right: 20px;
     z-index: 100;
 }
 </style>

@@ -99,6 +99,9 @@ aside > * {
   main {
     margin-right: 0;
   }
+  .app-post {
+    margin-right: 0;
+  }
 }
 </style>
 

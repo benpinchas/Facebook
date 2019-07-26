@@ -2,7 +2,7 @@ let NotificationService = require('./notification.service.js')
 
 module.exports ={
     query,
-    setAllSeen
+    update
 }
 
 async function query(req, res) {
@@ -15,13 +15,13 @@ async function query(req, res) {
     }
 }
 
-async function setAllSeen(req, res) {
-    const userId = req.session.user._id
+async function update(req, res) {
+    const notification = req.body
     try {
-        let notifications = await NotificationService.setAllSeen(userId)
-        res.json(notifications)
+        await NotificationService.update(notification)
+        res.json({})
     }catch(err) {
-        console.log('ERROR: notification.controller setAllSeen :', err)
+        console.log('ERROR: notification.controller update :', err)
     }
 }
 

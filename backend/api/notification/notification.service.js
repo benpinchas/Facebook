@@ -5,7 +5,7 @@ const SocketService = require('../../services/socket.service')
 module.exports = {
     query,
     save,
-    setAllSeen
+    update
 }
 
 async function save(notification) {
@@ -25,6 +25,20 @@ async function save(notification) {
     }
 }
 
+//TODO: merge with save
+async function update(notification) {
+    let criteria = {"_id": ObjectId(notification._id)}
+    delete notification._id
+    notification.userId = ObjectId(notification.userId)
+    notification.postId = ObjectId(notification.postId )
+    let collection  = await dbService.getCollection('notification')
+    try {
+        await collection.updateOne(criteria, {$set: notification})
+        console.log('UPDATED ONE!')
+    }catch(err) {
+        throw err
+    }
+}
 
 async function query(userId) {
     let collection  = await dbService.getCollection('notification')
@@ -37,22 +51,6 @@ async function query(userId) {
     }
 }
 
-
-async function setAllSeen(userId) {
-    let collection  = await dbService.getCollection('notification')
-    try {
-        let notifications = await collection.find({userId: ObjectId(userId)}).toArray() 
-        notifications.forEach(async notification => {
-            notification.isSeen = true
-            await collection.replaceOne({ "_id": ObjectId(userId) }, { $set: notification })
-        })
-        
-        return {}
-    }catch(err) {
-        console.log('db notifications error')
-        throw err
-    }
-}
 
 
 
