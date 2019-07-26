@@ -1,7 +1,7 @@
 <template>
   <div class="app-chat">
-    <chat-window v-for="chat in chats" :chat="chat"/>
     
+    <chat-list/>
     <div class="top" @click="toggleList">
       <span>Chat ({{users.length}})</span>
       <i class="far fa-edit" style="font-size:16px;"></i>
@@ -14,11 +14,11 @@
 
 <script>
 import ContactList from "./ContactList.vue";
-import ChatWindow from './ChatWindow/ChatWindow.vue'
+import ChatList from './ChatList.vue'
 export default {
   components: {
     ContactList,
-    ChatWindow
+    ChatList
   },
   data() {
     return {
@@ -29,9 +29,6 @@ export default {
     users() {
       return this.$store.getters.approvedUsers;
     },
-    chats() {
-      return this.$store.getters.chats
-    }
   },
   methods: {
     toggleList() {

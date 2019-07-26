@@ -3,6 +3,7 @@ const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
     loadChat,
+    addMsg
 }
 
 async function loadChat(user1Id, user2Id) {
@@ -25,6 +26,22 @@ async function loadChat(user1Id, user2Id) {
     }
 
 }
+
+
+async function addMsg(msg, chatId) {
+    let collection = await dbService.getCollection('chat')
+    try {
+        let chat = await collection.findOne({"_id": ObjectId(chatId)})
+        chat.msgs.push(msg)
+        await collection.replaceOne({"_id": ObjectId(chatId)}, chat)
+        console.log('chat', chat)
+    }catch(err) {
+        throw err
+    }
+   
+}
+
+
 
 
 function _createChat(user1Id, user2Id) {

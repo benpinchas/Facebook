@@ -2,12 +2,12 @@ import HttpService from './HttpService.js'
 
 
 export default {
-    loadChat
+    loadChatWith
 }
 
 
 
-async function loadChat(userId) {
+async function loadChatWith(userId) {
     return HttpService.get('api/chat', userId)
 }
 

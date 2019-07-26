@@ -4,7 +4,6 @@
       <img :src="notification.imgUrl" alt />
     </div>
     <div v-html="notification.txt"></div>
-    {{notification.isSeen}}
   </div>
 </template>
 

@@ -9,8 +9,7 @@ export default {
     mutations: {
     },
     actions: {
-        socketListener(context) {
-            console.log('LISTEN TO SOCKET')
+        listenSocketEvents(context) {
             socket.emit('user login', this.getters.loggedInUser._id)
             
             socket.on('activeUsers changed', activeUsers =>  {

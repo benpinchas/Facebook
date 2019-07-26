@@ -8,4 +8,5 @@ const router = express.Router()
 
 router.get('/', loadChat)
 
+
 module.exports = router  

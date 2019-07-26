@@ -9,7 +9,8 @@ import FriendshipStore from './modules/FriendshipStore.js'
 import NotificationStore from './modules/NotificationStore.js'
 import ChatStore from './modules/ChatStore.js'
 import SocketStore from './modules/SocketStore.js'
-export default new Vuex.Store({
+
+const store = new Vuex.Store({
   state: {
 
   },
@@ -27,3 +28,5 @@ export default new Vuex.Store({
     SocketStore
   }
 })
+
+export default store;

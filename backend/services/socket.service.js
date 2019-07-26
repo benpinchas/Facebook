@@ -1,6 +1,6 @@
 
 const socketIO = require('socket.io');   
-// const roomService = require('./RoomService');
+const ChatService = require('../api/chat/chat.service')
 
 var io;
 let activeUsers = []
@@ -39,9 +39,11 @@ function setup(http) {
             io.emit('activeUsers changed', activeUsers)
         });
 
-        socket.on('chat msg', (msg, userId) => {
-            console.log('message: ' + msg);
-            io.to(userId).emit('chat newMsg', msg);
+
+        //CHAT
+        socket.on('add msg', ({msg, chatId, toUserId}) => {
+            ChatService.addMsg(msg, chatId)
+            io.to(toUserId).emit('new msg', msg, chatId);
         });
     });
 }

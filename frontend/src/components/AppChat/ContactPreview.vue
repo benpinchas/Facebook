@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-preview" @click="loadChat">
+  <div class="contact-preview" @click="loadChatWith">
     <div class="profile-image-container-thumb">
       <img :src="user.url.profileImg" alt />
       {{user.username}}
@@ -29,8 +29,8 @@ export default {
     }
   },
   methods: {
-    loadChat() {
-      this.$store.dispatch({type: 'loadChat', userId: this.user._id})
+    loadChatWith() {
+      this.$store.dispatch({type: 'loadChatWith', userId: this.user._id})
     }
   }
 };

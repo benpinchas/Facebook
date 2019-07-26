@@ -3,7 +3,7 @@
     <app-header></app-header>
     <router-view class="router" />
     <app-chat/>
-    <app-theme/>
+    <!-- <app-theme/> -->
     <mobile-bar/>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {
     MobileBar
   },
   created() {
-    this.$store.dispatch({type:'socketListener'})
+    this.$store.dispatch({type: 'listenSocketEvents'})
   }
 };
 </script>

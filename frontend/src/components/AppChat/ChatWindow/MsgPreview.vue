@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <p class="msg-preview" :class="classObj">{{msg.txt}}</p>
+    <p class="msg-preview income"  :class="classObj">{{msg.txt}}</p>
   </div>
 </template>
 
@@ -12,8 +12,7 @@ export default {
   computed: {
     classObj() {
       return {
-        outcome: this.msg.isOutcome,
-        income: !this.msg.isOutcome
+        outcome: this.msg.userId === this.$store.getters.loggedInUser._id,
       };
     }
   }
@@ -37,6 +36,12 @@ export default {
   transform: scale(0);
   animation: mymove 0.3s;
   animation-fill-mode: forwards;  
+  font-size: 13px;
+}
+.income {
+  background-color: rgb(233, 233, 233);
+  float: left;
+  transform-origin: bottom left;
 }
 
 .outcome {
@@ -46,11 +51,7 @@ export default {
   transform-origin: bottom right;
 }
 
-.income {
-  background-color: rgb(233, 233, 233);
-  float: left;
-  transform-origin: bottom left;
-}
+
 </style>
 
 
