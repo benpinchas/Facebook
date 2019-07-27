@@ -8,11 +8,9 @@ let activeUsers = []
 function setup(http) {
     io = socketIO(http);
     io.on('connection', function (socket) {
-        console.log('a user connected');
-        let gUserId = null
+        let gUserId;
         socket.on('disconnect', () => {
-            console.log('user disconnected');
-            console.log('gUserId ::', gUserId )
+            console.log('user disconnected', gUserId);
             let userIdx = activeUsers.findIndex(userId => userId === gUserId)
             if (userIdx !== -1) {
                 activeUsers.splice(userIdx, 1)
@@ -20,17 +18,17 @@ function setup(http) {
             }
         });
 
-        socket.on('logout', () => {
-            console.log('user logout', gUserId);
-            let userIdx = activeUsers.findIndex(userId => userId === gUserId)
+        socket.on('user inActive', (userId) => {
+            console.log('user inActive', userId);
+            let userIdx = activeUsers.findIndex(id => id === userId)
             if (userIdx !== -1) {
                 activeUsers.splice(userIdx, 1)
                 io.emit('activeUsers changed', activeUsers)
             }
         })
 
-        socket.on('user login', (userId) => {
-            console.log('socket: user login', userId)
+        socket.on('user active', (userId) => {
+            console.log('user active', userId);
             gUserId = userId
             if (!activeUsers.find(id => id === userId)) {
                 activeUsers.push(userId)
@@ -41,8 +39,9 @@ function setup(http) {
 
 
         //CHAT
-        socket.on('add msg', ({msg, chatId, toUserId}) => {
-            ChatService.addMsg(msg, chatId)
+        socket.on('add msg', async ({msg, chatId, toUserId}) => {
+            console.log(msg, chatId, toUserId)
+            await ChatService.addMsg(msg, chatId)
             io.to(toUserId).emit('new msg', msg, chatId);
         });
     });

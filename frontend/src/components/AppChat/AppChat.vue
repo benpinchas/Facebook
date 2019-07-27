@@ -1,40 +1,27 @@
 <template>
-  <div class="app-chat">
-    
-    <chat-list/>
-    <div class="top" @click="toggleList">
-      <span>Chat ({{users.length}})</span>
-      <i class="far fa-edit" style="font-size:16px;"></i>
-    </div>
-    
-    <contact-list v-if="isShowList" :users="users"/>
-  </div>
+  <span class="app-chat">
+    <contact-cmp class="contact-cmp" />
+    <chat-window v-for="(chat, idx) in chats" :chat="chat" :idx="idx" :key="chat._id" />
+  </span>
 </template>
 
 
 <script>
-import ContactList from "./ContactList.vue";
-import ChatList from './ChatList.vue'
+import ContactCmp from "./ContactCmp/ContactCmp.vue";
+import ChatList from "./ChatList.vue";
+import ChatWindow from './ChatWindow/ChatWindow.vue'
 export default {
   components: {
-    ContactList,
-    ChatList
-  },
-  data() {
-    return {
-      isShowList: false
-    };
+    ContactCmp,
+    ChatWindow
   },
   computed: {
-    users() {
-      return this.$store.getters.approvedUsers;
-    },
-  },
-  methods: {
-    toggleList() {
-      this.isShowList = !this.isShowList;
+    chats() {
+      console.log(this.$store.getters.chatsForDesktop)
+      return this.$store.getters.chatsForDesktop
     }
   }
+  
 };
 </script>
 
@@ -44,36 +31,20 @@ export default {
 .app-chat {
   position: fixed;
   bottom: 0;
-  right: 5%;
+  right: 7%;
   color: rgb(50, 50, 50);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  border-top-left-radius: 9px;
-  border-top-right-radius: 9px;
-  width: 260px;
-}
-
-.top {
-  cursor: pointer;
-  background-color: #f5f6f7;
-
-  height: 37px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-
-  font-size: 14px;
-  font-weight: 600;
-
+  height: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 17px;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.app-chat > *  {
+  margin-right: 15px;
 }
 
-@media (max-width: 670px) {
-  .top {
-    display: none;
-  }
-} 
+.contact-cmp {
+  order: 1;
+}
 </style>
 
 

@@ -80,7 +80,7 @@ async function save(friendship) {
     const collection = await dbService.getCollection('friendship')
     try {
         await collection.replaceOne(criteria, friendship, {upsert: true});
-        SocketService.emit(friendship.user2Id, 'new friendship')
+        SocketService.emit(friendship.user2Id.toString(), 'new friendship')
         return friendship;
     } catch (err) {
         console.log(`ERROR: cannot insert friendship`)

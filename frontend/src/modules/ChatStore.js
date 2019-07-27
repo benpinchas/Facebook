@@ -9,6 +9,9 @@ export default {
         chats(state) {
             console.log( state.chats.length)
             return state.chats
+        },
+        chatsForDesktop(state)  {
+            return state.chats.slice(0, 2)
         }
     },
     mutations: {
@@ -18,11 +21,9 @@ export default {
             chat.msgs.push(msg)
         },
         pushChat(state, {chat}) {
-            let Chat = state.chats.find(currChat => currChat._id === chat._id)
-            if (!Chat) {
-                state.chats.unshift(chat)
-            }
-           
+            let chatIdx = state.chats.findIndex(currChat => currChat._id === chat._id) 
+            if (chatIdx >= 0) state.chats.splice(chatIdx, 1) 
+            state.chats.unshift(chat)
         }
     },
     actions: {
@@ -36,9 +37,12 @@ export default {
            socket.emit('add msg', {msg, chatId, toUserId})
         },
         listenSocketEvents(context) {
+            console.log('CHAT STORE SOCKET')
             socket.on('new msg', async (msg, chatId) => {
-                if (!_isChatExist(chatId)) await context.dispatch({type: 'loadChatWith', userId: msg.userId})        
-                context.commit({type: 'addMsg', msg, chatId})
+                console.log(msg)
+                if (_isChatExist(chatId)) context.commit({type: 'addMsg', msg, chatId})
+                else  await context.dispatch({type: 'loadChatWith', userId: msg.userId})  
+              
             })
 
             function _isChatExist(chatId) {

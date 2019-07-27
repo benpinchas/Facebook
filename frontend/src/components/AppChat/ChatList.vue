@@ -1,6 +1,6 @@
 <template>
   <div>
-    <chat-window v-for="chat in chats" :chat="chat" :key="chat._id" />
+    <chat-window v-for="(chat, idx) in chats" :chat="chat" :idx="idx" :key="chat._id" />
   </div>
 </template>
 
@@ -14,7 +14,8 @@ export default {
   },
   computed: {
     chats() {
-      return this.$store.getters.chats
+      console.log(this.$store.getters.chatsForDesktop)
+      return this.$store.getters.chatsForDesktop
     }
   }
 };

@@ -83,7 +83,7 @@ export default {
   },
   computed: {
     user() {
-      return  this.$store.getters.loggedInUser || {}
+      return  this.$store.getters.loggedInUser 
     },
     placeholder() {
       return this.$store.getters.loggedInUser
@@ -106,6 +106,7 @@ export default {
       this.isLoadingPublishPost = false
     },
     clearPost() {
+      if(!this.$store.getters.loggedInUser) return
       if(this.$refs.contenteditable) this.$refs.contenteditable.innerText = ''
       this.post = {
         at: Date.now(),

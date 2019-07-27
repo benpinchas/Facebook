@@ -2,17 +2,18 @@
   <div id="app">
     <app-header></app-header>
     <router-view class="router" />
-    <app-chat/>
+    <app-chat />
     <!-- <app-theme/> -->
-    <mobile-bar/>
+    <mobile-bar />
   </div>
 </template>
 
 <script>
 import AppHeader from "./components/AppHeader/AppHeader.vue";
-import AppChat from './components/AppChat/AppChat.vue'
-import AppTheme from './components/util/App-Theme/App-Theme.vue'
-import MobileBar from './components/MobileBar/MobileBar.vue'
+import AppChat from "./components/AppChat/AppChat.vue";
+import AppTheme from "./components/util/App-Theme/App-Theme.vue";
+import MobileBar from "./components/MobileBar/MobileBar.vue";
+import socket from "./services/SocketService.js";
 export default {
   components: {
     AppHeader,
@@ -20,9 +21,12 @@ export default {
     AppTheme,
     MobileBar
   },
-  created() {
-    this.$store.dispatch({type: 'listenSocketEvents'})
-  }
+  mounted() {
+    if (this.$store.getters.loggedInUser) {
+      this.$store.dispatch({ type: "listenSocketEvents" });
+      socket.emit("user active", this.$store.getters.loggedInUser._id);
+    }
+  },
 };
 </script>
 

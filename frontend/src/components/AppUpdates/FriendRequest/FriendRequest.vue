@@ -48,7 +48,9 @@ export default {
     }
   },
   created() {
-    // this.$store.dispatch({ type: "loadFriendships" });
+     document.querySelector('body').addEventListener('mousedown', () => {
+      if (this.isWindow)  this.isWindow = false
+    })
   }
 };
 </script>

@@ -1,5 +1,6 @@
 import NotificationService from '../services/NotificationService.js'
 import socket from '../services/SocketService.js'
+import { async } from 'q';
 
 export default { 
     state: {
@@ -36,6 +37,11 @@ export default {
         async updateNotification(context, {notification}) {
             context.commit({type: 'updateNotification', notification})
             await NotificationService.update(notification)
+        },
+        async listenSocketEvents(context) {
+            socket.on('new notification', notification => {
+                context.dispatch({type:'loadNotifications'})
+              })
         }
     }
 }

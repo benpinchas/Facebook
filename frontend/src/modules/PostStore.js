@@ -12,7 +12,6 @@ export default {
     mutations: {
         setPosts(state, {posts}) {
             state.posts = posts
-            // console.log('state', state.posts)
         },
         save(state, {post}) {
             state.posts.unshift(post)

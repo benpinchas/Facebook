@@ -1,9 +1,6 @@
-// import PostService from '../services/PostService.js'
 import UserService from '../services/UserService.js'
-
 import FriendshipService from '../services/FriendshipService.js'
-import { stat } from 'fs';
-
+import socket from '../services/SocketService.js'
 export default { 
     state: {
        suggests: [],
@@ -38,15 +35,10 @@ export default {
         }
     },
     actions: {
-        // async addFriendship(context, {friendship}) {
-        //     let addedFriendship = await FriendshipService.add(friendship)
-        //     console.log(addedFriendship)
-        // },
         async saveFriendship(context, {friendship}) {
             console.log('user store' , friendship)
             let savedFriendship = await FriendshipService.save(friendship)
             console.log('savedFriendship', savedFriendship)
-            // context.commit('saveUserFriendship', user)
         },
 
         async loadFriendshipUsers(context) {
@@ -54,7 +46,6 @@ export default {
                 isFriendship: true
             }
             let friendshipUsers = await UserService.query(filterBy)
-            console.log('friendshipUsers', friendshipUsers)
             context.commit({type: 'setFriendshipUsers', friendshipUsers})
         },
 
@@ -65,6 +56,13 @@ export default {
 
             context.commit({type: 'setSuggests', suggests})
         },
+
+        async listenSocketEvents(context) {
+            socket.on('new friendship', () => {
+                console.log('new friendship')
+                context.dispatch({type: 'loadFriendshipUsers'})
+            })
+        }
 
     }
 }

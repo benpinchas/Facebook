@@ -36,7 +36,7 @@
     <footer>
       <div class="stats-container system-color">
         <p class="like-count">
-          <span v-if="post.likedBy.length">{{post.likedBy.length}} Likes</span>
+          <span v-if="post.likedBy.length"> <img src="@/assets/like.png" alt=""> {{post.likedBy.length}}</span>
         </p>
         <p class="comment-count" @click="toggleComments">
           <span v-if="post.comments.length">{{post.comments.length}} Comments</span>
@@ -214,6 +214,15 @@ footer {
 
 .like-count {
   flex-grow: 1;
+}
+
+.like-count span {
+  display: flex;
+  align-items: center;
+}
+
+.like-count img {
+  height: 18px;
 }
 </style>
 

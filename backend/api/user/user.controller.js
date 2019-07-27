@@ -8,7 +8,7 @@ module.exports = {
 
 async function query(req, res) {
     let filterBy = req.query
-    const loggedInUserId = req.session.user._id
+    const loggedInUserId = (req.session.user)? req.session.user._id : null
     try {
         let users = await UserService.query(filterBy, loggedInUserId)
         res.json(users)

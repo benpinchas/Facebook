@@ -22,12 +22,10 @@ export default {
             state.activeUsers = activeUsers
         }
     },
-    actions: {
+    actions: { 
         async login(context, { credentials }) {
-            let user = await UserService.login(credentials)
-            context.commit({ type: 'setUser', user })
-
-            socket.emit('user login', context.state.loggedInUser._id)
+            await UserService.login(credentials)
+            location.reload()
         },
         async signup(context, { credentials }) {
             try {
@@ -39,13 +37,14 @@ export default {
         },
         async logout(context) {
             try {
+                socket.emit("user inActive", context.getters.loggedInUser._id);
+                // context.commit({ type: 'setUser', user: null })
                 await UserService.logout()
-                context.commit({ type: 'setUser', user: null })
-                socket.emit('logout')
+                location.reload()
             } catch (err) {
                 console.log(err);
             }
-
+            // location.reload();
         },
         async saveUser(context, { user }) {
             console.log(user, "UESER")
@@ -56,5 +55,11 @@ export default {
                 throw err  
             }
         },
+
+        async listenSocketEvents(context) {
+            socket.on('activeUsers changed', activeUsers =>  {
+                context.commit({type: 'setActiveUsers', activeUsers})
+            })
+        }
     }
 }

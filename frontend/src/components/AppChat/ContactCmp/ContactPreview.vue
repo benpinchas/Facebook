@@ -18,10 +18,6 @@ import { mkdir } from 'fs';
 export default {
   props: ["user"],
   computed: {
-    isActive() {
-      console.log(this.$store.getters)
-      // return this.$store.getters.activeUsers.find(userId => userId === this.user._id)
-    },
     classObj() {
       return {
         active: this.$store.getters.activeUsers.find(userId => userId === this.user._id)
@@ -68,17 +64,7 @@ export default {
   border: 1px solid lightgray;
 }
 
-.dot {
-  height: 9px;
-  width: 9px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
 
-.active {
-    background-color: rgb(66, 183, 42);
-}
 
 </style>
 

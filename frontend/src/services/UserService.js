@@ -13,7 +13,7 @@ export default {
 }
 
 const USER_KEY = 'loggedInUser11'
-var loggedInUser = (sessionStorage.getItem(USER_KEY) === 'undefined')? null : JSON.parse(sessionStorage.getItem(USER_KEY))
+var loggedInUser = (sessionStorage.getItem(USER_KEY) === 'undefined') ? null : JSON.parse(sessionStorage.getItem(USER_KEY))
 
 function getLoggedInUser() {
     return loggedInUser
@@ -36,11 +36,11 @@ async function signup(userCred) {
 }
 
 function logout() {
+    loggedInUser = null
+    sessionStorage.setItem(USER_KEY, null)
     HttpService.post('api/auth/logout')
         .then(res => {
             console.log(res)
-            loggedInUser = null
-            sessionStorage.setItem(USER_KEY, null)
         })
 }
 

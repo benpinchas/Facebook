@@ -36,11 +36,11 @@ export default {
   components: {
     AppRegister,
     AppUpdates,
-    AppSearch,
+    AppSearch
   },
   computed: {
     loggedInUser() {
-      console.log(this.$store.getters.loggedInUser)
+      console.log(this.$store.getters.loggedInUser);
       return this.$store.getters.loggedInUser;
     }
   }
@@ -49,7 +49,6 @@ export default {
 
 
 <style scoped>
-
 header {
   background-color: #4267b2;
   border-bottom: 1px solid #29487d;
@@ -58,6 +57,9 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 
 main {
@@ -96,11 +98,11 @@ main {
 } */
 
 .link-container img {
-     width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 6px;
-    box-shadow: 0 0 1px #a5a5a5;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 1px #a5a5a5;
 }
 .link-container {
   cursor: pointer;
@@ -113,7 +115,7 @@ main {
 }
 
 .link-container:hover {
-  background-color: rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 2px;
 }
 

@@ -45,11 +45,16 @@ export default {
   },
   methods: {
     toggleWindow() {
+      console.log('tog')
       this.isWindow = !this.isWindow;
     }
   },
   created() {
     this.$store.dispatch({ type: "loadNotifications" });
+    document.querySelector('body').addEventListener('mousedown', (ev) => {
+      console.log('cl')
+      if (this.isWindow) this.isWindow = false
+    })
   },
 };
 </script>

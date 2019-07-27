@@ -6,8 +6,8 @@
       </div>
 
       <div class="secondary-container">
-        <div style="margin-bottom: 3px;" @click.prevent="readUser">
-          <a href>{{user.username}}</a>
+        <div style="margin-bottom: 3px;">
+          <a  @click.prevent="readUser">{{user.username}}</a>
         </div>
 
         <div class="btns-container">

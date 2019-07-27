@@ -34,7 +34,7 @@
 
         <friendship-button :user="user"></friendship-button>
 
-        <button>
+        <button @click="startChat">
           <i class="fab fa-facebook-messenger"></i> Message
         </button>
       </div>
@@ -115,6 +115,9 @@ export default {
       } finally {
         this.isLoadCoverImg = false;
       }
+    },
+    startChat() {
+      this.$store.dispatch({type: 'loadChatWith', userId: this.user._id})
     }
   }
 };
