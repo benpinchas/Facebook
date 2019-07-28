@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  props: ['unseen']
+  props: ['unseen'],
 };
 </script>
 

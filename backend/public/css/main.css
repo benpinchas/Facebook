@@ -30,6 +30,7 @@
 
 body {
     margin: 0;
+    padding-bottom: 60px;
 }
 @media(max-width: 670px) {
     body {
@@ -204,4 +205,20 @@ button.delete {
     background-size: contain;
     background-image: url("https://scontent.fhfa1-1.fna.fbcdn.net/v/t39.16376-6/45064187_739107979755013_4157394468397383680_n.jpg?_nc_cat=1&_nc_oc=AQlPsrn-VUfkcQddAZhhfEUudUxGJeLdQKY7rE2PIpWHtvOYOS-BsPXiHUsv7OLaoug&_nc_ht=scontent.fhfa1-1.fna&oh=6e915f60c288b22578b035a63ed8d3d6&oe=5DB50E6D");
 }
+
+
+/* CHAT */
+.dot {
+    height: 9px;
+    width: 9px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot.active {
+      /* background-color: rgb(66, 183, 42); */
+      background-color: #42b72a;
+  }
+
 

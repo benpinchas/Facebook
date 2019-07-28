@@ -6,12 +6,12 @@
     <div class="realtive"></div>
     <div
       ref="contenteditable"
-      class="comment-container dark-set-1 "
+      class="comment-container dark-set-1"
       placeholder="Write a comment..."
       contenteditable
     ></div>
-    <button @click="addComment">
-      <i class="far fa-paper-plane"></i>
+    <button class="submit-btn" @click="addComment">
+      <i class="fas fa-arrow-circle-up"></i>
     </button>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
   methods: {
     addComment() {
       this.$emit("addComment", this.$refs.contenteditable.innerText);
-      this.$refs.contenteditable.innerText = ''
+      this.$refs.contenteditable.innerText = "";
     }
   }
 };
@@ -63,6 +63,15 @@ export default {
   cursor: text;
   flex-grow: 1;
 }
+
+.submit-btn {
+  background: none;
+  border: none;
+  font-size: 25px;
+  color: rgb(32, 120, 244);
+  margin-left: 9px;
+}
+
 
 [contenteditable="true"] {
   outline: none;

@@ -29,6 +29,8 @@ export default {
   min-height: 450px;
   max-height: 700px;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
 </style>
 

@@ -49,7 +49,9 @@ export default {
   },
   created() {
      document.querySelector('body').addEventListener('mousedown', () => {
-      if (this.isWindow)  this.isWindow = false
+      if (this.isWindow) setTimeout(() => {
+        this.isWindow = false
+      }, 500) 
     })
   }
 };

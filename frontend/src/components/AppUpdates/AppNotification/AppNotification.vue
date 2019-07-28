@@ -1,5 +1,10 @@
 <template>
   <div class @click="toggleWindow">
+    <audio
+      id="notificationSound"
+      src="https://vocaroo.com/media_command.php?media=s0vVbhgcma0r&command=download_mp3"
+    ></audio>
+
     <i class="fas fa-bell header-icon" :class="classObj"></i>
     <unseen-count :unseen="unseen" />
 
@@ -51,11 +56,20 @@ export default {
   },
   created() {
     this.$store.dispatch({ type: "loadNotifications" });
-    document.querySelector('body').addEventListener('mousedown', (ev) => {
-      console.log('cl')
-      if (this.isWindow) this.isWindow = false
+    document.querySelector('body').addEventListener('mouseup', (ev) => {
+      if (this.isWindow) setTimeout(() => {
+        this.isWindow = false
+      }, 500) 
     })
   },
+   watch: {
+    "unseen.length"() {
+      if (this.unseen.length) {
+        console.log('qwdqw')
+         document.getElementById('notificationSound').play();
+      }
+    }
+  }
 };
 </script>
 

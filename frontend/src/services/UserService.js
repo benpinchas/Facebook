@@ -24,6 +24,7 @@ async function login(userCred) {
         let user = await HttpService.post('api/auth/login', userCred)
         loggedInUser = user
         sessionStorage.setItem(USER_KEY, JSON.stringify(loggedInUser))
+        
         return loggedInUser
     } catch (err) {
         console.log('err');
@@ -32,7 +33,7 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-    return HttpService.post('api/auth/signup', userCred)
+    return await HttpService.post('api/auth/signup', userCred)
 }
 
 function logout() {

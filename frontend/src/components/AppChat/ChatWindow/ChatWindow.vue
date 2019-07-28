@@ -4,7 +4,7 @@
   <div class="chat-window">
     <audio
       id="play"
-      src="https://vocaroo.com/media_command.php?media=s0vMxmjrTZYM&command=download_mp3"
+      src="https://vocaroo.com/media_command.php?media=s1dwvulZpRw1&command=download_mp3"
     ></audio>
 
     <div class="top" @click="toggleWindow">
@@ -97,7 +97,10 @@ export default {
   },
   watch: {
     msgs() {
-      document.getElementById("play").play();
+      console.log(this.msgs[this.msgs.length-1].userId)
+      if (this.msgs[this.msgs.length-1].userId !== this.$store.getters.loggedInUser._id) {
+        document.getElementById("play").play();
+      } 
       this.scrollToTop()
     }
   },

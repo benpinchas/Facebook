@@ -9,6 +9,10 @@ Vue.filter('timeAgo', ms =>{
     return moment(ms).fromNow()
 })
 
+Vue.filter('fDate', ms => {
+    return moment(ms).format('LL')
+})
+
 Vue.filter('fUsername', username => {
     username = username.toLowerCase()
     let names =  username.split(' ')

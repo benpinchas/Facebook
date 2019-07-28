@@ -1,30 +1,32 @@
 <template>
-  <header>
-    <main v-if="loggedInUser">
-      <div class="wrapper">
-        <i class="fab fa-facebook-square logo" @click="$router.push('/')"></i>
-        <app-search />
-      </div>
-
-      <div class="wrapper hide-mobile">
-        <div class="link-container" @click="$router.push(`/user/${loggedInUser._id}`)">
-          <img :src="loggedInUser.url.profileImg" />
-          {{loggedInUser.username}}
+<section class="pseudo-header">
+    <header>
+      <main v-if="loggedInUser">
+        <div class="wrapper">
+          <i class="fab fa-facebook-square logo" @click="$router.push('/')"></i>
+          <app-search />
         </div>
-        <div class="sep"></div>
-        <span class="link-container" @click="$router.push('/')">Home</span>
-        <div class="sep"></div>
-        <app-updates />
-        <div class="sep"></div>
-      </div>
-      <app-register></app-register>
-    </main>
 
-    <main v-else>
-      <img src="https://www.facebook.com/rsrc.php/v3/y4/r/gf6iHxsw8zm.png" alt class="literal-logo" />
-      <app-register></app-register>
-    </main>
-  </header>
+        <div class="wrapper hide-mobile">
+          <div class="link-container" @click="$router.push(`/user/${loggedInUser._id}`)">
+            <img :src="loggedInUser.url.profileImg" />
+            {{loggedInUser.username}}
+          </div>
+          <div class="sep"></div>
+          <span class="link-container" @click="$router.push('/')">Home</span>
+          <div class="sep"></div>
+          <app-updates />
+          <div class="sep"></div>
+        </div>
+        <app-register></app-register>
+      </main>
+
+      <main v-else>
+        <img src="https://www.facebook.com/rsrc.php/v3/y4/r/gf6iHxsw8zm.png" alt class="literal-logo" />
+        <app-register></app-register>
+      </main>
+    </header>
+  </section>
 </template>
 
 
@@ -49,6 +51,10 @@ export default {
 
 
 <style scoped>
+.pseudo-header {
+  min-height: 43px;
+  margin-bottom: 10px;
+}
 header {
   background-color: #4267b2;
   border-bottom: 1px solid #29487d;

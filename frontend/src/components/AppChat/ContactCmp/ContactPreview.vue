@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-preview" @click="loadChatWith">
+  <div class="contact-preview" @click="loadChatWith" :class="classObj">
     <div class="profile-image-container-thumb">
       <img :src="user.url.profileImg" alt />
       {{user.username}}
@@ -8,8 +8,7 @@
     <div>
 
     <span class="dot" :class="classObj"></span>
-      <!-- <button class="confirm" @click="confirmFriendship">Confirm</button>
-      <button class="delete">Delete</button>-->
+  
     </div>
   </div>
 </template>
@@ -36,7 +35,7 @@ export default {
 <style scoped>
 .contact-preview {
   cursor: pointer;
-  height: 46px;
+  min-height: 46px;
   display: flex;
   align-items: center;
   padding: 0px 15px;
@@ -64,6 +63,9 @@ export default {
   border: 1px solid lightgray;
 }
 
+.contact-preview.active {
+  order: -1;
+}
 
 
 </style>
