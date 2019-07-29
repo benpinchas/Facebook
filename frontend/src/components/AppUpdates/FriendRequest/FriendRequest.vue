@@ -48,10 +48,10 @@ export default {
     }
   },
   created() {
-     document.querySelector('body').addEventListener('mousedown', () => {
+     document.querySelector('body').addEventListener('mouseup', (ev) => {
       if (this.isWindow) setTimeout(() => {
         this.isWindow = false
-      }, 500) 
+      }, 50) 
     })
   }
 };

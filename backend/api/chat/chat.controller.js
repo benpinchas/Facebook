@@ -1,7 +1,8 @@
 const ChatService = require('./chat.service.js')
 
 module.exports = {
-    loadChat
+    loadChat,
+    getInboxMsgs
 }
 
 
@@ -16,6 +17,17 @@ async function loadChat(req, res) {
     }
     console.log('user1Id user2Id', loggedInUserId, user2Id)
   
+}
+
+async function getInboxMsgs(req, res) {
+    let loggedInUserId = req.session.user._id
+    try {
+        let inboxMsgs = await ChatService.getInboxMsgs(loggedInUserId)
+        console.log(inboxMsgs)
+        res.json(inboxMsgs)
+    }catch(err) {
+        console.log('ERROR: getInbox', err)
+    }
 }
 
 

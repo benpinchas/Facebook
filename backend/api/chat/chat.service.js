@@ -3,31 +3,11 @@ const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
     loadChat,
+    getInboxMsgs,
     addMsg
 }
-/*
-async function loadChat(loggedInUserId, user2Id) {
-    let collection = await dbService.getCollection('chat')
-    try {
-        let chat = await collection.findOne({
-            $or: [
-                { $and: [{ "user1Id": ObjectId(loggedInUserId) }, { "user2Id": ObjectId(user2Id) }] },
-                { $and: [{ "user1Id": ObjectId(user2Id) }, { "user2Id": ObjectId(loggedInUserId) }] }
-            ]
-        })
-        if (!chat) {
-            chat = _createChat(loggedInUserId, user2Id)
-            collection.insertOne(chat)
-        }
-        console.log('CHAT,', chat)
-        return chat
-    }catch(err) {
-        throw err
-    }
 
-} */
-
-async function loadChat(loggedInUserId, user2Id, createIfNotExist=true) {
+async function loadChat(loggedInUserId, user2Id, createIfNotExist = true) {
     let collection = await dbService.getCollection('chat')
     try {
         let results = await collection.aggregate([
@@ -43,7 +23,7 @@ async function loadChat(loggedInUserId, user2Id, createIfNotExist=true) {
                 $lookup: {
                     from: "user",
                     pipeline: [
-                        { $match: {"_id": ObjectId(user2Id)} },
+                        { $match: { "_id": ObjectId(user2Id) } },
                     ],
                     as: "user"
                 }
@@ -60,6 +40,32 @@ async function loadChat(loggedInUserId, user2Id, createIfNotExist=true) {
         throw err
     }
 
+}
+
+async function getInboxMsgs(loggedInUserId) {
+    let collection = await dbService.getCollection('chat')
+    let userCollection = await dbService.getCollection('user')
+    try {
+        let chats = await collection.find({
+            $or: [{ "user1Id": ObjectId(loggedInUserId) }, { "user2Id": ObjectId(loggedInUserId) }]
+        }).toArray()
+        
+        chats = chats.filter(chat => chat.msgs[chat.msgs.length-1])
+
+        prmInboxMsgs = chats.map(async chat => {
+            console.log(chat.user1Id.toString()  === loggedInUserId, chat.user1Id.toString() , loggedInUserId)
+            let user = (chat.user1Id.toString()  === loggedInUserId) ? 
+            await userCollection.findOne ({"_id": ObjectId(chat.user2Id)}) : 
+            await userCollection.findOne ({"_id": ObjectId(chat.user1Id)}) 
+
+            return {chatId: chat._id, msg: chat.msgs[chat.msgs.length-1], user}
+        })
+
+        return Promise.all(prmInboxMsgs)
+            .then(inboxMsgs => inboxMsgs.sort((prmInboxMsg1, prmInboxMsg2) => prmInboxMsg2.msg.at - prmInboxMsg1.msg.at))
+    } catch (err) {
+        throw err
+    }
 }
 
 async function addMsg(msg, chatId) {

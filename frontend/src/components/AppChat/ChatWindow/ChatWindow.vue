@@ -97,7 +97,7 @@ export default {
   },
   watch: {
     msgs() {
-      console.log(this.msgs[this.msgs.length-1].userId)
+      if (!this.isWindow) this.isWindow = true
       if (this.msgs[this.msgs.length-1].userId !== this.$store.getters.loggedInUser._id) {
         document.getElementById("play").play();
       } 

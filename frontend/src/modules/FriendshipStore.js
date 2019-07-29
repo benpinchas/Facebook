@@ -15,7 +15,6 @@ export default {
         },
         requestingUsers(state) {
             return state.friendshipUsers.filter(user => {
-                console.log(user.friendship.isApproved, user.friendship.user1Id ===  user._id)
                 return !user.friendship.isApproved && user.friendship.user1Id ===  user._id
             })
         },
@@ -52,7 +51,6 @@ export default {
 
          async loadSuggests(context ,{fiterBy}) {
             let suggests = await UserService.query()
-            console.log('suggests', suggests)
 
             context.commit({type: 'setSuggests', suggests})
         },

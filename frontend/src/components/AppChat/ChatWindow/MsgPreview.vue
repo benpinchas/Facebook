@@ -37,6 +37,7 @@ export default {
   animation: mymove 0.3s;
   animation-fill-mode: forwards;  
   font-size: 13px;
+  word-break: break-word;
 }
 .income {
   background-color: rgb(233, 233, 233);

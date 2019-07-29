@@ -2,12 +2,19 @@ import HttpService from './HttpService.js'
 
 
 export default {
-    loadChatWith
+    loadChatWith,
+    getInboxMsgs
 }
-
-
 
 async function loadChatWith(userId) {
-    return HttpService.get('api/chat', userId)
+    return await HttpService.get('api/chat', userId)
 }
+
+
+async function getInboxMsgs() {
+    return await HttpService.get('api/chat/inbox')
+}
+
+
+
 

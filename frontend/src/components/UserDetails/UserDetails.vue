@@ -6,10 +6,9 @@
         v-bind:style="{ 'background-image': 'url('+user.url.coverImg+')' }"
       >
         <my-loader v-if="isLoadCoverImg" />
-        <!-- {{friendshipStatus}} -->
 
         <upload-image
-          v-if="canEdit"
+          v-if="isMe"
           @setImageUrl="setCoverImage"
           class="custom-file-input cover-img-input"
         />
@@ -18,7 +17,7 @@
         <div style="position:relative;">
           <img class="profile-img" :src="user.url.profileImg" alt />
           <upload-image
-            v-if="canEdit"
+            v-if="isMe"
             @setImageUrl="setProfileImage"
             class="custom-file-input profile-img-input"
           />
@@ -27,13 +26,8 @@
 
         <h1 class="username">{{user.username | fUsername}}</h1>
       </div>
-      <div class="btns-container">
-        <!-- <button class="profile-btn">
-          <i class="fas fa-check"></i> Friends
-        </button>-->
-
+      <div class="btns-container" v-if="!isMe">
         <friendship-button :user="user"></friendship-button>
-
         <button @click="startChat">
           <i class="fab fa-facebook-messenger"></i> Message
         </button>
@@ -70,19 +64,7 @@ export default {
     isShow() {
       return this.$route.params.userId;
     },
-    friendshipStatus() {
-      let friendship = this.$store.getters.friendships.find(friendship => {
-        return (
-          friendship.user1.userId === this.user._id ||
-          friendship.user2.userId === this.user._id
-        );
-      });
-      if (!friendship) return "not friends";
-      else if (friendship.isApproved) return "approved";
-      else if (friendship.user2.userId === this.user._id) return "Sent";
-      else return "You need to confirm";
-    },
-    canEdit() {
+    isMe() {
       return this.$store.getters.loggedInUser
         ? this.user._id === this.$store.getters.loggedInUser._id
         : false;

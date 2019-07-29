@@ -13,6 +13,11 @@ Vue.filter('fDate', ms => {
     return moment(ms).format('LL')
 })
 
+Vue.filter('txtSnippet', txt => {
+    const limit = 30
+    return (txt.length > limit)? txt.slice(0, limit) + '...' : txt
+})
+
 Vue.filter('fUsername', username => {
     username = username.toLowerCase()
     let names =  username.split(' ')

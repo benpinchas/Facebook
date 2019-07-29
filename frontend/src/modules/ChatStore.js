@@ -3,7 +3,8 @@ import socket from '../services/SocketService.js'
 
 export default {
     state: {
-        chats: []
+        chats: [],
+        inboxMsgs: [],
     },
     getters: {
         chats(state) {
@@ -11,6 +12,9 @@ export default {
         },
         chatsForDesktop(state)  {
             return state.chats.slice(0,2)
+        },
+        inboxMsgs(state) {
+            return state.inboxMsgs
         }
     },
     mutations: {
@@ -23,12 +27,20 @@ export default {
             let chatIdx = state.chats.findIndex(currChat => currChat._id === chat._id) 
             if (chatIdx >= 0) state.chats.splice(chatIdx, 1) 
             state.chats.unshift(chat)
+        },
+        setInboxMsgs(state, {inboxMsgs}) {
+            state.inboxMsgs = inboxMsgs
         }
     },
     actions: {
        async loadChatWith(context, {userId}) {
             let chat = await ChatService.loadChatWith({userId})
             context.commit({type: 'unshiftChat', chat})
+       },
+       async loadInboxMsgs(context) {
+            let inboxMsgs = await ChatService.getInboxMsgs()
+            context.commit({type: 'setInboxMsgs', inboxMsgs})
+            console.log('inboxMsgs', inboxMsgs)
        },
        addMsg(context, {msg, chatId, toUserId}) {
            context.commit({type: 'addMsg', msg, chatId})

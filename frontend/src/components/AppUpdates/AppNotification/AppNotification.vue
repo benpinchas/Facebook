@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     toggleWindow() {
-      console.log('tog')
       this.isWindow = !this.isWindow;
     }
   },
@@ -59,7 +58,7 @@ export default {
     document.querySelector('body').addEventListener('mouseup', (ev) => {
       if (this.isWindow) setTimeout(() => {
         this.isWindow = false
-      }, 500) 
+      }, 50) 
     })
   },
    watch: {

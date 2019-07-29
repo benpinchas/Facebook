@@ -4,9 +4,7 @@
       <slot name="top"> </slot>
     </div>
     <div class="content-container">
-      <slot
-        name="content"
-      >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum corrupti neque recusandae beatae optio, libero saepe nam voluptatem! Saepe laboriosam optio nihil consequuntur distinctio quo quia, eius tempore fuga porro.</slot>
+      <slot name="content">content</slot>
     </div>
   </div>
 </template>
