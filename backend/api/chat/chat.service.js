@@ -42,6 +42,14 @@ async function loadChat(loggedInUserId, user2Id, createIfNotExist = true) {
 
 }
 
+
+
+
+
+
+
+
+
 async function getInboxMsgs(loggedInUserId) {
     let collection = await dbService.getCollection('chat')
     let userCollection = await dbService.getCollection('user')

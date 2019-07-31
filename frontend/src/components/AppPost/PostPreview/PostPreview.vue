@@ -1,5 +1,5 @@
 <template>
-  <div class="post-preview floating-box" v-if="user">
+  <div class="post-preview floating-box" v-if="user && post">
     <main>
       <header>
         <div class="profile-image-container-thumb">
@@ -9,10 +9,11 @@
         <div class="info-container" style="padding-top: 3px;">
           <div style="margin-bottom: 5px;">
             <a href @click.prevent="toUserProfile">{{user.username | fUsername}}</a>
-             <span v-if="post.userId !== post.user2Id">
+            <span v-if="post.userId !== post.user2Id">
               &nbsp;&#9656;&nbsp;
-              <a href @click.prevent="$router.push(`/user/${post.user2Id}`)">{{post.user2.username | fUsername}}</a>
-             </span>
+              <a @click.prevent="$router.push(`/user/${post.user2Id}`)"
+              >{{post.user2.username | fUsername}}</a>
+            </span>
           </div>
 
           <div class="time-container system-color">
@@ -36,17 +37,20 @@
     <footer>
       <div class="stats-container system-color">
         <p class="like-count">
-          <span v-if="post.likedBy.length"> <img src="@/assets/like.png" alt=""> {{post.likedBy.length}}</span>
+          <span v-if="post.reactions.length">
+            <img class="react-img" v-for="reactType in reactionsType" :src="reactImg(reactType)" alt />
+            {{post.reactions.length}}
+          </span>
         </p>
+
         <p class="comment-count" @click="toggleComments">
           <span v-if="post.comments.length">{{post.comments.length}} Comments</span>
         </p>
-        <!-- <p class="share-count" style="margin-left: 11px;">
-          <span>98 Shares</span>
-        </p>-->
       </div>
       <interactions-btns
-        @toggleLike="toggleLike"
+        :reactType="reactType"
+        @removeReact="removeReact"
+        @saveReact="saveReact"
         :isLiked="isLiked"
         @toggleComments="toggleComments"
       ></interactions-btns>
@@ -77,15 +81,34 @@ export default {
     user() {
       return this.post.user;
     },
+    reactionsType() {
+      return  new Set(this.post.reactions.map(react => react.reactType))
+    },
+    reactType() {
+      let react = this.post.reactions.find(
+        react => react.userId === this.$store.getters.loggedInUser._id
+      );
+      return react ? react.reactType : null;
+    },
     isLiked() {
       return this.$store.getters.loggedInUser
-        ? this.post.likedBy.find(
+        ? this.post.reactions.find(
             like => like.userId === this.$store.getters.loggedInUser._id
           )
         : false; //this.$store.getters.loggedInUser? this.post.likedBy.find(by => by.userId === this.$store.getters.loggedInUser._id): false
     }
   },
   methods: {
+    reactImg(reactType) {
+      return {
+        wow: `https://i.ibb.co/xHHMqQc/react-wow.png`,
+        sad: "https://i.ibb.co/nL1qs2N/react-sad.png",
+        haha: "https://i.ibb.co/pWzb4Hx/react-haha.png",
+        like: "https://i.ibb.co/txFPK4n/react-like.png",
+        love: "https://i.ibb.co/mh7ZnmJ/react-love.png",
+        angry: "https://i.ibb.co/KhXqzbf/react-angry.png"
+      }[reactType];
+    },
     toggleComments() {
       this.showComments = !this.showComments;
     },
@@ -96,6 +119,18 @@ export default {
         postId: this.post._id
       });
     },
+    saveReact(reactType) {
+      this.$store.dispatch({
+        type: "saveReact",
+        postId: this.post._id,
+        react: { reactType, userId: this.$store.getters.loggedInUser._id }
+      });
+    },
+    removeReact() {
+      let loggedInUserId = this.$store.getters.loggedInUser._id
+      let postId = this.post._id
+      this.$store.dispatch({type: 'removeReact', postId, loggedInUserId})
+    },
     addComment(txt) {
       let comment = {
         at: Date.now(),
@@ -103,9 +138,9 @@ export default {
         postId: this.post._id,
         txt,
         owner: {
-          userId: this.$store.getters.loggedInUser._id ,
-          username:  this.$store.getters.loggedInUser.username,
-          profileImg:  this.$store.getters.loggedInUser.url.profileImg
+          userId: this.$store.getters.loggedInUser._id,
+          username: this.$store.getters.loggedInUser.username,
+          profileImg: this.$store.getters.loggedInUser.url.profileImg
         },
         likedBy: []
       };
@@ -114,7 +149,7 @@ export default {
     toUserProfile() {
       this.$router.push(`/user/${this.post.user._id}`);
     }
-  },
+  }
 };
 </script>
 
@@ -194,6 +229,7 @@ footer {
 .stats-container {
   border-bottom: 1px solid lightgray;
   /* color: gray; */
+      min-height: 24px;
   font-size: 14px;
   padding-top: 6px;
   padding-bottom: 7px;
@@ -222,7 +258,13 @@ footer {
 }
 
 .like-count img {
-  height: 18px;
+  height: 20px;
+  margin-left:-5px;
+  margin-right: 5px;
+}
+
+.react-img {
+
 }
 </style>
 

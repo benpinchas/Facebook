@@ -6,7 +6,9 @@ export default {
     query,
     toggleLike,
     saveComment,
-    getById
+    getById,
+    saveReact,
+    removeReact
 }
 
 
@@ -23,10 +25,16 @@ async function save(post) {
 }
 
 async function toggleLike({ userId, postId }) {
-    await HttpService.post('api/post/like', { userId, postId })
-    console.log('like toggled')
+    return await HttpService.post('api/post/like', { userId, postId })
 }
 
+async function saveReact(postId, react) {
+    return await HttpService.post('api/post/react', {postId, react})
+}
+
+async function removeReact(postId) {
+    return await HttpService.delete('api/post/react', {postId})
+}
 
 async function saveComment(comment) {
     return await HttpService.post('api/post/comment', comment)

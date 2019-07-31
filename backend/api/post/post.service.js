@@ -8,7 +8,9 @@ module.exports = {
     query,
     toggleLike,
     saveComment,
-    getById
+    getById,
+    saveReact,
+    removeReact
 }
 
 
@@ -152,6 +154,55 @@ async function toggleLike(postId, user) {
         throw err;
     }
 }
+
+async function saveReact(postId, react,  user) {
+    const collection = await dbService.getCollection('post')
+    try {
+        let post = await collection.findOne({ "_id": ObjectId(postId) })
+        console.log(post)
+        let reactIdx = post.reactions.findIndex(currReact => currReact.userId === react.userId)
+        if (reactIdx === -1) {
+            post.reactions.unshift(react)
+            let notification = {
+                at: Date.now(),
+                userId: post.userId,
+                postId: post._id,
+                type: 'post-like',
+                isSeen: false,
+                isRead: false,
+                txt: (post.reactions.length > 1) ? ` <span class="strong">  ${user.username} </span>  and <span class="strong"> ${post.reactions.length - 1} </span> other people reacted your post recently` : `<span class="strong">  ${user.username} </span> react to your post`,
+                imgUrl: user.url.profileImg
+            }
+            await NotificationService.save(notification)
+        } else {
+            post.reactions.splice(reactIdx, 1, react)
+        }
+        console.log(post)
+        await collection.replaceOne({ "_id": ObjectId(post._id) }, { $set: post })
+    } catch (err) {
+        throw err
+    }
+
+    async function _sendNotification(post, user) {
+       
+    }
+}
+
+async function removeReact(postId, loggedInUserId) {
+    console.log(loggedInUserId)
+    const collection = await dbService.getCollection('post')
+    try {
+        let post = await collection.findOne({"_id": ObjectId(postId)})
+        let reactIdx = post.reactions.findIndex(currReact => currReact.userId === loggedInUserId)
+        console.log('reactIdx', reactIdx)
+        if (reactIdx >= 0) post.reactions.splice(reactIdx, 1)
+
+        await collection.replaceOne({ "_id": ObjectId(postId) }, { $set: post })
+    }catch(err) {
+        throw err
+    }
+}
+
 
 async function saveComment(comment) {
     const collection = await dbService.getCollection('post')

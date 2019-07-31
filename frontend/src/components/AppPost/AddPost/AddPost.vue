@@ -117,7 +117,7 @@ export default {
         content: "",
         gradientClass: "a",
         comments: [],
-        likedBy: []
+        reactions: [] 
       }
       console.log(this.post);
     },

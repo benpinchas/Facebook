@@ -127,7 +127,7 @@ main {
 
 @media (max-width: 670px) {
   header {
-    min-height: 90px;
+    max-height: 44px;;
   }
   .hide-mobile {
     display: none;

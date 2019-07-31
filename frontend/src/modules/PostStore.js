@@ -14,19 +14,31 @@ export default {
             state.posts = posts
         },
         save(state, {post}) {
-            state.posts.unshift(post)
+            let postIdx = state.posts.findIndex(currPost => currPost._id === post._id)
+            if (postIdx >= 0) state.posts.splice(postIdx, 1, post)
+            else state.posts.unshift(post)
+            return post
         },
-        toggleLike(state, {postId, loggedInUser}) {
-            const userId = loggedInUser._id
-            const username = loggedInUser.username
+        saveReact(state, {postId, react}) {
+            console.log(postId, react)
             let post = state.posts.find(post => post._id === postId)
             if (!post) return
-            let likeIdx = post.likedBy.findIndex(like => like.userId === userId)
-            if (likeIdx === -1) {
-                post.likedBy.unshift({ userId, username })
+            
+            let reactIdx = post.reactions.findIndex(currReact => currReact.userId === react.userId)
+            if (reactIdx === -1) {
+                post.reactions.unshift(react)
             } else {
-                post.likedBy.splice(likeIdx, 1)
+                post.reactions.splice(reactIdx, 1, react)
+                let reactIdx = post.reactions.findIndex(currReact => currReact.userId === react.userId)
+                console.log('GOOOFFFFFFF')
             }
+        },
+        removeReact(state, {postId, loggedInUserId}) {
+            let post = state.posts.find(post => post._id === postId)
+            if (!post) return
+            let reactIdx = post.reactions.findIndex(currReact => currReact.userId === loggedInUserId)
+            if (reactIdx >= 0) post.reactions.splice(reactIdx, 1)
+
         },
         saveComment(state, {comment}) {
             let post = state.posts.find(post => post._id === comment.postId)
@@ -49,7 +61,6 @@ export default {
        async addPost(context, {post}) { //TODO: rename to save
            let savedPost = await PostService.save(post)
            context.dispatch({type: 'loadPosts'})
-        //    context.commit({type: 'save', post: savedPost})
        },
        async toggleLike({commit,getters}, {userId, postId}) {
            //TODO: remove userId from the payload
@@ -57,10 +68,24 @@ export default {
            commit('toggleLike', {postId, loggedInUser})
            await PostService.toggleLike({postId, loggedInUser})
        },
+       async saveReact({commit}, { postId, react}) {
+            commit({type: 'saveReact', postId, react })
+            await PostService.saveReact(postId, react)
+       },
+       async removeReact({commit}, {postId, loggedInUserId}) {
+            commit({type: 'removeReact', postId, loggedInUserId})
+            await PostService.removeReact(postId)
+       },
        async saveComment(context, {comment}) {
            let savedComment = await PostService.saveComment(comment)
            console.log(savedComment)
            context.commit({type: 'saveComment', comment: savedComment})
+       },
+       async getById(context, {postId}) {
+           let post = await PostService.getById(postId)
+           console.log('post', post )
+           context.commit({type: 'save', post})
+           return post
        }
     }
 }

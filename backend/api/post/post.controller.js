@@ -61,10 +61,37 @@ async function saveComment(req, res) {
 }
 
 
+async function saveReact(req, res) {
+    let {react, postId} = req.body
+    let user = req.session.user
+    console.log('react, postId', react, postId, user)
+
+    try {   
+        await postService.saveReact(postId, react, user)
+        res.json({})
+    }catch(err) {
+        console.log('ERROR: saveReact', err)
+    }
+}
+
+
+async function removeReact(req, res) {
+    let loggedInUserId = req.session.user._id
+    let {postId} = req.body
+    console.log(postId, loggedInUserId)
+    try {
+        await postService.removeReact( postId, loggedInUserId)
+    }catch(err) {
+        console.log('ERROR postService.removeReact', err)
+    }
+}
+
 module.exports = {
     save,
     query,
     toggleLike,
     saveComment,
-    getById
+    getById,
+    saveReact,
+    removeReact
 }
