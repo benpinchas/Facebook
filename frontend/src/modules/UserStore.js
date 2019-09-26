@@ -25,7 +25,9 @@ export default {
     actions: { 
         async login(context, { credentials }) {
             await UserService.login(credentials)
-            location.reload()
+            setTimeout(() => {
+                location.reload()
+            }, 2300)
         },
         async signup(context, { credentials }) {
             try {

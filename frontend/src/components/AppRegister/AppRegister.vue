@@ -1,8 +1,8 @@
 <template>
   <div class="">
     <div v-if="!user" class="app-register">
-      <input type="text" placeholder="Email" v-model="credentials.email" />
-      <input type="text" placeholder="Password" v-model="credentials.password" />
+      <input type="text" placeholder="Email" v-model="credentials.email" :disabled="isLoading" />
+      <input type="text" placeholder="Password" v-model="credentials.password" :disabled="isLoading" />
       <button @click="login">Log In</button>
       <button @click="signup">Sign Up</button>
     </div>
@@ -17,9 +17,10 @@ export default {
   data() {
     return {
       credentials: {
-        email: "",
-        password: ""
-      }
+        email: "demo@mail.com",
+        password: "demo1234"
+      },
+      isLoading: false
     };
   },
   computed:{
@@ -30,11 +31,13 @@ export default {
   methods: {
     login() {
       this.$store.dispatch({ type: "login", credentials: this.credentials });
+      
+      this.isLoading = true
 
-      this.credentials = {
-        email: "",
-        password: ""
-      };
+      // this.credentials = {
+      //   email: "Loading..",
+      //   password: "Loading.."
+      // };
     },
     signup() {
       this.credentials.username = prompt("username is?");
