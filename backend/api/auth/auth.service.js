@@ -19,6 +19,13 @@ async function login(email, password) {
 async function signup(user) {
     // logger.debug(`auth.service - signup with email: ${email}, username: ${username}`)
     if (!user.email || !user.password || !user.username) return Promise.reject('email, username and password are required!')
+    
+    //check if not exist 
+    const _user = await userService.getByEmail(user.email )
+    console.log('test123', _user, user.email)
+    if (_user) return Promise.reject('User Already Exist')
+    console.log('User Already Exist')
+
     const hash = await bcrypt.hash(user.password, saltRounds)
     const addedUser = await userService.add({...user, password: hash})
     console.log('user signup service:', addedUser);    

@@ -9,7 +9,7 @@ module.exports = {
 
 
 async function query(userId) {
-    console.log(userId)
+    // console.log(userId)
     // const criteria = {};
     // if (filterBy.user2Id) {
     //     criteria["user2.userId"] = filterBy.user2Id   

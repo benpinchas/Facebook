@@ -9,7 +9,7 @@ async function login(req, res) {
         console.log("new session:", req.session.user.username);
         res.json(user)
     } catch (err) {
-        res.status(401).send({ error: err })
+        res.status(409).send({ error: err })
     }
 }
 
@@ -23,6 +23,7 @@ async function signup(req, res) {
         res.status(200).send(addedUser)
     } catch (err) {
         logger.error('[SIGNUP] ' + err)
+        if (err === 'User Already Exist') return res.status(409).send({ error: 'User already exist' })
         res.status(500).send({ error: 'could not signup, please try later' })
     }
 }

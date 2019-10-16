@@ -61,7 +61,7 @@ async function getInboxMsgs(loggedInUserId) {
         chats = chats.filter(chat => chat.msgs[chat.msgs.length-1])
 
         prmInboxMsgs = chats.map(async chat => {
-            console.log(chat.user1Id.toString()  === loggedInUserId, chat.user1Id.toString() , loggedInUserId)
+            // console.log(chat.user1Id.toString()  === loggedInUserId, chat.user1Id.toString() , loggedInUserId)
             let user = (chat.user1Id.toString()  === loggedInUserId) ? 
             await userCollection.findOne ({"_id": ObjectId(chat.user2Id)}) : 
             await userCollection.findOne ({"_id": ObjectId(chat.user1Id)}) 

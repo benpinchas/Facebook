@@ -1125,3 +1125,58 @@ Thu, 26 Sep 2019 10:52:03 GMT - Debug - auth.service - login with email: ben2
 Thu, 26 Sep 2019 10:53:01 GMT - Debug - auth.service - login with email: ben2
 Thu, 26 Sep 2019 10:55:18 GMT - Debug - auth.service - login with email: demo@mail.com
 Thu, 26 Sep 2019 10:57:35 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:15:11 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:16:05 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:16:29 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:16:43 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:17:10 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:18:54 GMT - Debug - demo@mail.com, null
+Wed, 16 Oct 2019 10:18:54 GMT - Error - [SIGNUP] email, username and password are required!
+Wed, 16 Oct 2019 10:18:55 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:21:44 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:35:51 GMT - Debug - demo@mail.com, nemo
+Wed, 16 Oct 2019 10:35:51 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:36:26 GMT - Debug - demo@mail.com, nemo
+Wed, 16 Oct 2019 10:36:27 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:37:44 GMT - Debug - demo@mail.comn, Ronit Elkabetz
+Wed, 16 Oct 2019 10:37:44 GMT - Debug - auth.service - login with email: demo@mail.comn
+Wed, 16 Oct 2019 10:41:11 GMT - Debug - demo@mail.com, nemo
+Wed, 16 Oct 2019 10:41:11 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:42:22 GMT - Debug - demo@mail.com, nemo2
+Wed, 16 Oct 2019 10:42:22 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:43:11 GMT - Debug - demo@mail.com, nemo3
+Wed, 16 Oct 2019 10:43:11 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:45:39 GMT - Debug - demo@mail.com, nemo4
+Wed, 16 Oct 2019 10:45:39 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:48:49 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:49:06 GMT - Debug - demo@mail.com, nemo10
+Wed, 16 Oct 2019 10:49:07 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:49:15 GMT - Debug - demo@mail.com, nemo11
+Wed, 16 Oct 2019 10:49:15 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:49:16 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 10:50:05 GMT - Debug - qwe, nemo90
+Wed, 16 Oct 2019 10:50:05 GMT - Debug - auth.service - login with email: qwe
+Wed, 16 Oct 2019 10:50:41 GMT - Debug - demo@mail.com, nemo11
+Wed, 16 Oct 2019 10:50:41 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:53:31 GMT - Debug - demo@mail.com, nemo 80
+Wed, 16 Oct 2019 10:53:35 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:54:23 GMT - Debug - demo@mail.com, nemo 81
+Wed, 16 Oct 2019 10:54:23 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:54:43 GMT - Debug - demo@mail.com, nemo 85
+Wed, 16 Oct 2019 10:54:43 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:55:41 GMT - Debug - demo@mail.com, nemo86
+Wed, 16 Oct 2019 10:55:41 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:55:55 GMT - Debug - demo@mail.com, nemo 87
+Wed, 16 Oct 2019 10:55:56 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:58:01 GMT - Debug - demo@mail.com, nemo88
+Wed, 16 Oct 2019 10:58:01 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:58:44 GMT - Debug - demo@mail.com, nemoo
+Wed, 16 Oct 2019 10:58:44 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:59:36 GMT - Debug - demo@mail.com, nemo 00
+Wed, 16 Oct 2019 10:59:36 GMT - Error - [SIGNUP] User Already Exist
+Wed, 16 Oct 2019 10:59:41 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 11:00:20 GMT - Debug - demo@mail.com1, nemo del
+Wed, 16 Oct 2019 11:00:20 GMT - Debug - auth.service - login with email: demo@mail.com1
+Wed, 16 Oct 2019 11:01:13 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 11:03:29 GMT - Debug - auth.service - login with email: demo@mail.com
+Wed, 16 Oct 2019 11:34:09 GMT - Debug - auth.service - login with email: demo@mail.com

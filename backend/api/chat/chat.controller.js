@@ -15,7 +15,7 @@ async function loadChat(req, res) {
     }catch(err) {
         console.log('ERROR: loadChat controller', err)
     }
-    console.log('user1Id user2Id', loggedInUserId, user2Id)
+    // console.log('user1Id user2Id', loggedInUserId, user2Id)
   
 }
 
