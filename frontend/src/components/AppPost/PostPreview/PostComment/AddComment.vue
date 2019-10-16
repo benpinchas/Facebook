@@ -76,6 +76,7 @@ export default {
 [contenteditable="true"] {
   outline: none;
   word-break: break-all;
+  font-size: 17px;
 }
 
 [contenteditable="true"]:empty:before {

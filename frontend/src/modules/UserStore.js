@@ -34,7 +34,7 @@ export default {
                 await UserService.signup(credentials)
                 context.dispatch({ type: 'login', credentials })
             } catch (err) {
-                console.log('ERROR: cant login')
+              alert('User Already Exist, Please use different email')
             }
         },
         async logout(context) {

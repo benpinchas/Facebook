@@ -33,7 +33,7 @@ export default {
 .mobile-bar {
     display: none;
 }
-@media(max-width: 670px) {
+/* @media(max-width: 670px) {
   .pseudo {
     min-height: 35px;
   }
@@ -56,7 +56,7 @@ export default {
   height: 50px;
 }
 
-}   
+}    */
 
 
 </style>
