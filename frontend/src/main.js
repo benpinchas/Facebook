@@ -7,7 +7,7 @@ import './registerServiceWorker'
 // import './sass/main.sass'
 Vue.config.productionTip = false
 
-new Vue({  
+new Vue({    
   router,
   store,
   render: h => h(App)
