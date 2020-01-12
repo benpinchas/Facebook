@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-    <app-header></app-header>
+    <app-header />
     <router-view class="router" />
     <app-chat />
-    <!-- <app-theme/> -->
     <mobile-bar />
   </div>
 </template>
@@ -14,6 +13,7 @@ import AppChat from "./components/AppChat/AppChat.vue";
 import AppTheme from "./components/util/App-Theme/App-Theme.vue";
 import MobileBar from "./components/MobileBar/MobileBar.vue";
 import socket from "./services/SocketService.js";
+import HttpService from './services/HttpService'
 export default {
   components: {
     AppHeader,
@@ -26,6 +26,8 @@ export default {
       this.$store.dispatch({ type: "listenSocketEvents" });
       socket.emit("user active", this.$store.getters.loggedInUser._id);
     }
+    let res = HttpService.post('api/auth/login', {email:'serverWakeUp', password: 'serverWakeUp'})
+    console.log('serverWakeUp', res);
   },
 };
 </script>

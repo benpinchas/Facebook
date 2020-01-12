@@ -1,5 +1,4 @@
 import HttpService from './HttpService.js'
-import { async } from 'q';
 
 export default {
     login,
