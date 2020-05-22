@@ -32,7 +32,7 @@ app.use(session({
 }))
 
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || true) {
     app.use(express.static(path.resolve(__dirname, 'public')));
 }
 
@@ -59,18 +59,6 @@ app.use('/api/notification', notificationsRoutes)
 
 const chatRoutes = require ('./api/chat/chat.routes.js')
 app.use('/api/chat', chatRoutes)
-
-
-
-
-
-
-
-
-app.get('/', (req, res) => {
-    res.send('hello')
-})
-
 
 
 const port = process.env.PORT || 3000;

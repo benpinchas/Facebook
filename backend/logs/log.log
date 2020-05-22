@@ -1185,3 +1185,15 @@ Sun, 05 Jan 2020 11:16:06 GMT - Debug - auth.service - login with email: demo@ma
 Sun, 12 Jan 2020 06:42:13 GMT - Debug - auth.service - login with email: serverWakeUp
 Sun, 12 Jan 2020 06:42:23 GMT - Debug - auth.service - login with email: demo@mail.com
 Sun, 12 Jan 2020 06:42:27 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:04:02 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:04:03 GMT - Debug - auth.service - login with email: demo@mail.com
+Fri, 22 May 2020 17:04:07 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:12:52 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:12:58 GMT - Debug - auth.service - login with email: demo@mail.com
+Fri, 22 May 2020 17:13:01 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:13:14 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:13:37 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:13:51 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:14:09 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:14:10 GMT - Debug - auth.service - login with email: demo@mail.com
+Fri, 22 May 2020 17:14:13 GMT - Debug - auth.service - login with email: serverWakeUp

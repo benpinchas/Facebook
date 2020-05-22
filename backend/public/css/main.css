@@ -1,0 +1,224 @@
+@import './app-theme.css';
+
+/* GLOBAL */
+.g-user-snippet-container-small {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.g-user-snippet-container-small a {
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+.g-profile-image-container-thumb-small {
+    margin-right: 13px;
+}
+  
+.g-profile-image-container-thumb-small img {
+    width: 41px;
+    height: 41px;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+ 
+
+body {
+    margin: 0;
+    padding-bottom: 60px;
+}
+@media(max-width: 670px) {
+    body {
+        padding-bottom: 68px;
+    }
+    input {
+        font-size: 17px !important;
+    }
+
+}
+
+
+.dev {
+    /* background-color: rgba(65, 65, 65, 0.198); */
+    background-color: #2c2c2cad;
+}
+
+button, input {
+    outline: none;
+}
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:disabled:hover {
+    opacity: 1;
+}
+
+/* UTIL */
+
+
+
+.profile-image-container-thumb{
+    margin-right: 13px; 
+}
+
+.profile-image-container-thumb img {
+  width: 45px;
+  height: 45px;
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+textarea {
+    outline: none;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+
+.header-icon {
+    font-size: 19px;
+    cursor: pointer;
+    color: #1a2947;
+}
+
+.header-icon:hover {
+    color: #0e182c;
+}
+
+
+.system-txt {
+    font-size: 13px;
+    color: #616770;
+}
+
+
+.strong {
+    font-weight: 600;
+  }
+
+i.unseen {
+    color: white;
+}
+i.unseen:hover {
+    color: rgb(246, 246, 246);
+}
+
+
+.sep {
+    background-color: rgba(0, 0, 0, .2);
+    width: 1px;
+    height: 19px;
+}
+
+a.username {
+    color: #385898;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+
+button.confirm {
+    background-color: #4267b2;
+    border-color: #4267b2;
+    color: white;
+}
+
+button.delete {
+    background-color: #f5f6f7;
+    border-color: #ccd0d5;
+    color: #4b4f56;
+}
+
+.realtive-wrapper {
+    position: relative;
+}
+
+
+.gradient {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+    outline: none;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    font-size: 35px;
+    background-size: cover;
+    text-align: center;
+  }
+
+
+.purple {
+    background-color: rgb(198, 0, 255);
+}
+.poop {
+    background-image: url("/assets/poop.jpg");
+}
+.fire {
+    background-image: url("/assets/fire.jpg");
+}
+.smiley {
+    background-image: url("/assets/smiley.jpg");
+}
+.party{
+    background-image: url("/assets/waves.jpg");
+}
+.regular {
+    background-color: #f1f1f1;
+    background-image: url('https://www.pets-n-friends.com/image.edit/imagelibrary/petsnfriends/shapes/line_45_008_pure_red.png');
+    background-size: cover;
+}
+
+.poop-small {
+    background-size: contain;
+    background-image: url("/assets/poop_thumbnail.jpg");
+}
+.fire-small {
+    background-size: contain;
+   background-image: url("/assets/fire_thumbnail.jpg")
+}
+.smiley-small {
+    background-size: contain;
+    background-image: url("/assets/smiley_thumbnail.jpg")
+}
+
+.party-small {
+    background-size: contain;
+    background-image: url("/assets/waves_thumbnail.jpg");
+}
+
+
+/* CHAT */
+.dot {
+    height: 9px;
+    width: 9px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .dot.active {
+      /* background-color: rgb(66, 183, 42); */
+      background-color: #42b72a;
+  }
+
+

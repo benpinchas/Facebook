@@ -1,0 +1,67 @@
+.system-color {
+    color: gray;
+}
+
+.username-color {
+      color: #385898;
+}
+
+.interactions-btn-color {
+    color: #cdcdcd;
+}
+
+.floating-box {
+    background-color: white;
+    border-radius: 2px;
+}
+
+
+
+body {
+    background-color: #e9ebee;
+    color: #272727;
+}
+
+body.dark {
+    background-color: #707070;
+}
+
+body.dark .floating-box{
+    background-color: #2d2d2d;
+}
+
+body.dark .post-preview{
+    color: white;
+}
+
+body.dark .system-color{
+    color: lavender;
+}
+
+
+body.dark a {
+    color: #8eb4ff;
+}
+
+
+body.dark .interactions-btns button{
+    color : white;
+}
+
+body.dark .dark-set-1{
+    background-color: #707070;
+} 
+
+body.dark .dark-set-2 {
+    background-color: #2d2d2d
+}
+
+body.dark button {
+    background-color: #0c0c0c00;
+    border-color: #ccd0d5;
+    color: #dbdbdb;
+} 
+
+body.dark #app > header {
+    background-color: #425b8f;
+}
