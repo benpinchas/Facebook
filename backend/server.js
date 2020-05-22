@@ -13,7 +13,7 @@ const logger = require('./services/logger.service')
 
 
 
-if (process.env.NODE_ENV !== 'production' || true) {
+if (process.env.NODE_ENV !== 'production') {
     const corsOptions = {
         origin: 'http://localhost:8080',
         credentials: true
@@ -61,7 +61,7 @@ const chatRoutes = require ('./api/chat/chat.routes.js')
 app.use('/api/chat', chatRoutes)
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 http.listen(port, () => {
     console.log('Server is running on port: ' + port)
 });

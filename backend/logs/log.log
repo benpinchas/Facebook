@@ -1197,3 +1197,30 @@ Fri, 22 May 2020 17:13:51 GMT - Debug - auth.service - login with email: serverW
 Fri, 22 May 2020 17:14:09 GMT - Debug - auth.service - login with email: serverWakeUp
 Fri, 22 May 2020 17:14:10 GMT - Debug - auth.service - login with email: demo@mail.com
 Fri, 22 May 2020 17:14:13 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:17:21 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:21:08 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:21:09 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:21:10 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:21:11 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:21:12 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:21:17 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:21:33 GMT - Debug - demo@mail.com, null
+Fri, 22 May 2020 17:21:33 GMT - Error - [SIGNUP] email, username and password are required!
+Fri, 22 May 2020 17:21:35 GMT - Debug - auth.service - login with email: demo@mail.com
+Fri, 22 May 2020 17:21:38 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:21:42 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:22:30 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:22:31 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:22:32 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:22:33 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:24:31 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:28:03 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:28:04 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:28:05 GMT - Debug - auth.service - login with email: demo@mail.com
+Fri, 22 May 2020 17:28:10 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:28:21 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:29:36 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:30:02 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:30:14 GMT - Debug - auth.service - login with email: demo@mail.com
+Fri, 22 May 2020 17:30:17 GMT - Debug - auth.service - login with email: serverWakeUp
+Fri, 22 May 2020 17:30:26 GMT - Debug - auth.service - login with email: serverWakeUp
